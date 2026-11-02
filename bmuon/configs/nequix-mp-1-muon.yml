@@ -1,0 +1,13 @@
+# Baseline: Nequix-MP-1 recipe with Muon, on ONE GPU.
+# Nequix used 4 GPUs x 64 = 256 structures per step; here 64 x 4 accumulation = 256.
+# Measured on a 3090: 64 per batch uses ~9 GB and keeps the GPU at 100 % (16 per batch: 72 %).
+base_config: ../../configs/nequix-mp-1.yml
+optimizer: "muon"
+train_path: "$BMUON_DATA/mptrj-aselmdb"   # local copy, see bmuon/experiments/run_forever.sh
+out_dir: "bmuon/runs/mp1-muon"
+batch_size: 64
+grad_accum_steps: 4
+num_workers: 8
+wandb: false
+seed: 0
+state_path: null   # base config sets "state.pkl" in the cwd; keep one per run in out_dir

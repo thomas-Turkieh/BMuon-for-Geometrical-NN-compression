@@ -1,0 +1,17 @@
+# Wave 2: pilot runs on the full model + small-model learning-rate sweep.
+repo: ~/nequix
+runs:
+  - name: pilot-mp1-muon
+    config: bmuon/configs/nequix-mp-1-muon.yml
+    set: ["seed=0"]
+    gpu: [a5000, 3090]
+  - name: pilot-mp1-bmuon-b30
+    config: bmuon/configs/nequix-mp-1-bmuon.yml
+    set: ["seed=0", "bmuon.budget=0.3"]
+    gpu: [a5000, 3090]
+  - grid:
+      name: small-{opt}-lr{lr}
+      config: bmuon/configs/small-{opt}.yml
+      set: ["learning_rate={lr}"]
+      gpu: [a5000, 4000ada]
+      values: {opt: [muon, bmuon], lr: [0.003, 0.01, 0.03]}

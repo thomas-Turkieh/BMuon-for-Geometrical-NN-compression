@@ -1,0 +1,12 @@
+# Versioned: bmuon/results/ (CSV/JSON) and, for each run, its config, logs and a few
+# allocations. Not versioned: data, checkpoints, optimizer states, raw stdout.
+# Exception: periodic snap_epoch*.nqx snapshots ARE versioned (off-site backup, for pruning).
+data/
+runs/**/state.pkl
+runs/**/*.nqx
+!runs/**/snap_epoch*.nqx
+runs/**/stdout.log
+runs/**/setup.log
+runs/**/alloc_epoch*.npz
+!runs/**/alloc_epoch??0.npz
+runs/assignments.json

@@ -1,0 +1,21 @@
+# Wave 3: section 6.3 (post-training compression), 4 budgets x 3 seeds per method.
+repo: ~/nequix
+runs:
+  - grid:
+      name: mp1-muon-s{seed}
+      config: bmuon/configs/nequix-mp-1-muon.yml
+      set: ["seed={seed}"]
+      gpu: [3090]
+      values: {seed: [0, 1, 2]}
+  - grid:
+      name: mp1-bmuon-count-b{budget}-s{seed}
+      config: bmuon/configs/nequix-mp-1-bmuon.yml
+      set: ["seed={seed}", "bmuon.budget={budget}", "bmuon.cost_model=channel"]
+      gpu: [3090, a5000]
+      values: {budget: [0.2, 0.3, 0.5, 0.7], seed: [0, 1, 2]}
+  - grid:
+      name: mp1-bmuon-cost-b{budget}-s{seed}
+      config: bmuon/configs/nequix-mp-1-bmuon.yml
+      set: ["seed={seed}", "bmuon.budget={budget}", "bmuon.cost_model=paths"]
+      gpu: [a5000, 4000ada]
+      values: {budget: [0.2, 0.3, 0.5, 0.7], seed: [0, 1, 2]}

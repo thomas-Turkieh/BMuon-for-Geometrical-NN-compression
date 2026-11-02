@@ -1,0 +1,6 @@
+# Nequix-MP-1 uniform channel shrink — B=0.3 cost baseline, weight_decay=0.001 (Nequix default).
+# Channels scaled by 0.3 from "128x0e + 64x1o + 32x2e + 32x3o"
+# → same total channel cost as BMuon budget=0.3 (paths cost model, linear scaling).
+base_config: nequix-mp-1-muon.yml
+hidden_irreps: "40x0e + 16x1o + 8x2e + 8x3o"
+out_dir: "bmuon/runs/mp1-uniform-wd1e3"

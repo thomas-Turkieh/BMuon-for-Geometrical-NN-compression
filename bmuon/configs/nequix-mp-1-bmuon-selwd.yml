@@ -1,0 +1,6 @@
+# Nequix-MP-1 BMuon avec weight decay sélectif.
+# wd_base=0.001 (defaut Nequix) sur canaux actifs,
+# wd_prune=0.049 -> jusqu'a 0.05 total sur canaux mourants.
+base_config: nequix-mp-1-bmuon.yml
+out_dir: "bmuon/runs/mp1-bmuon-selwd"
+selective_weight_decay_prune: 0.049

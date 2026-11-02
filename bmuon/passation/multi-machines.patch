@@ -1,0 +1,398 @@
+diff --git a/bmuon/README.md b/bmuon/README.md
+index b4ab314..4b8d3d2 100644
+--- a/bmuon/README.md
++++ b/bmuon/README.md
+@@ -19,6 +19,7 @@ bmuon/
+ │   ├── speed.py         §6.2 timings and measured channel costs (costs_<gpu>.json)
+ │   ├── launch.py        spread runs over the lab machines by SSH
+ │   ├── run_forever.sh   one run, resumed until done, results pushed to GitHub
++│   ├── launch_dist.sh   one run spread over several machines (data parallel)
+ │   ├── publish_results.sh  commit + push bmuon/results and run logs (rebase, retries)
+ │   ├── machines.txt     the 169 lab machines with their GPU
+ │   └── runs_*.yml       run plans (pilot, wave 3)
+@@ -69,6 +70,13 @@ The code was tested with jax 0.5.3, e3nn-jax 0.20.8, equinox 0.13.1, optax 0.2.6
+     python -m bmuon.experiments.launch start bmuon/experiments/runs_wave3.yml bmuon/experiments/machines.txt
+     python -m bmuon.experiments.launch status bmuon/experiments/runs_wave3.yml
+ 
++One run over several machines (global batch = batch_size x grad_accum_steps x hosts, keep 256):
++
++    H="ablette anchois anguille barbeau"
++    bash bmuon/experiments/launch_dist.sh check "$H"
++    bash bmuon/experiments/launch_dist.sh start mp1-bmuon-30 bmuon/configs/nequix-mp-1-bmuon.yml "$H" --set batch_size=64 grad_accum_steps=1
++    bash bmuon/experiments/launch_dist.sh status mp1-bmuon-30 "$H"
++
+ ## Implementation notes
+ 
+ * e3nn-jax regroups the input of `linear_2`: there is **one matrix per output irrep of the
+diff --git a/bmuon/configs/nequix-mp-1-muon.yml b/bmuon/configs/nequix-mp-1-muon.yml
+index bbe42b2..ed92ded 100644
+--- a/bmuon/configs/nequix-mp-1-muon.yml
++++ b/bmuon/configs/nequix-mp-1-muon.yml
+@@ -1,12 +1,12 @@
+ # Baseline: Nequix-MP-1 recipe with Muon, on ONE GPU.
+-# Nequix used 4 GPUs x 64 = 256 structures per step; here 16 x 16 accumulation = 256.
+-# If a 24 GB card runs out of memory, use batch_size 8 and grad_accum_steps 32.
++# Nequix used 4 GPUs x 64 = 256 structures per step; here 64 x 4 accumulation = 256.
++# Measured on a 3090: 64 per batch uses ~9 GB and keeps the GPU at 100 % (16 per batch: 72 %).
+ base_config: ../../configs/nequix-mp-1.yml
+ optimizer: "muon"
+ train_path: "$BMUON_DATA/mptrj-aselmdb"   # local copy, see bmuon/experiments/run_forever.sh
+ out_dir: "bmuon/runs/mp1-muon"
+-batch_size: 16
+-grad_accum_steps: 16
++batch_size: 64
++grad_accum_steps: 4
+ num_workers: 8
+ wandb: false
+ seed: 0
+diff --git a/bmuon/experiments/launch_dist.sh b/bmuon/experiments/launch_dist.sh
+new file mode 100755
+index 0000000..f08dd6a
+--- /dev/null
++++ b/bmuon/experiments/launch_dist.sh
+@@ -0,0 +1,73 @@
++#!/usr/bin/env bash
++# One training run spread over several machines (data parallel, one GPU per machine).
++#
++#   bash bmuon/experiments/launch_dist.sh check  "anchois ablette"
++#   bash bmuon/experiments/launch_dist.sh start  NAME CONFIG "anchois ablette ..." [--set k=v ...]
++#   bash bmuon/experiments/launch_dist.sh status NAME "anchois ablette ..."
++#   bash bmuon/experiments/launch_dist.sh stop   "anchois ablette ..."
++#
++# The first host is process 0 (coordinator, writes logs and checkpoints to bmuon/runs/NAME,
++# which must be on the shared home). Every host needs the environment and the data in
++# /tmp/$USER (bmuon/experiments/setup_machine.sh; `check` says which ones are missing).
++# The global batch is batch_size x grad_accum_steps x number of hosts: keep it at 256
++# (e.g. 4 hosts: batch_size=64 grad_accum_steps=1; 16 hosts: batch_size=16 grad_accum_steps=1).
++# If a host dies the others stop; `start` again with the same arguments resumes from the
++# last epoch.
++set -euo pipefail
++USER="${USER:-$(id -un)}"
++REPO="$(cd "$(dirname "$0")/../.." && pwd)"
++VENV="/tmp/$USER/nequix-venv"
++DATA="/tmp/$USER/bmuon-data"
++SSH=(ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=10)
++
++cmd="${1:-}"; shift || true
++
++case "$cmd" in
++check)
++  for h in $1; do
++    out=$("${SSH[@]}" "$h" "test -f $VENV/.bmuon_ready && echo env || echo NO-ENV; \
++      test -f $DATA/mptrj-aselmdb/.complete && echo data || echo NO-DATA; \
++      test -d $REPO && echo repo || echo NO-REPO; \
++      nvidia-smi --query-gpu=name,memory.used --format=csv,noheader" 2>&1 | tr '\n' ' ') \
++      || out="unreachable"
++    echo "$h: $out"
++  done
++  ;;
++start)
++  name="$1"; config="$2"; hosts=($3); shift 3
++  extra=("$@"); [ "${extra[0]:-}" = "--set" ] && extra=("${extra[@]:1}")
++  n=${#hosts[@]}
++  port=$((12000 + $(echo -n "$name" | cksum | cut -d' ' -f1) % 1000))
++  coord="${hosts[0]}:$port"
++  echo "run $name on $n hosts, coordinator $coord"
++  for i in "${!hosts[@]}"; do
++    h="${hosts[$i]}"
++    log="/tmp/$USER/dist-$name-rank$i.log"
++    "${SSH[@]}" "$h" "cd $REPO && source $VENV/bin/activate && \
++      export BMUON_DATA=$DATA XLA_PYTHON_CLIENT_PREALLOCATE=false && \
++      nohup python -m bmuon.train $config --coordinator $coord --num-processes $n \
++        --process-id $i --set out_dir=bmuon/runs/$name ${extra[*]} > $log 2>&1 < /dev/null &"
++    echo "  rank $i on $h  (log $h:$log)"
++  done
++  ;;
++status)
++  name="$1"; hosts=($2)
++  for i in "${!hosts[@]}"; do
++    h="${hosts[$i]}"
++    line=$("${SSH[@]}" "$h" "pgrep -u $USER -f '[b]muon[.]train' >/dev/null && echo -n 'running | ' || echo -n 'stopped | '; \
++      grep -v '^[WIE][0-9]' /tmp/$USER/dist-$name-rank$i.log 2>/dev/null | tail -n 1 | cut -c1-160; \
++      nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader" 2>&1 | tr '\n' ' ') \
++      || line="unreachable"
++    echo "rank $i $h: $line"
++  done
++  if [ -f "$REPO/bmuon/runs/$name/DONE" ]; then echo "DONE"; fi
++  ;;
++stop)
++  for h in $1; do
++    "${SSH[@]}" "$h" "pkill -u $USER -f '[b]muon[.]train' && echo '$h: stopped' || echo '$h: nothing running'" || echo "$h: unreachable"
++  done
++  ;;
++*)
++  sed -n '2,15p' "$0"; exit 1
++  ;;
++esac
+diff --git a/bmuon/train.py b/bmuon/train.py
+index bb74719..13e253f 100644
+--- a/bmuon/train.py
++++ b/bmuon/train.py
+@@ -9,13 +9,20 @@ with these additions:
+   * gradient accumulation (``grad_accum_steps``) to keep Nequix's global batch on one GPU;
+   * ``base_config`` inheritance, optional training subset, step-based lr schedule;
+   * automatic resume from ``out_dir/state.pkl`` and local JSONL logs (wandb optional);
+-  * the allocation (one value per channel) is saved every epoch.
++  * the allocation (one value per channel) is saved every epoch;
++  * data parallelism over several machines (``--coordinator host:port --num-processes N
++    --process-id i``, see bmuon/experiments/launch_dist.sh). Every process reads its own
++    shard of the data and runs the same number of micro-steps per epoch; gradients, metrics
++    and validation are averaged over all processes; process 0 writes logs and checkpoints.
+ """
+ 
+ from __future__ import annotations
+ 
+ import argparse
++import atexit
+ import functools
++import multiprocessing
++import multiprocessing.util  # noqa: F401  (registers its exit hook before ours, see train)
+ import json
+ import os
+ import time
+@@ -43,7 +50,7 @@ from nequix.data import (
+     prefetch,
+ )
+ from nequix.model import Nequix, save_model, weight_decay_mask
+-from nequix.train import evaluate, load_training_state, loss, save_training_state
++from nequix.train import load_training_state, loss, save_training_state
+ 
+ 
+ # ------------------------------------------------------------------------ config
+@@ -175,6 +182,68 @@ def load_datasets(config):
+     return train_dataset, val_dataset
+ 
+ 
++def shard(dataset, rank: int, n: int):
++    """Every n-th structure starting at ``rank`` (all shards have n//N or n//N + 1 items)."""
++    if n == 1:
++        return dataset
++    out = IndexDataset(dataset, np.arange(rank, len(dataset), n))
++    if hasattr(dataset, "atomic_indices"):
++        out.atomic_indices = dataset.atomic_indices
++    return out
++
++
++def prefetch_n(loader, n: int, queue_size: int = 4):
++    """Yield exactly ``n`` items of a fresh iteration of ``loader``, built in a thread.
++
++    Unlike nequix.data.prefetch the thread stops after n items, so the loader is never
++    advanced concurrently with the next epoch's iteration."""
++    import queue
++    import threading
++
++    q = queue.Queue(maxsize=queue_size)
++
++    def worker():
++        try:
++            it = iter(loader)
++            for _ in range(n):
++                q.put(next(it))
++        except StopIteration:
++            q.put(RuntimeError(f"loader ran out before {n} batches"))
++        except Exception as e:  # noqa: BLE001
++            q.put(e)
++        q.put(None)
++
++    threading.Thread(target=worker, daemon=True).start()
++    while True:
++        item = q.get()
++        if item is None:
++            return
++        if isinstance(item, Exception):
++            raise item
++        yield item
++
++
++def evaluate_sums(model, dataloader, energy_weight, force_weight, stress_weight, loss_type):
++    """As nequix.train.evaluate, but returns (sum of metric * n_graphs, n_graphs) so that
++    the shards of several processes can be added."""
++    totals, count = defaultdict(float), 0.0
++    for batch in prefetch(dataloader):
++        n_graphs = float(jnp.sum(jraph.get_graph_padding_mask(batch)))
++        val_loss, metrics = loss(model, batch, energy_weight, force_weight, stress_weight,
++                                 loss_type)
++        totals["loss"] += float(val_loss) * n_graphs
++        for k, v in metrics.items():
++            totals[k] += float(v) * n_graphs
++        count += n_graphs
++    return dict(totals), count
++
++
++def _atomic_dump(path: Path, fn):
++    tmp = path.with_name(path.name + ".tmp")
++    fn(tmp)
++    os.replace(tmp, path)
++
++
+ # --------------------------------------------------------------------- logging
+ 
+ 
+@@ -238,15 +307,26 @@ def save_allocation(path: Path, spec, state):
+ # ----------------------------------------------------------------------- train
+ 
+ 
+-def train(config_path: str, overrides: list | None = None):
++def train(config_path: str, overrides: list | None = None, coordinator: str | None = None,
++          num_processes: int = 1, process_id: int = 0):
++    if num_processes > 1:
++        jax.distributed.initialize(coordinator, num_processes, process_id)
++        # jax.distributed installs a SIGTERM handler that the forked data-loader workers
++        # inherit, so multiprocessing's exit hook (SIGTERM + join) would wait forever.
++        atexit.register(lambda: [p.kill() for p in multiprocessing.active_children()])
++    rank, n_proc = jax.process_index(), jax.process_count()
++    main_process = rank == 0
++
+     config = apply_overrides(load_config(config_path), overrides)
+     out_dir = Path(config.get("out_dir", f"bmuon/runs/{Path(config_path).stem}"))
+     out_dir.mkdir(parents=True, exist_ok=True)
+-    with open(out_dir / "config.yml", "w") as f:
+-        yaml.safe_dump(config, f)
++    if main_process:
++        with open(out_dir / "config.yml", "w") as f:
++            yaml.safe_dump({**config, "num_processes": n_proc}, f)
+     config["cache_dir"] = config.get("cache_dir") or os.environ.get("TMPDIR")
+ 
+     train_dataset, val_dataset = load_datasets(config)
++    n_train_total = len(train_dataset)
+     if "atom_energies" in config:
+         atom_energies = [config["atom_energies"][n] for n in config["atomic_numbers"]]
+     else:
+@@ -255,8 +335,11 @@ def train(config_path: str, overrides: list | None = None):
+             "avg_n_edges"]
+     stats = ({k: config[k] for k in keys} if all(k in config for k in keys)
+              else dataset_stats(train_dataset, atom_energies))
++    # statistics above are computed on the whole training set, identical in every process
++    train_dataset = shard(train_dataset, rank, n_proc)
++    val_dataset = shard(val_dataset, rank, n_proc)
+ 
+-    num_devices = len(jax.devices())
++    num_devices = jax.local_device_count()
+     workers = config.get("num_workers", 16)
+     loader_kw = dict(
+         batch_size=config["batch_size"], max_n_nodes=stats["max_n_nodes"],
+@@ -289,7 +372,13 @@ def train(config_path: str, overrides: list | None = None):
+     config_to_save = {**config, **stats}
+ 
+     accum = int(config.get("grad_accum_steps", 1))
+-    micro_per_epoch = len(train_dataset) // (config["batch_size"] * num_devices)
++    if n_proc > 1:
++        # same number of micro-steps in every process (dynamic batching gives each shard a
++        # different number of batches, and a missing step would hang the collectives); each
++        # batch holds at most batch_size structures, so every shard has at least this many.
++        micro_per_epoch = (n_train_total // n_proc) // (config["batch_size"] * num_devices)
++    else:
++        micro_per_epoch = len(train_dataset) // (config["batch_size"] * num_devices)
+     steps_per_epoch = max(1, micro_per_epoch // accum)  # optimizer updates per epoch
+     total_steps = config["n_epochs"] * steps_per_epoch
+     schedule = optax.warmup_cosine_decay_schedule(
+@@ -300,12 +389,15 @@ def train(config_path: str, overrides: list | None = None):
+         decay_steps=total_steps,
+     )
+     optim, spec = build_optimizer(config, model, schedule, total_steps)
+-    if spec is not None:
++    if spec is not None and main_process:
+         print(f"BMuon channels ({spec.num_channels}):\n{spec.summary()}", flush=True)
++    if n_proc > 1:
++        print(f"process {rank}/{n_proc}: {len(train_dataset)} train structures, "
++              f"{micro_per_epoch} micro-steps per epoch", flush=True)
+     opt_state = optim.init(eqx.filter(model, eqx.is_array))
+ 
+-    model = jax.device_put_replicated(model, list(jax.devices()))
+-    opt_state = jax.device_put_replicated(opt_state, list(jax.devices()))
++    model = jax.device_put_replicated(model, jax.local_devices())
++    opt_state = jax.device_put_replicated(opt_state, jax.local_devices())
+     ema_model = jax.tree.map(lambda x: x.copy(), model)
+     step, start_epoch, best_val_loss, run_id = jnp.array(0), 0, float("inf"), None
+ 
+@@ -314,7 +406,15 @@ def train(config_path: str, overrides: list | None = None):
+         (model, ema_model, _, opt_state, step, start_epoch, best_val_loss,
+          run_id) = load_training_state(state_path)
+         print(f"resumed from {state_path} at epoch {start_epoch}", flush=True)
+-    logger = Logger(out_dir, config, run_id)
++    logger = Logger(out_dir, config, run_id) if main_process else None
++
++    psum = jax.pmap(lambda x: jax.lax.psum(x, "device"), axis_name="device")
++
++    def all_sum(values: np.ndarray) -> np.ndarray:
++        """Sum a host vector over all processes (zeros on the extra local devices)."""
++        x = np.zeros((num_devices, len(values)), np.float32)
++        x[0] = values
++        return np.asarray(psum(x))[0]
+ 
+     @functools.partial(eqx.filter_pmap, in_axes=(0, 0, None, 0, 0), axis_name="device")
+     def train_step(model, ema_model, step, opt_state, batch):
+@@ -323,6 +423,7 @@ def train(config_path: str, overrides: list | None = None):
+             config["stress_weight"], config["loss_type"],
+         )
+         grads = jax.lax.pmean(grads, axis_name="device")
++        total_loss, metrics = jax.lax.pmean((total_loss, metrics), axis_name="device")
+         metrics["grad_norm"] = optax.global_norm(grads)
+         updates, opt_state = optim.update(grads, opt_state, eqx.filter(model, eqx.is_array))
+         model = eqx.apply_updates(model, updates)
+@@ -343,12 +444,13 @@ def train(config_path: str, overrides: list | None = None):
+     for epoch in range(start_epoch, config["n_epochs"]):
+         t0 = time.time()
+         train_loader.loader.set_epoch(epoch)
+-        for batch in prefetch(train_loader):
++        batches = prefetch_n(train_loader, micro_per_epoch) if n_proc > 1 else prefetch(train_loader)
++        for batch in batches:
+             model, ema_model, opt_state, total_loss, metrics = train_step(
+                 model, ema_model, step, opt_state, batch
+             )
+             step = step + 1
+-            if step % config["log_every"] == 0:
++            if step % config["log_every"] == 0 and main_process:
+                 logs = {"train/loss": total_loss.mean().item(),
+                         "learning_rate": float(schedule(step // accum)),
+                         "time/elapsed": time.time() - t0}
+@@ -359,31 +461,43 @@ def train(config_path: str, overrides: list | None = None):
+                 logger.log(logs, step)
+ 
+         ema_single = jax.tree.map(lambda x: x[0], ema_model)
+-        val = evaluate(ema_single, val_loader, config["energy_weight"], config["force_weight"],
+-                       config["stress_weight"], config["loss_type"])
++        sums, count = evaluate_sums(ema_single, val_loader, config["energy_weight"],
++                                    config["force_weight"], config["stress_weight"],
++                                    config["loss_type"])
++        names = sorted(sums)
++        tot = all_sum(np.array([sums[k] for k in names] + [count], np.float64))
++        val = {k: tot[i] / tot[-1] for i, k in enumerate(names)}
++        if not main_process:
++            print(f"process {rank}: epoch {epoch} done in {time.time() - t0:.0f} s", flush=True)
++            continue
+         if val["loss"] < best_val_loss:
+             best_val_loss = float(val["loss"])
+             save_model(out_dir / "checkpoint.nqx", ema_single, config_to_save)
+         save_model(out_dir / "last.nqx", ema_single, config_to_save)
+         bs = current_bmuon_state()
+         save_allocation(out_dir / f"alloc_epoch{epoch:03d}.npz", spec, bs)
+-        save_training_state(state_path, model, ema_model, optim, opt_state, step, epoch + 1,
+-                            best_val_loss, wandb_run_id=logger.run_id)
++        _atomic_dump(state_path, lambda p: save_training_state(
++            p, model, ema_model, optim, opt_state, step, epoch + 1, best_val_loss,
++            wandb_run_id=logger.run_id))
+         logs = {f"val/{k}": float(v) for k, v in val.items()}
+         logs.update({"epoch": epoch, "time/epoch": time.time() - t0})
+         if bs is not None:
+             logs.update(allocation_logs(spec, bs.alloc))
+         logger.log(logs, step)
+ 
+-    (out_dir / "DONE").touch()
++    if main_process:
++        (out_dir / "DONE").touch()
+ 
+ 
+ def main():
+     parser = argparse.ArgumentParser()
+     parser.add_argument("config_path")
+     parser.add_argument("--set", nargs="*", default=[], help="overrides, e.g. bmuon.budget=0.3")
++    parser.add_argument("--coordinator", default=None, help="host:port of process 0")
++    parser.add_argument("--num-processes", type=int, default=1)
++    parser.add_argument("--process-id", type=int, default=0)
+     args = parser.parse_args()
+-    train(args.config_path, args.set)
++    train(args.config_path, args.set, args.coordinator, args.num_processes, args.process_id)
+ 
+ 
+ if __name__ == "__main__":

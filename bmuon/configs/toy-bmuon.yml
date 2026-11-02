@@ -1,0 +1,40 @@
+# Smoke test on a synthetic EMT dataset (see bmuon/tests/make_toy_db.py). CPU, ~minutes.
+train_path: "bmuon/data/toy/toy.aselmdb"
+valid_frac: 0.25
+out_dir: "bmuon/runs/toy-bmuon"
+atomic_numbers: [13, 29]
+cutoff: 4.0
+hidden_irreps: "16x0e + 8x1o + 4x2e"
+lmax: 2
+n_layers: 3
+radial_basis_size: 8
+radial_mlp_size: 16
+radial_mlp_layers: 2
+radial_polynomial_p: 6.0
+mlp_init_scale: 4.0
+index_weights: false
+layer_norm: true
+kernel: false
+optimizer: "bmuon"
+bmuon:
+  budget: 0.4
+  anneal_fraction: 0.3
+  alpha: 0.5
+  refresh_every: 5
+  eps: 1.0e-6
+  cost_model: "cg"
+learning_rate: 0.01
+warmup_epochs: 0.1
+warmup_factor: 0.2
+grad_clip_norm: 100.0
+weight_decay: 1.0e-3
+batch_size: 4
+grad_accum_steps: 2
+n_epochs: 3
+energy_weight: 20.0
+force_weight: 20.0
+stress_weight: 5.0
+loss_type: "mae"
+log_every: 5
+ema_decay: 0.999
+num_workers: 2

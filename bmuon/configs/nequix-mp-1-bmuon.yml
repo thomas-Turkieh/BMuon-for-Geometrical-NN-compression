@@ -1,0 +1,13 @@
+# Nequix-MP-1 recipe with BMuon on the type-I channels. Override the budget per run:
+#   python -m bmuon.train bmuon/configs/nequix-mp-1-bmuon.yml --set bmuon.budget=0.3 out_dir=bmuon/runs/mp1-bmuon-30
+base_config: nequix-mp-1-muon.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/mp1-bmuon"
+bmuon:
+  budget: 0.3              # fraction of the total channel cost kept after annealing
+  anneal_fraction: 0.25    # linear from 1 to budget over the first 25 % of updates
+  alpha: 0.5
+  refresh_every: 5
+  eps: 1.0e-6
+  cost_model: "paths"      # cost of a copy = number of tensor-product paths it feeds (best fit
+                           # to the 3090 timings, corr 0.89); "channel" = count budget of the BMuon paper

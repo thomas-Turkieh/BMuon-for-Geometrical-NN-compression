@@ -1,0 +1,10 @@
+base_config: small-muon.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/small-bmuon"
+bmuon:
+  budget: 0.3
+  anneal_fraction: 0.25
+  alpha: 0.5
+  refresh_every: 5
+  eps: 1.0e-6
+  cost_model: "paths"
