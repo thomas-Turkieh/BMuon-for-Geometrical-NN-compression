@@ -1,0 +1,4 @@
+# Figure 2 curve "Muon": plain Muon (optax.contrib.muon, the Nequix optimizer), pruned after training by magnitude.
+base_config: base.yml
+optimizer: "muon"
+out_dir: "bmuon/runs/fig2-muon"

@@ -1,0 +1,16 @@
+# Gradual pruning (tutor's request; BMuon paper Sec. 5.2 "Muon-mag"): Muon, channels ranked by
+# coupled magnitude and removed for good during training, 20 -> 90 % in 3-epoch phases, then 6 recovery epochs.
+base_config: base.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/fig2-gradual-muon-mag"
+bmuon:
+  budget: 1.0              # full budget: the update is exactly Muon
+  cost_model: "channel"
+gradual:
+  prune_after_epochs: [3, 6, 9, 12, 15, 18]  # pruning before epochs 4, 7, 10, 13, 16, 19 (3-epoch phases)
+  levels: [0.2, 0.4, 0.55, 0.7, 0.8, 0.9]  # cumulative fraction of type-I channels removed; the snapshot
+                                           # at the end of each phase (epochs 6, 9, 12, 15, 18, 24) gives
+                                           # one point of the Figure 2 curve (error after recovery)
+  min_keep: 1                              # never empty a (block, irrep) group
+  score: "magnitude"
+  anneal_budget: false

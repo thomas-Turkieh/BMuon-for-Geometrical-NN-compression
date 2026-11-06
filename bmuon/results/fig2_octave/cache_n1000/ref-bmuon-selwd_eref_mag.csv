@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+10.009715442887344,33.69458019733429,857,1.0,reference,"BM-mag, wd sélectif (ép. 90)",0.0,mag,ref-bmuon-selwd
+10.008147662804376,33.70176628232002,771,0.8830985199838104,reference,"BM-mag, wd sélectif (ép. 90)",0.1,mag,ref-bmuon-selwd
+18.14153133124602,49.38343167304993,685,0.7955310414429063,reference,"BM-mag, wd sélectif (ép. 90)",0.2,mag,ref-bmuon-selwd
+48.39769488355661,112.0181456208229,599,0.7413256894156153,reference,"BM-mag, wd sélectif (ép. 90)",0.3,mag,ref-bmuon-selwd
+120.6290625179813,165.68563878536224,514,0.6658583550742286,reference,"BM-mag, wd sélectif (ép. 90)",0.4,mag,ref-bmuon-selwd
+305.37723776102797,234.48313772678375,428,0.5783048934973551,reference,"BM-mag, wd sélectif (ép. 90)",0.5,mag,ref-bmuon-selwd
+440.9416973870335,296.8382239341736,342,0.4691092394570529,reference,"BM-mag, wd sélectif (ép. 90)",0.6,mag,ref-bmuon-selwd
+645.6497979947402,348.821222782135,257,0.34561628210541806,reference,"BM-mag, wd sélectif (ép. 90)",0.7,mag,ref-bmuon-selwd
+1011.2313968552255,384.69868898391724,171,0.2248951793908578,reference,"BM-mag, wd sélectif (ép. 90)",0.8,mag,ref-bmuon-selwd
+1883.7781262125745,528.8508534431458,85,0.11025043058361382,reference,"BM-mag, wd sélectif (ép. 90)",0.9,mag,ref-bmuon-selwd
+2943.5120601578183,402.5067687034607,42,0.05389172245710371,reference,"BM-mag, wd sélectif (ép. 90)",0.95,mag,ref-bmuon-selwd

@@ -10,6 +10,8 @@ with these additions:
   * ``base_config`` inheritance, optional training subset, step-based lr schedule;
   * automatic resume from ``out_dir/state.pkl`` and local JSONL logs (wandb optional);
   * the allocation (one value per channel) is saved every epoch;
+  * "numuon" (NuMuon low-rank direction), Muon+GL (``bmuon.group_lasso``) and gradual
+    channel pruning (``gradual:``, channels zeroed for good at fixed epochs) for Figure 2;
   * data parallelism over several machines (``--coordinator host:port --num-processes N
     --process-id i``, see bmuon/experiments/launch_dist.sh). Every process reads its own
     shard of the data and runs the same number of micro-steps per epoch; gradients, metrics
@@ -38,7 +40,8 @@ import optax
 import yaml
 
 from bmuon.channels import build_channel_spec
-from bmuon.optimizer import bmuon, find_bmuon_state, weight_decay_keys
+from bmuon.optimizer import bmuon, find_bmuon_state, map_bmuon_state, weight_decay_keys
+from bmuon.prune import magnitude_scores, select_channels
 from nequix.data import (
     AseDBDataset,
     ConcatDataset,
@@ -113,6 +116,39 @@ def budget_schedule(cfg: dict, total_steps: int):
     return frac
 
 
+def gradual_budget_schedule(gradual: dict, steps_per_epoch: int):
+    """Budget for gradual pruning (BMuon paper, App. E.4): in every phase between two
+    pruning events, linear from the current kept fraction to the next one over the first
+    half of the phase, then constant; after the last event, the final kept fraction."""
+    bounds = [0] + [(e + 1) * steps_per_epoch for e in gradual["prune_after_epochs"]]
+    keeps = [1.0] + [1.0 - lv for lv in gradual["levels"]]
+
+    def frac(step):
+        res = jnp.asarray(keeps[-1], jnp.float32)
+        for i in range(len(bounds) - 1):
+            s0, s1, k0, k1 = bounds[i], bounds[i + 1], keeps[i], keeps[i + 1]
+            half = s0 + max(1, (s1 - s0) // 2)
+            v = jnp.where(step < half, k0 + (k1 - k0) * (step - s0) / (half - s0), k1)
+            res = jnp.where((step >= s0) & (step < s1), v, res)
+        return res
+
+    return frac
+
+
+def numuon_rank_schedule(cfg: dict, total_steps: int):
+    """NuMuon cosine rank schedule: full rank for the first ``full_rank_frac`` of training,
+    cosine from 1 to ``final_rank`` until ``anneal_end_frac``, then constant."""
+    r_end = float(cfg.get("final_rank", 0.25))
+    a = float(cfg.get("full_rank_frac", 0.1))
+    b = float(cfg.get("anneal_end_frac", 0.8))
+
+    def rank(step):
+        t = jnp.clip((step / total_steps - a) / (b - a), 0.0, 1.0)
+        return r_end + (1.0 - r_end) * 0.5 * (1.0 + jnp.cos(jnp.pi * t))
+
+    return rank
+
+
 def build_optimizer(config: dict, model, schedule, total_steps: int):
     wd = config["weight_decay"] if config["weight_decay"] != 0.0 else None
     clip = optax.clip_by_global_norm(config["grad_clip_norm"])
@@ -128,13 +164,23 @@ def build_optimizer(config: dict, model, schedule, total_steps: int):
             weight_decay=config["weight_decay"],
             mask=weight_decay_mask(model),
         )
-    elif name == "bmuon":
+    elif name in ("bmuon", "numuon"):
         cfg = config.get("bmuon", {})
         spec = build_channel_spec(model, cost_model=cfg.get("cost_model", "cg"))
+        gradual = config.get("gradual")
+        if name == "numuon":
+            budget, ranks = 1.0, numuon_rank_schedule(config.get("numuon", {}), total_steps)
+        elif gradual and gradual.get("anneal_budget", False):
+            budget = gradual_budget_schedule(gradual, total_steps // config["n_epochs"])
+            ranks = None
+        else:
+            budget, ranks = budget_schedule(cfg, total_steps), None
         inner = bmuon(
             learning_rate=schedule,
             spec=spec,
-            budget_fraction=budget_schedule(cfg, total_steps),
+            budget_fraction=budget,
+            rank_schedule=ranks,
+            group_lasso=cfg.get("group_lasso"),
             alpha=cfg.get("alpha", 0.5),
             refresh_every=cfg.get("refresh_every", 5),
             eps=cfg.get("eps", 1e-6),
@@ -317,6 +363,7 @@ def save_allocation(path: Path, spec, state):
         path,
         alloc=np.asarray(state.alloc),
         scores=np.asarray(state.scores),
+        keep=np.asarray(state.keep),
         weights=spec.weights,
         layer=np.array([c.layer for c in spec.channels]),
         ir=np.array([c.ir for c in spec.channels]),
@@ -472,7 +519,63 @@ def train(config_path: str, overrides: list | None = None, coordinator: str | No
         s = find_bmuon_state(opt_state)
         return None if s is None else jax.tree.map(lambda x: x[0], s)
 
+    gradual = config.get("gradual")
+    by_key = {s.keypath: s for s in spec.slices} if spec is not None else {}
+
+    def mask_slices(tree, keep):
+        """Zero the slices of the dropped channels (leaves may carry the pmap device axis)."""
+        def f(path, x):
+            sl = by_key.get(jax.tree_util.keystr(path))
+            if sl is None or not eqx.is_array(x):
+                return x
+            shape = [1] * x.ndim
+            shape[x.ndim - 2 + sl.axis] = -1
+            return x * jnp.asarray(keep[sl.channel_ids], x.dtype).reshape(shape)
+        return jax.tree_util.tree_map_with_path(f, tree)
+
+    def maybe_prune(epoch, model, ema_model, opt_state):
+        """Gradual pruning: at the start of the epoch following each pruning event, remove
+        (zero for good) the lowest-scored surviving channels down to the event's level.
+        Idempotent, so it is a no-op after a resume (the mask lives in the optimizer state)."""
+        if not gradual or spec is None:
+            return model, ema_model, opt_state
+        done = [lv for e, lv in zip(gradual["prune_after_epochs"], gradual["levels"]) if e < epoch]
+        if not done:
+            return model, ema_model, opt_state
+        level = float(done[-1])
+        bs = jax.tree.map(lambda x: x[0], find_bmuon_state(opt_state))
+        keep_old = np.asarray(bs.keep) > 0
+        if keep_old.sum() <= spec.num_channels - round(level * spec.num_channels):
+            return model, ema_model, opt_state
+        if gradual.get("score", "magnitude") == "alloc":
+            scores = np.asarray(bs.alloc, np.float64).copy()
+        else:
+            scores = magnitude_scores(jax.tree.map(lambda x: x[0], model), spec)
+        scores[~keep_old] = -np.inf
+        keep = select_channels(scores, spec, level, by="count",
+                               min_keep=int(gradual.get("min_keep", 1))) & keep_old
+        keep_f = keep.astype(np.float32)
+        model, ema_model = mask_slices(model, keep_f), mask_slices(ema_model, keep_f)
+
+        def reset(st):
+            return st._replace(
+                mu=mask_slices(st.mu, keep_f),
+                # paper: the allocation of every surviving channel is reset to one
+                alloc=jnp.broadcast_to(jnp.where(keep, 1.0, 1e-6).astype(st.alloc.dtype),
+                                       st.alloc.shape),
+                keep=jnp.broadcast_to(jnp.asarray(keep_f), st.keep.shape),
+            )
+
+        opt_state = map_bmuon_state(opt_state, reset)
+        if main_process:
+            print(f"gradual pruning before epoch {epoch}: level {level:.2f}, "
+                  f"{int(keep.sum())}/{spec.num_channels} channels kept", flush=True)
+            np.savez(out_dir / f"prune_epoch{epoch:03d}.npz", keep=keep, scores=scores, level=level)
+            logger.log({"prune/level": level, "prune/kept": int(keep.sum()), "epoch_start": epoch}, step)
+        return model, ema_model, opt_state
+
     for epoch in range(start_epoch, config["n_epochs"]):
+        model, ema_model, opt_state = maybe_prune(epoch, model, ema_model, opt_state)
         t0 = time.time()
         train_loader.loader.set_epoch(epoch)
         batches = prefetch_n(train_loader, micro_per_epoch) if n_proc > 1 else prefetch(train_loader)

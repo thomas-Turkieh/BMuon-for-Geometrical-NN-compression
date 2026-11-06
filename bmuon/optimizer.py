@@ -50,6 +50,26 @@ def newton_schulz(x: jax.Array, steps: int = 5, coeffs=NS_COEFFS, eps: float = 1
     return x.T if transposed else x
 
 
+def lowrank_polar(x: jax.Array, rel_rank: jax.Array) -> jax.Array:
+    """NuMuon direction: polar factor restricted to the top-k singular directions,
+    k = max(1, round(rel_rank * min(shape))). Exact, through the eigendecomposition of the
+    small Gram matrix (U_k V_k^T = X V_k S_k^-1 V_k^T; 2.5x faster than jnp.linalg.svd on
+    these matrices); NuMuon's randomized block Krylov approximates the same quantity."""
+    tall = x.shape[0] >= x.shape[1]
+    y = x if tall else x.T
+    w, v = jnp.linalg.eigh(y.T @ y)
+    w, v = w[::-1], v[:, ::-1]  # decreasing singular values
+    q = v.shape[1]
+    k = jnp.maximum(1, jnp.round(rel_rank * q)).astype(jnp.int32)
+    # directions with sigma^2 < 1e-6 sigma_max^2 are numerically null in float32 (the Gram
+    # matrix squares the conditioning): drop them instead of dividing by ~0 (that gave NaN);
+    # Newton-Schulz also sends such directions to ~0
+    ok = (jnp.arange(q) < k) & (w > 1e-6 * jnp.maximum(w[0], 1e-30))
+    inv = jnp.where(ok, 1.0 / jnp.sqrt(jnp.where(ok, w, 1.0)), 0.0)
+    p = y @ (v * inv[None, :]) @ v.T
+    return p if tall else p.T
+
+
 def _scale(m: jax.Array, d: jax.Array, axis: int) -> jax.Array:
     return d[:, None] * m if axis == 0 else m * d[None, :]
 
@@ -92,6 +112,7 @@ class BMuonState(NamedTuple):
     mu: Any  # momentum of the budgeted matrices
     alloc: jax.Array  # (num_channels,) current allocation
     scores: jax.Array  # (num_channels,) scores at the last refresh
+    keep: jax.Array  # (num_channels,) 1 = alive, 0 = pruned for good (gradual pruning)
 
 
 def scale_by_bmuon(
@@ -104,8 +125,14 @@ def scale_by_bmuon(
     ns_steps: int = 5,
     nesterov: bool = True,
     selective_wd=None,
+    rank_schedule: Optional[Callable] = None,
 ) -> optax.GradientTransformation:
     """BMuon direction for the matrices of ``spec``, including Muon's shape rescaling.
+
+    ``rank_schedule``: if given (step -> relative rank in (0, 1]), the polar factor is
+    replaced by its truncation to the top singular directions (NuMuon direction).
+    Pruned channels (``state.keep == 0``) get zero momentum, zero direction and the
+    floor allocation, so their slices stay exactly zero once zeroed.
 
     Expects the update tree restricted to the budgeted leaves (other leaves may be
     MaskedNode, as inside ``optax.partition``).
@@ -148,9 +175,17 @@ def scale_by_bmuon(
             mu=optax.tree.zeros_like(params),
             alloc=alloc,
             scores=jnp.zeros(n),
+            keep=jnp.ones((n,), jnp.float32),
         )
 
+    def polar(m, count):
+        if rank_schedule is None:
+            return newton_schulz(m, ns_steps)
+        return lowrank_polar(m, rank_schedule(count))
+
     def update_fn(updates, state, params=None):
+        keep = state.keep
+        updates = map_by_key(lambda k, g: _scale(g, keep[chan[k]], slices[k].axis), updates)
         mu = optax.tree.update_moment(updates, state.mu, beta, 1)
         count_inc = state.count + 1
         if nesterov:
@@ -169,10 +204,12 @@ def scale_by_bmuon(
             for k, m in mats.items():
                 s = slices[k]
                 d = state.alloc[chan[k]] ** alpha
-                p_bar = newton_schulz(_scale(m, d, s.axis), ns_steps)
+                p_bar = polar(_scale(m, d, s.axis), state.count)
                 per_slice = jnp.sum(m * p_bar, axis=1 - s.axis)
                 scores = scores + jax.ops.segment_sum(per_slice, chan[k], num_segments=n)
-            return solve_allocation(scores, weights, budget, alpha, eps), scores
+            scores = scores * keep
+            alloc = solve_allocation(scores, weights, budget, alpha, eps)
+            return jnp.where(keep > 0, alloc, eps), scores
 
         alloc, scores = jax.lax.cond(
             state.count % refresh_every == 0,
@@ -184,7 +221,7 @@ def scale_by_bmuon(
         def direction(key, m):
             s = slices[key]
             d = alloc[chan[key]] ** alpha
-            delta = _scale(newton_schulz(_scale(m, d, s.axis), ns_steps), d, s.axis)
+            delta = _scale(polar(_scale(m, d, s.axis), state.count), d * keep[chan[key]], s.axis)
             fan_in, fan_out = m.shape
             return delta * jnp.sqrt(jnp.maximum(1.0, fan_out / fan_in))
 
@@ -208,7 +245,58 @@ def scale_by_bmuon(
 
             new_updates = map_by_key(add_selective_wd, new_updates)
 
-        return new_updates, BMuonState(count_inc, mu, alloc, scores)
+        return new_updates, BMuonState(count_inc, mu, alloc, scores, keep)
+
+    return optax.GradientTransformation(init_fn, update_fn)
+
+
+# ------------------------------------------------------------ group-lasso proximal step
+
+
+class ProxGLState(NamedTuple):
+    count: jax.Array
+
+
+def prox_group_lasso(spec: ChannelSpec, lam: float, learning_rate: ScalarOrSchedule):
+    """Exact proximal Group-Lasso step on the coupled slices of every channel (Muon+GL).
+
+    Must be the last transformation of the chain: with w' = w + u (u = the update so far),
+    every channel group g_c (all its slices) becomes g_c * max(0, 1 - lr * lam / ||g_c||).
+    """
+    n = spec.num_channels
+    slices = {s.keypath: s for s in spec.slices}
+    chan = {k: jnp.asarray(s.channel_ids) for k, s in slices.items()}
+    lr = _as_schedule(learning_rate)
+    is_masked = lambda x: isinstance(x, _masking.MaskedNode)  # noqa: E731
+
+    def init_fn(params):
+        del params
+        return ProxGLState(jnp.zeros([], jnp.int32))
+
+    def update_fn(updates, state, params=None):
+        if params is None:
+            raise ValueError("prox_group_lasso needs params")
+        flat_p = {jax.tree_util.keystr(p): x for p, x in
+                  jax.tree_util.tree_flatten_with_path(params, is_leaf=is_masked)[0]}
+        flat_u = jax.tree_util.tree_flatten_with_path(updates, is_leaf=is_masked)[0]
+        sq = jnp.zeros(n)
+        for p, u in flat_u:
+            k = jax.tree_util.keystr(p)
+            if k in slices and not is_masked(u):
+                w = flat_p[k] + u
+                sq = sq + jax.ops.segment_sum(jnp.sum(w**2, axis=1 - slices[k].axis),
+                                              chan[k], num_segments=n)
+        factor = jnp.maximum(0.0, 1.0 - lr(state.count) * lam / jnp.maximum(jnp.sqrt(sq), 1e-12))
+
+        def f(path, u):
+            k = jax.tree_util.keystr(path)
+            if is_masked(u) or k not in slices:
+                return u
+            w = flat_p[k] + u
+            return _scale(w, factor[chan[k]], slices[k].axis) - flat_p[k]
+
+        out = jax.tree_util.tree_map_with_path(f, updates, is_leaf=is_masked)
+        return out, ProxGLState(state.count + 1)
 
     return optax.GradientTransformation(init_fn, update_fn)
 
@@ -237,8 +325,13 @@ def bmuon(
     selective_weight_decay: Optional[float] = None,
     beta: float = 0.95,
     ns_steps: int = 5,
+    rank_schedule: Optional[Callable] = None,
+    group_lasso: Optional[float] = None,
 ) -> optax.GradientTransformation:
     """BMuon on the budgeted matrices, optax.contrib.muon (Muon + AdamW) on the rest.
+
+    With ``budget_fraction=1`` the budgeted branch is exactly Muon; ``rank_schedule`` turns
+    its direction into NuMuon's, ``group_lasso`` adds the exact Group-Lasso prox (Muon+GL).
 
     ``weight_decay_keys``: keystrs of the leaves that receive weight decay (Nequix decays
     every linear weight). Budgeted leaves always receive it when ``weight_decay`` is set.
@@ -252,7 +345,7 @@ def bmuon(
     budget_branch = [
         scale_by_bmuon(
             spec, budget_fraction, alpha, refresh_every, eps, beta, ns_steps,
-            selective_wd=sel_wd,
+            selective_wd=sel_wd, rank_schedule=rank_schedule,
         )
     ]
     # selective_wd already handles weight decay on budgeted matrices;
@@ -260,6 +353,8 @@ def bmuon(
     if weight_decay and not use_selective:
         budget_branch.append(optax.add_decayed_weights(weight_decay))
     budget_branch.append(optax.scale_by_learning_rate(learning_rate))
+    if group_lasso:
+        budget_branch.append(prox_group_lasso(spec, group_lasso, learning_rate))
 
     rest = optax.contrib.muon(
         learning_rate=learning_rate,
@@ -287,6 +382,16 @@ def weight_decay_keys(model) -> set:
     flat_m = jax.tree_util.tree_flatten_with_path(mask)[0]
     m = {jax.tree_util.keystr(p): bool(v) for p, v in flat_m if isinstance(v, (bool, np.bool_))}
     return {jax.tree_util.keystr(p) for p, _ in flat_p if m.get(jax.tree_util.keystr(p), False)}
+
+
+def map_bmuon_state(opt_state, fn):
+    """opt_state with every BMuonState replaced by fn(state) (through chains, partitions,
+    MultiSteps; works on the pmap-replicated state too)."""
+    return jax.tree_util.tree_map(
+        lambda x: fn(x) if isinstance(x, BMuonState) else x,
+        opt_state,
+        is_leaf=lambda x: isinstance(x, BMuonState),
+    )
 
 
 def find_bmuon_state(opt_state) -> Optional[BMuonState]:

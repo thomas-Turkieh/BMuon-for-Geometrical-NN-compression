@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+17.798832593993428,51.02211236953735,305,1.0,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.0,mag,ref-uniform-wd1e3
+101.13488638064214,235.83225905895233,274,0.9646185545679481,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.1,mag,ref-uniform-wd1e3
+237.16752295595944,288.96811604499817,244,0.9308234117576061,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.2,mag,ref-uniform-wd1e3
+576.5347020888712,335.5797529220581,213,0.8312398161958049,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.3,mag,ref-uniform-wd1e3
+707.9180909313457,370.57045102119446,183,0.721543541420603,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.4,mag,ref-uniform-wd1e3
+1432.3812071062798,498.1958270072937,152,0.6083039493762554,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.5,mag,ref-uniform-wd1e3
+1944.7936759254437,695.4270601272583,122,0.49640064486650054,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.6,mag,ref-uniform-wd1e3
+2121.1888088097594,721.4421033859253,91,0.38261791659841543,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.7,mag,ref-uniform-wd1e3
+2586.8910858320196,419.60734128952026,61,0.25940358469907665,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.8,mag,ref-uniform-wd1e3
+3433.9199559536,332.39197731018066,30,0.12008483270542188,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.9,mag,ref-uniform-wd1e3
+3686.3377323932737,253.827303647995,15,0.05332218323519523,reference,"Petit modèle uniforme, wd 0.001 (ép. 99)",0.95,mag,ref-uniform-wd1e3

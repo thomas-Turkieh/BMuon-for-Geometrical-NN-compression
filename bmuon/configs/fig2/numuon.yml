@@ -1,0 +1,14 @@
+# Figure 2 curve "NuMuon": Muon direction restricted to the top singular directions, relative rank
+# 1 for the first 10 % of training, cosine to 0.25 at 80 %, then 0.25 (paper App. E.2). Applied to
+# the type-I channel matrices (the compressed ones); compressed after training by truncated SVD,
+# parameter-matched to the channel-pruned model.
+base_config: base.yml
+optimizer: "numuon"
+out_dir: "bmuon/runs/fig2-numuon"
+bmuon:
+  cost_model: "channel"
+  refresh_every: 1000000000   # budget stays full: no allocation refresh needed (saves a polar per step)
+numuon:
+  final_rank: 0.25
+  full_rank_frac: 0.1
+  anneal_end_frac: 0.8

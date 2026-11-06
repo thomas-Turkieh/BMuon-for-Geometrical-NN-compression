@@ -13,6 +13,10 @@ USER="${USER:-$(id -un)}"
 cd "$(dirname "$0")/../.."
 
 export PATH="$HOME/.local/bin:$PATH"
+# Lab homes are quota-capped; keep compiler/uv caches on the local disk.
+export CCACHE_DISABLE=1
+export CCACHE_DIR="${CCACHE_DIR:-/tmp/$USER/ccache}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/tmp/$USER/xdg-cache}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-/tmp/$USER/uv-cache}"
 export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-/tmp/$USER/uv-python}"
 export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-/tmp/$USER/nequix-venv}"

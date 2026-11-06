@@ -1,0 +1,23 @@
+# Figure 2 with the models that are already trained to (near) convergence on the whole MPtrj
+# (the group's October runs + the published Nequix-MP-1). Evaluation only, no training:
+#   python -m bmuon.experiments.fig2 --plan bmuon/experiments/fig2_octave.yml \
+#       --data $BMUON_DATA/mptrj-aselmdb --out bmuon/results/fig2_octave --n-structures 2000
+#   python -m bmuon.experiments.fig2_octave_plot bmuon/results/fig2_octave
+# Not a controlled comparison (different weight decay / epochs per model), see FIG2_PLAN.md.
+description: "full MPtrj, existing models trained 60-100 epochs"
+runs:
+  - {name: ref-nequix-mp-1, kind: reference, label: "Muon (published Nequix-MP-1)",
+     methods: [mag], model: models/nequix-mp-1.nqx}
+  - {name: ref-bmuon-wd1e2, kind: reference, methods: [mag, alloc], cost_model: paths,
+     model: bmuon/runs/mp1-bmuon-wd1e2/snap_epoch080.nqx, alloc: bmuon/runs/mp1-bmuon-wd1e2/alloc_epoch080.npz,
+     labels: {mag: "BM-mag, wd 0.01 (ep. 80)", alloc: "BM-μ, wd 0.01 (ep. 80)"}}
+  - {name: ref-bmuon-selwd, kind: reference, methods: [mag, alloc], cost_model: paths,
+     model: bmuon/runs/mp1-bmuon-selwd/snap_epoch090.nqx, alloc: bmuon/runs/mp1-bmuon-selwd/alloc_epoch090.npz,
+     labels: {mag: "BM-mag, selective wd (ep. 90)", alloc: "BM-μ, selective wd (ep. 90)"}}
+  - {name: ref-bmuon-wd1e3, kind: reference, methods: [mag, alloc], cost_model: paths,
+     model: bmuon/runs/mp1-bmuon-wd1e3/snap_epoch060.nqx, alloc: bmuon/runs/mp1-bmuon-wd1e3/alloc_epoch060.npz,
+     labels: {mag: "BM-mag, wd 0.001 (ep. 60)", alloc: "BM-μ, wd 0.001 (ep. 60)"}}
+  - {name: ref-uniform-wd1e3, kind: reference, label: "Small uniform model, wd 0.001 (ep. 99)",
+     methods: [mag], model: bmuon/runs/mp1-uniform-shrink-wd1e3/snap_epoch099.nqx}
+  - {name: ref-uniform-wd1e2, kind: reference, label: "Small uniform model, wd 0.01 (ep. 99)",
+     methods: [mag], model: bmuon/runs/mp1-uniform-shrink-wd1e2/snap_epoch099.nqx}

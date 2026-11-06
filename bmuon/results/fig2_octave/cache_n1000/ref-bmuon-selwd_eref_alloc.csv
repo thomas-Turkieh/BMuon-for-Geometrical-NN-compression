@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+10.009732798004926,33.69457647204399,857,1.0,reference,"BM-μ, wd sélectif (ép. 90)",0.0,alloc,ref-bmuon-selwd
+10.497684328666644,34.426700323820114,771,0.868711858526782,reference,"BM-μ, wd sélectif (ép. 90)",0.1,alloc,ref-bmuon-selwd
+20.072590924435232,55.473409593105316,685,0.7861239064577905,reference,"BM-μ, wd sélectif (ép. 90)",0.2,alloc,ref-bmuon-selwd
+81.94430000096068,138.22706043720245,599,0.653672356970023,reference,"BM-μ, wd sélectif (ép. 90)",0.3,alloc,ref-bmuon-selwd
+143.5567068341638,185.9433650970459,514,0.5369198071966598,reference,"BM-μ, wd sélectif (ép. 90)",0.4,alloc,ref-bmuon-selwd
+241.2185097819435,250.96648931503296,428,0.43126168445360996,reference,"BM-μ, wd sélectif (ép. 90)",0.5,alloc,ref-bmuon-selwd
+420.42948402761704,279.7802984714508,342,0.33776327800720823,reference,"BM-μ, wd sélectif (ép. 90)",0.6,alloc,ref-bmuon-selwd
+629.9629786049984,326.59754157066345,257,0.2376856590688881,reference,"BM-μ, wd sélectif (ép. 90)",0.7,alloc,ref-bmuon-selwd
+862.1881355639014,351.32813453674316,171,0.15488394829842816,reference,"BM-μ, wd sélectif (ép. 90)",0.8,alloc,ref-bmuon-selwd
+1662.783576230005,319.11930441856384,85,0.06194271617224746,reference,"BM-μ, wd sélectif (ép. 90)",0.9,alloc,ref-bmuon-selwd
+3226.844452820853,341.68872237205505,42,0.02998403818221002,reference,"BM-μ, wd sélectif (ép. 90)",0.95,alloc,ref-bmuon-selwd

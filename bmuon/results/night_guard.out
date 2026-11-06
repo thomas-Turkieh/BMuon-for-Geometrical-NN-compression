@@ -1,0 +1,8 @@
+[Tue 23:34:46] guard started, plan bmuon/experiments/fig2_runs.yml, runs stop at Wed 04 Nov 07:25:00
+[Wed 02:49:07] fig2-muon-gl-2: unreachable habenaria (rebooting?), waiting
+[Wed 02:54:48] fig2-muon-gl-2: unreachable habenaria (rebooting?), waiting
+[Wed 03:01:24] fig2-muon-gl-2: habenaria unreachable for 15 min, replaced by zeuxine
+[Wed 03:01:24] fig2-muon-gl-2: ranks missing on  habenaria: restart on gennaria zeuxine ipsea isotria liparis lycaste malaxis neotinea (resume from state.pkl)
+[Wed 05:41:00] watcher restarted on quiscale
+[Wed 06:37:18] watcher restarted on quiscale
+[Wed 06:57:40] less than 30 min before the deadline: guard stops

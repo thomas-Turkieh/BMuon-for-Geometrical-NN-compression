@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+9.432843214104953,32.235369086265564,857,1.0,reference,Muon (Nequix-MP-1 publié),0.0,mag,ref-nequix-mp-1
+91.49005959222927,169.8264330625534,771,0.9580051757639684,reference,Muon (Nequix-MP-1 publié),0.1,mag,ref-nequix-mp-1
+175.0070484053142,224.5330959558487,685,0.9161785550963053,reference,Muon (Nequix-MP-1 publié),0.2,mag,ref-nequix-mp-1
+331.20254232041816,277.47347950935364,599,0.8681284023990034,reference,Muon (Nequix-MP-1 publié),0.3,mag,ref-nequix-mp-1
+1057.8579813389351,501.60515308380127,514,0.7547749664030894,reference,Muon (Nequix-MP-1 publié),0.4,mag,ref-nequix-mp-1
+2038.2913863422143,555.4000735282898,428,0.6408958942560233,reference,Muon (Nequix-MP-1 publié),0.5,mag,ref-nequix-mp-1
+2733.2649169193023,526.5661478042603,342,0.5255713226932895,reference,Muon (Nequix-MP-1 publié),0.6,mag,ref-nequix-mp-1
+3323.2953528707667,377.23302841186523,257,0.40515333682589355,reference,Muon (Nequix-MP-1 publié),0.7,mag,ref-nequix-mp-1
+3704.8389965509905,298.14720153808594,171,0.2736549408922148,reference,Muon (Nequix-MP-1 publié),0.8,mag,ref-nequix-mp-1
+3858.40773900561,220.78941762447357,85,0.13488699698810486,reference,Muon (Nequix-MP-1 publié),0.9,mag,ref-nequix-mp-1
+3892.9013502020503,211.7585688829422,42,0.06469004112226823,reference,Muon (Nequix-MP-1 publié),0.95,mag,ref-nequix-mp-1

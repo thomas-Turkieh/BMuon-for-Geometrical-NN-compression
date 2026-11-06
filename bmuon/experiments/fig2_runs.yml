@@ -1,0 +1,21 @@
+# Curves of the Nequix Figure 2 (read by fig2.py, fig2_watch.sh, fig2_launch.sh and night_guard.sh).
+# kind: post = trained without pruning, compressed after training (the paper's Figure 2);
+#       gradual = pruned during training: one point per pruning phase (snapshot at the end of the
+#                 phase, after recovery), see the gradual block of its config;
+#       reference = existing full-data models (60-100 epochs on the whole MPtrj), evaluated only.
+# The order is the launch priority (fig2_launch.sh gives the fastest GPUs to the first runs).
+description: "20 % of MPtrj, 25 epochs, 1 seed"
+runs:
+  - {name: fig2-gradual-bmuon-mu,  kind: gradual, label: "BM-μ gradual",     methods: [], config: bmuon/configs/fig2/gradual-bmuon-mu.yml}
+  - {name: fig2-gradual-bmuon-mag, kind: gradual, label: "BM-mag gradual",   methods: [], config: bmuon/configs/fig2/gradual-bmuon-mag.yml}
+  - {name: fig2-gradual-muon-mag,  kind: gradual, label: "Muon-mag gradual", methods: [], config: bmuon/configs/fig2/gradual-muon-mag.yml}
+  - {name: fig2-bmuon,          kind: post, methods: [mag, alloc], labels: {mag: "BM-mag", alloc: "BM-μ"}, config: bmuon/configs/fig2/bmuon.yml}
+  - {name: fig2-muon,           kind: post, label: "Muon",              methods: [mag], config: bmuon/configs/fig2/muon.yml}
+  - {name: fig2-muon-gl-2,      kind: post, label: "Muon+GL (λ=2)",     methods: [mag], config: bmuon/configs/fig2/muon-gl-2.yml}
+  - {name: fig2-numuon,         kind: post, label: "NuMuon (diverged at ep. 8)", max_epoch: 7, methods: [svd], config: bmuon/configs/fig2/numuon.yml}
+  # not trained on night 2 (no free GPUs), re-enable when it has run:
+  # - {name: fig2-muon-gl-0p5,    kind: post, label: "Muon+GL (λ=0.5)",   methods: [mag], config: bmuon/configs/fig2/muon-gl-0p5.yml}
+  - {name: ref-nequix-mp-1, kind: reference, label: "Muon (published Nequix-MP-1, full data)",
+     methods: [mag], model: models/nequix-mp-1.nqx}
+  - {name: ref-bmuon-full, kind: reference, label: "BM-μ (full data, 80 ep., wd 0.01)", methods: [alloc], cost_model: paths,
+     model: bmuon/runs/mp1-bmuon-wd1e2/snap_epoch080.nqx, alloc: bmuon/runs/mp1-bmuon-wd1e2/alloc_epoch080.npz}

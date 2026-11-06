@@ -1,0 +1,16 @@
+# Figure 2 (BMuon paper) on Nequix-MP-1 / MPtrj: common protocol of the 8 runs.
+# Reduced budget that fits one night on 8 GPUs per run: 20 % of the training set, 25 epochs
+# (~5 passes over the full set, vs 100 for Nequix-MP-1). Same model, data split, lr schedule
+# (warmup + cosine over the 25 epochs), weight decay and seed for every method.
+base_config: ../nequix-mp-1-muon.yml
+train_subset_frac: 0.2      # 20 % of the training split (same subset for every run: subset_seed 0)
+valid_subset_frac: 0.1      # 10 % of the validation split for the per-epoch validation (~7.9k structures)
+n_epochs: 25
+weight_decay: 0.05          # BMuon paper, Fig. 2 (all methods). Needed for the BMuon curve: weight decay is
+                            # what drives the channels BMuon stops funding to zero. With Nequix's 0.001 they keep
+                            # ~20 % of the active norm (Octave's wd1e3 run) and pruning them hurts; with 0.01
+                            # over 80 full epochs they are exactly 0. Our 29k steps need ~0.05 (exp(-sum lr*wd) ~ 1e-3).
+seed: 0
+log_every: 50
+snapshot_every_epochs: 1    # one snap_epochNNN.nqx per epoch: Figure 2 can be redrawn from any epoch
+save_every_steps: 300       # state.pkl every 300 micro-steps (~4 per epoch): resume after a crash

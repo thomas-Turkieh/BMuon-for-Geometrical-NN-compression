@@ -1,0 +1,11 @@
+# Figure 2 curve "Muon+GL": Muon + exact proximal Group-Lasso step on the coupled slices of every
+# type-I channel, coefficient lambda = 0.5 (BMuon branch with full budget = Muon exactly).
+# Paper: lambda=0.05 on a ViT whose channel norms are ~1; Nequix channel norms are ~17, so the
+# grid is rescaled (two values, the paper keeps the strongest one whose dense accuracy stays close to BMuon).
+base_config: base.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/fig2-muon-gl-0p5"
+bmuon:
+  budget: 1.0
+  cost_model: "channel"
+  group_lasso: 0.5

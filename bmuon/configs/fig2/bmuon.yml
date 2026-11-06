@@ -1,0 +1,13 @@
+# Figure 2 curves "BM-mag" and "BM-mu": BMuon, budget annealed from 100 % to 30 % of the channels
+# (count budget, as in the paper) over the first 25 % of training, alpha = 1/2, MM step every 5 steps.
+# One training gives both curves (pruning ranked by magnitude, or by the learned allocation mu).
+base_config: base.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/fig2-bmuon"
+bmuon:
+  budget: 0.3
+  anneal_fraction: 0.25
+  alpha: 0.5
+  refresh_every: 5
+  eps: 1.0e-6
+  cost_model: "channel"
