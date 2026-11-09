@@ -24,9 +24,11 @@ bmuon/
 │   ├── machines.txt     the 169 lab machines with their GPU
 │   └── runs_*.yml       run plans (pilot, wave 3)
 ├── tests/           14 tests (see below)
-├── results/         CSV/JSON of the experiments (versioned)
-├── runs/            one folder per run: config, log.jsonl, hosts.log, alloc every 10 epochs
-│                    (versioned); checkpoints and optimizer states stay on the machine
+├── runs/            training logs, one folder per experiment (<date>_<data>_<principle>), then
+│                    one per run: config, log.jsonl, hosts.log, alloc every 10 epochs, pruning
+│                    masks; checkpoints and optimizer states stay on the machine (runs/README.md)
+├── results/         figures and tables, same experiment folders as runs/ (results/README.md)
+├── models/          trained models (.nqx), same experiment folders (models/README.md)
 └── data/            MPtrj, generated, git-ignored
 ```
 

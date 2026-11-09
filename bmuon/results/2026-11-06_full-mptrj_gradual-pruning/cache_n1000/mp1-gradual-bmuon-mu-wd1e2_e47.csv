@@ -1,0 +1,2 @@
+cost_removed,energy_mae,epoch,force_mae,kept_channels,kind,label,level,method,name,wd
+0.4017305315203955,17.58370163062412,47,45.89492827653885,602,gradual,BM-μ (wd 0.01),,alloc,mp1-gradual-bmuon-mu-wd1e2,0.01

@@ -2,7 +2,7 @@
 group's fully trained models, on the same held-out structures, with the same cost axis.
 
     python -m bmuon.experiments.gradual_fig --data $BMUON_DATA/mptrj-aselmdb \
-        [--out bmuon/results/gradual_fig] [--n-structures 1000]
+        [--out bmuon/results/2026-11-06_full-mptrj_gradual-pruning] [--n-structures 1000]
 
 x axis: fraction of the channel cost removed, cost model "paths" (the one the gradual runs prune
 with: levels 20/40/60/70/80/90 %).
@@ -236,7 +236,7 @@ def main():
     ap.add_argument("--plan", default="bmuon/experiments/gradual_runs.yml")
     ap.add_argument("--data")
     ap.add_argument("--n-structures", type=int, default=1000)
-    ap.add_argument("--out", default="bmuon/results/gradual_fig")
+    ap.add_argument("--out", default="bmuon/results/2026-11-06_full-mptrj_gradual-pruning")
     ap.add_argument("--plot-only", action="store_true", help="redraw the figures from points.csv, no evaluation")
     args = ap.parse_args()
     out = Path(args.out)

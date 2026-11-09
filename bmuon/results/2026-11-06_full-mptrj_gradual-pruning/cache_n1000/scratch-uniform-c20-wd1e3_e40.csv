@@ -1,0 +1,2 @@
+cost_removed,energy_mae,epoch,force_mae,kept_channels,kind,label,level,method,name,wd
+0.799752781211372,32.721158731305444,40,75.95805823802948,,scratch,small uniform model from scratch (Muon),,,scratch-uniform-c20-wd1e3,0.001

@@ -1,6 +1,6 @@
 """Status of the gradual-pruning runs (bmuon/experiments/gradual_runs.yml), read from their logs.
 
-    python -m bmuon.experiments.gradual_status [--plan PLAN] [--plot bmuon/results/gradual/curves.png]
+    python -m bmuon.experiments.gradual_status [--plan PLAN] [--plot bmuon/results/2026-11-06_full-mptrj_gradual-pruning/training_curves.png]
 
 For every run: epoch reached, current phase and pruning level (channels and cost kept), last
 validation errors, the same epoch of the post-training reference run (no gradual pruning), the

@@ -1,6 +1,6 @@
-"""Meeting figure from bmuon/results/fig2_octave/fig2_points.csv (see fig2_octave.yml).
+"""Meeting figure from bmuon/results/2026-11-03_full-mptrj_post-training-pruning/fig2_points.csv (see fig2_octave.yml).
 
-    python -m bmuon.experiments.fig2_octave_plot bmuon/results/fig2_octave
+    python -m bmuon.experiments.fig2_octave_plot bmuon/results/2026-11-03_full-mptrj_post-training-pruning
 
 Left: the paper's Figure 2 question (Muon vs BMuon, pruned by magnitude or by mu, no
 fine-tuning), with the small uniform models trained from scratch as single points.
@@ -19,7 +19,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-MEET = Path("bmuon/results/meeting")
+MEET = Path("bmuon/results/2026-11-03_full-mptrj_post-training-pruning")
 GRAY, GREEN, RED = "#6b7280", "#059669", "#be123c"
 REDS = {"wd 0.001": "#fda4af", "selective wd": "#f43f5e", "wd 0.01": "#9f1239"}
 
@@ -41,7 +41,7 @@ def series(rows, run, method):
 
 
 def main():
-    out = Path(sys.argv[1] if len(sys.argv) > 1 else "bmuon/results/fig2_octave")
+    out = Path(sys.argv[1] if len(sys.argv) > 1 else "bmuon/results/2026-11-03_full-mptrj_post-training-pruning")
     rows = load(out)
     full_channels = max(r["kept_channels"] for r in rows if r["level"] == 0)
     uniform = []

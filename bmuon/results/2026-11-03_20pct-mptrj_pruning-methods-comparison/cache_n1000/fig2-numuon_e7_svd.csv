@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run,svd_rank
+45.15681423224096,83.20096880197525,857,1.0,post,NuMuon (diverged at ep. 8) [ep. 7],0.0,svd,fig2-numuon,1312
+54.06679950565109,109.2715635895729,771,0.9246448013708591,post,NuMuon (diverged at ep. 8) [ep. 7],0.1,svd,fig2-numuon,86
+126.34727408158209,160.9959602355957,685,0.846983812158665,post,NuMuon (diverged at ep. 8) [ep. 7],0.2,svd,fig2-numuon,60
+135.26389162341164,172.47913777828217,599,0.8007891550749294,post,NuMuon (diverged at ep. 8) [ep. 7],0.3,svd,fig2-numuon,55
+166.35873318231396,205.68671822547913,514,0.7207540425800325,post,NuMuon (diverged at ep. 8) [ep. 7],0.4,svd,fig2-numuon,48
+333.00858968135117,272.8474736213684,428,0.5987941906692574,post,NuMuon (diverged at ep. 8) [ep. 7],0.5,svd,fig2-numuon,38
+632.8995863645705,334.20249819755554,342,0.4829264617503333,post,NuMuon (diverged at ep. 8) [ep. 7],0.6,svd,fig2-numuon,29
+948.3320641922902,353.9542853832245,257,0.3543523549375632,post,NuMuon (diverged at ep. 8) [ep. 7],0.7,svd,fig2-numuon,21
+1468.4119583300017,376.0627508163452,171,0.2384776175366237,post,NuMuon (diverged at ep. 8) [ep. 7],0.8,svd,fig2-numuon,14
+2204.9005912487864,319.28563117980957,85,0.11923880876831185,post,NuMuon (diverged at ep. 8) [ep. 7],0.9,svd,fig2-numuon,7
+2492.0209961665805,277.32154726982117,42,0.06813646215332106,post,NuMuon (diverged at ep. 8) [ep. 7],0.95,svd,fig2-numuon,1

@@ -1,0 +1,8 @@
+cost_removed,energy_mae,epoch,force_mae,kept_channels,kind,label,level,method,name,wd
+0.0,11.891536593589183,60,35.50301864743233,857,classic,"BMuon, pruned by μ",0.0,alloc,classic-bmuon-wd1e3,0.001
+0.20055624227441282,13.42066346940505,60,37.04451769590378,741,classic,"BMuon, pruned by μ",0.2,alloc,classic-bmuon-wd1e3,0.001
+0.40080346106304077,66.18050588585501,60,122.07169085741043,583,classic,"BMuon, pruned by μ",0.4,alloc,classic-bmuon-wd1e3,0.001
+0.600123609394314,222.47064335236965,60,204.1931301355362,449,classic,"BMuon, pruned by μ",0.6,alloc,classic-bmuon-wd1e3,0.001
+0.7008652657601977,347.84616233010047,60,253.1275749206543,361,classic,"BMuon, pruned by μ",0.7,alloc,classic-bmuon-wd1e3,0.001
+0.8006798516687268,694.8726903643867,60,357.2094738483429,262,classic,"BMuon, pruned by μ",0.8,alloc,classic-bmuon-wd1e3,0.001
+0.9001854140914709,1189.1392875821125,60,413.5870337486267,141,classic,"BMuon, pruned by μ",0.9,alloc,classic-bmuon-wd1e3,0.001

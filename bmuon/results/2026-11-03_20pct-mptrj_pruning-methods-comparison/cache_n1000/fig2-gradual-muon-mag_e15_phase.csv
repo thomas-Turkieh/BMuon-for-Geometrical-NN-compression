@@ -1,0 +1,2 @@
+energy_mae_mev_atom,epoch,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+34.81001478955986,15,75.2769485116005,257,0.368679444297461,phase,Muon-mag gradual,0.7001166861143524,phase,fig2-gradual-muon-mag

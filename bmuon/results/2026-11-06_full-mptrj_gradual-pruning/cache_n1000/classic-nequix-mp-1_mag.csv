@@ -1,0 +1,8 @@
+cost_removed,energy_mae,epoch,force_mae,kept_channels,kind,label,level,method,name,wd
+0.0,9.432854836417542,,32.23537281155586,857,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.0,mag,classic-nequix-mp-1,0.001
+0.20024721878862795,1121.210949757864,,494.7407841682434,506,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.2,mag,classic-nequix-mp-1,0.001
+0.40111248454882575,2703.734534559597,,538.6883020401001,347,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.4,mag,classic-nequix-mp-1,0.001
+0.6007416563658838,3642.720536334399,,303.6932051181793,214,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.6,mag,classic-nequix-mp-1,0.001
+0.7005562422744129,3862.4440584325002,,255.76657056808472,158,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.7,mag,classic-nequix-mp-1,0.001
+0.8009888751545118,3863.6827906440303,,229.4156402349472,106,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.8,mag,classic-nequix-mp-1,0.001
+0.9001854140914709,3892.3328682289084,,211.97018027305603,54,classic,"Muon (published Nequix-MP-1), pruned by magnitude",0.9,mag,classic-nequix-mp-1,0.001

@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run
+16.77891168113995,39.91241753101349,857,1.0,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.0,alloc,ref-bmuon-full
+18.893739976181624,42.88363829255104,771,0.8803844853233626,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.1,alloc,ref-bmuon-full
+18.895401732997268,42.87584125995636,685,0.744980612786625,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.2,alloc,ref-bmuon-full
+18.89576388517387,42.875222861766815,599,0.6500016645144786,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.3,alloc,ref-bmuon-full
+39.43460268252507,63.75556439161301,514,0.5946749553647301,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.4,alloc,ref-bmuon-full
+150.19705758161734,145.79303562641144,428,0.46471492123342273,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.5,alloc,ref-bmuon-full
+291.61534418596216,182.5345903635025,342,0.34659046110555297,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.6,alloc,ref-bmuon-full
+521.6800898467508,252.94476747512817,257,0.23999144965194127,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.7,alloc,ref-bmuon-full
+937.8109999757504,284.6936285495758,171,0.14649829956705102,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.8,alloc,ref-bmuon-full
+2485.1651142685023,344.16866302490234,85,0.05050487352318143,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.9,alloc,ref-bmuon-full
+4048.7072813327877,250.0534951686859,42,0.02729278108831213,reference,"BM-μ (full data, 80 ep., wd 0.01)",0.95,alloc,ref-bmuon-full

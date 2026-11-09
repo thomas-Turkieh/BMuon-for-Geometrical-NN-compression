@@ -1,8 +1,8 @@
 # Figure 2 with the models that are already trained to (near) convergence on the whole MPtrj
 # (the group's October runs + the published Nequix-MP-1). Evaluation only, no training:
 #   python -m bmuon.experiments.fig2 --plan bmuon/experiments/fig2_octave.yml \
-#       --data $BMUON_DATA/mptrj-aselmdb --out bmuon/results/fig2_octave --n-structures 2000
-#   python -m bmuon.experiments.fig2_octave_plot bmuon/results/fig2_octave
+#       --data $BMUON_DATA/mptrj-aselmdb --out bmuon/results/2026-11-03_full-mptrj_post-training-pruning --n-structures 2000
+#   python -m bmuon.experiments.fig2_octave_plot bmuon/results/2026-11-03_full-mptrj_post-training-pruning
 # Not a controlled comparison (different weight decay / epochs per model), see FIG2_PLAN.md.
 description: "full MPtrj, existing models trained 60-100 epochs"
 runs:

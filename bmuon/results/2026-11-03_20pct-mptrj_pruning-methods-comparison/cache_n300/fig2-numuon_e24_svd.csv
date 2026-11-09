@@ -1,0 +1,12 @@
+energy_mae_mev_atom,force_mae_mev_A,kept_channels,kept_params_frac,kind,label,level,method,run,svd_rank
+nan,nan,857,1.0,post,NuMuon [ep. 24],0.0,svd,fig2-numuon,1312
+nan,nan,771,0.8880885591787461,post,NuMuon [ep. 24],0.1,svd,fig2-numuon,71
+nan,nan,685,0.7682785591261825,post,NuMuon [ep. 24],0.2,svd,fig2-numuon,52
+nan,nan,599,0.6357096175646576,post,NuMuon [ep. 24],0.3,svd,fig2-numuon,41
+nan,nan,514,0.49706957845732797,post,NuMuon [ep. 24],0.4,svd,fig2-numuon,30
+nan,nan,428,0.38707495746727477,post,NuMuon [ep. 24],0.5,svd,fig2-numuon,23
+nan,nan,342,0.25551173307495395,post,NuMuon [ep. 24],0.6,svd,fig2-numuon,15
+nan,nan,257,0.11923880876831185,post,NuMuon [ep. 24],0.7,svd,fig2-numuon,7
+nan,nan,171,0.08517057769165132,post,NuMuon [ep. 24],0.8,svd,fig2-numuon,5
+nan,nan,85,0.06813646215332106,post,NuMuon [ep. 24],0.9,svd,fig2-numuon,1
+nan,nan,42,0.06813646215332106,post,NuMuon [ep. 24],0.95,svd,fig2-numuon,1

@@ -1,0 +1,51 @@
+loading 1000 held-out structures...
+  classic-bmuon-wd1e3 alloc level 0.00: cost removed 0.000, F 35.5
+  classic-bmuon-wd1e3 alloc level 0.20: cost removed 0.201, F 37.0
+  classic-bmuon-wd1e3 alloc level 0.40: cost removed 0.401, F 122.1
+  classic-bmuon-wd1e3 alloc level 0.60: cost removed 0.600, F 204.2
+  classic-bmuon-wd1e3 alloc level 0.70: cost removed 0.701, F 253.1
+  classic-bmuon-wd1e3 alloc level 0.80: cost removed 0.801, F 357.2
+  classic-bmuon-wd1e3 alloc level 0.90: cost removed 0.900, F 413.6
+  classic-bmuon-wd1e3 mag level 0.00: cost removed 0.000, F 35.5
+  classic-bmuon-wd1e3 mag level 0.20: cost removed 0.201, F 36.0
+  classic-bmuon-wd1e3 mag level 0.40: cost removed 0.400, F 212.2
+  classic-bmuon-wd1e3 mag level 0.60: cost removed 0.601, F 298.4
+  classic-bmuon-wd1e3 mag level 0.70: cost removed 0.701, F 380.0
+  classic-bmuon-wd1e3 mag level 0.80: cost removed 0.800, F 444.1
+  classic-bmuon-wd1e3 mag level 0.90: cost removed 0.900, F 523.8
+  classic-nequix-mp-1 mag level 0.00: cost removed 0.000, F 32.2
+  classic-nequix-mp-1 mag level 0.20: cost removed 0.200, F 494.7
+  classic-nequix-mp-1 mag level 0.40: cost removed 0.401, F 538.7
+  classic-nequix-mp-1 mag level 0.60: cost removed 0.601, F 303.7
+  classic-nequix-mp-1 mag level 0.70: cost removed 0.701, F 255.8
+  classic-nequix-mp-1 mag level 0.80: cost removed 0.801, F 229.4
+  classic-nequix-mp-1 mag level 0.90: cost removed 0.900, F 212.0
+  classic-bmuon-wd1e2 alloc level 0.00: cost removed 0.000, F 37.7
+  classic-bmuon-wd1e2 alloc level 0.20: cost removed 0.201, F 40.6
+  classic-bmuon-wd1e2 alloc level 0.40: cost removed 0.401, F 49.0
+  classic-bmuon-wd1e2 alloc level 0.60: cost removed 0.601, F 152.4
+  classic-bmuon-wd1e2 alloc level 0.70: cost removed 0.701, F 199.9
+  classic-bmuon-wd1e2 alloc level 0.80: cost removed 0.800, F 241.6
+  classic-bmuon-wd1e2 alloc level 0.90: cost removed 0.900, F 282.4
+  classic-bmuon-wd1e2 mag level 0.00: cost removed 0.000, F 37.7
+  classic-bmuon-wd1e2 mag level 0.20: cost removed 0.201, F 37.7
+  classic-bmuon-wd1e2 mag level 0.40: cost removed 0.402, F 66.8
+  classic-bmuon-wd1e2 mag level 0.60: cost removed 0.601, F 329.8
+  classic-bmuon-wd1e2 mag level 0.70: cost removed 0.702, F 360.9
+  classic-bmuon-wd1e2 mag level 0.80: cost removed 0.801, F 388.5
+  classic-bmuon-wd1e2 mag level 0.90: cost removed 0.900, F 460.2
+  mp1-gradual-bmuon-mu-wd1e3 epoch 29: cost removed 0.000 (857 ch.), F 39.6
+  mp1-gradual-bmuon-mu-wd1e3 epoch 38: cost removed 0.201 (748 ch.), F 38.5
+  mp1-gradual-bmuon-mu-wd1e3 epoch 47: cost removed 0.400 (620 ch.), F 39.4
+  mp1-gradual-muon-mag-wd1e3 epoch 29: cost removed 0.000 (857 ch.), F 39.2
+  mp1-gradual-muon-mag-wd1e3 epoch 38: cost removed 0.200 (506 ch.), F 40.9
+  mp1-gradual-muon-mag-wd1e3 epoch 47: cost removed 0.401 (345 ch.), F 41.1
+  mp1-gradual-bmuon-mag-wd1e3 epoch 29: cost removed 0.000 (857 ch.), F 39.3
+  mp1-gradual-bmuon-mag-wd1e3 epoch 38: cost removed 0.201 (540 ch.), F 41.7
+  mp1-gradual-bmuon-mag-wd1e3 epoch 47: cost removed 0.401 (396 ch.), F 40.8
+  mp1-gradual-bmuon-mu-wd1e2 epoch 29: cost removed 0.000 (857 ch.), F 47.9
+  mp1-gradual-bmuon-mu-wd1e2 epoch 38: cost removed 0.202 (742 ch.), F 47.5
+  mp1-gradual-bmuon-mu-wd1e2 epoch 47: cost removed 0.402 (602 ch.), F 45.9
+  scratch-uniform-wd1e3 epoch 99: cost 0.355, F 51.0
+  scratch-uniform-c20-wd1e3 epoch 40: cost 0.200, F 76.0
+wrote bmuon/results/gradual_fig/gradual_vs_classic.png, gradual_vs_classic_energy.png, points.csv, table.md

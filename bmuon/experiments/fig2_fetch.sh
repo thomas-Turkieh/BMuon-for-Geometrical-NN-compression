@@ -2,10 +2,10 @@
 # Copy the live Figure 2 (and the final one when it exists) from the cluster to this PC,
 # then print the run status. Run from EA/code in Git Bash:
 #   bash bmuon/experiments/fig2_fetch.sh
-# Files land in bmuon/results/fig2_live/ (open fig2.png and STATUS.md in VS Code).
+# Files land in bmuon/results/2026-11-03_20pct-mptrj_pruning-methods-comparison/ (open fig2.png and STATUS.md in VS Code).
 set -u
 cd "$(dirname "$0")/../.."
-dst=bmuon/results/fig2_live
+dst=bmuon/results/2026-11-03_20pct-mptrj_pruning-methods-comparison
 mkdir -p "$dst"
 src="${CLUSTER_USER:-thomas.turkieh}@${GATEWAY:-aerides}.polytechnique.fr:nequix/bmuon/results"
 scp -q -o BatchMode=yes -o LogLevel=ERROR "$src/fig2/fig2.png" "$src/fig2/fig2_energy.png" "$src/fig2/STATUS.md" "$src/fig2/fig2_points.csv" "$dst/" \

@@ -1,0 +1,2 @@
+cost_removed,energy_mae,epoch,force_mae,kept_channels,kind,label,level,method,name,wd
+0.600123609394314,20.021655840947773,56,53.48552018404007,215,gradual,Muon-mag (wd 0.001),,magnitude,mp1-gradual-muon-mag-wd1e3,0.001

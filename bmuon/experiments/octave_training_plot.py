@@ -1,4 +1,4 @@
-"""Validation curves of the group's October runs (bmuon/results/octave_logs/val.csv).
+"""Validation curves of the group's October runs (bmuon/results/2026-10-13_full-mptrj_dense-training_bmuon-vs-uniform/val_errors_per_epoch.csv).
 
     python bmuon/experiments/octave_training_plot.py
 """
@@ -12,10 +12,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-d = Path("bmuon/results/octave_logs")
-Path("bmuon/results/meeting").mkdir(parents=True, exist_ok=True)
+d = Path("bmuon/results/2026-10-13_full-mptrj_dense-training_bmuon-vs-uniform")
+Path("bmuon/results/2026-10-13_full-mptrj_dense-training_bmuon-vs-uniform").mkdir(parents=True, exist_ok=True)
 runs = defaultdict(list)
-for row in csv.reader(open(d / "val.csv")):
+for row in csv.reader(open(d / "val_errors_per_epoch.csv")):
     name, ep, f, e = row[0], int(row[1]), float(row[2]), float(row[3])
     runs[name].append((ep, 1000 * f, 1000 * e))
 
@@ -48,5 +48,5 @@ axes[0].legend(fontsize=8, loc="upper right")
 fig.suptitle("Training curves on the full MPtrj: BMuon (30 % cost budget) vs small uniform model of the same cost",
              fontsize=11)
 fig.tight_layout()
-fig.savefig(Path("bmuon/results/meeting") / "training_curves.png", dpi=160)
-print("wrote", Path("bmuon/results/meeting") / "training_curves.png")
+fig.savefig(Path("bmuon/results/2026-10-13_full-mptrj_dense-training_bmuon-vs-uniform") / "training_curves.png", dpi=160)
+print("wrote", Path("bmuon/results/2026-10-13_full-mptrj_dense-training_bmuon-vs-uniform") / "training_curves.png")
