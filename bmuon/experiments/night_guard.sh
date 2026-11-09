@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Keeps tonight's Figure 2 runs alive from the PC (Git Bash), e.g. across the lab reboots
-# (kernel updates, ~00:30): every 5 min, every run of the plan that is not DONE and has lost
-# a rank is stopped and started again on the same hosts with night.sh, so it resumes from its
-# last state.pkl. A host that stays unreachable for 15 min is replaced by an idle host of the
-# same GPU type. The live-figure watcher is restarted the same way. Stops at STOP_AT.
+# Keeps the runs of a plan alive from the PC (Git Bash), across lab reboots and over several DSI
+# windows (e.g. a whole weekend, then the following nights): every 5 min, every run of the plan
+# that is not DONE and has lost a rank is stopped and started again on the same hosts with
+# night.sh, so it resumes from its last state.pkl. A host unreachable for 15 min is replaced by an
+# idle host of the same GPU type. Pauses at the end of a window, resumes when the next one opens,
+# exits when every run is DONE. WINDOW=1 uses the DSI window of window.sh.
 #
 #   bash bmuon/experiments/night_guard.sh [PLAN]        (log: bmuon/results/night_guard.log)
 #   DRY=1 bash bmuon/experiments/night_guard.sh         one check, prints what it would do
@@ -19,22 +20,26 @@ r() { local h="$1"; shift; timeout 40 ssh "${SSHO[@]}" -l "$CU" "$h.polytechniqu
 log() { echo "[$(date '+%a %H:%M:%S')] $*" | tee -a "$LOG"; }
 declare -A down   # host -> consecutive checks unreachable
 
-dline=$($NIGHT deadline)   # "runs started now stop at Wed 04 Nov 07:25:00 (513 min from now)"
-deadline=$(echo "$dline" | sed -n 's/.*stop at \(.*\) (.*/\1/p')
-mins=$(echo "$dline" | sed -n 's/.*(\([0-9]*\) min from now).*/\1/p')
-now0=$(r "${GATEWAY:-aerides}" 'date +%s')
-[ -n "$mins" ] && [ -n "$now0" ] || { log "cannot get the deadline (daytime or gateway down): $dline"; exit 1; }
-dl_s=$((now0 + 60 * mins))
-log "guard started, plan $PLAN, runs stop at $deadline"
+# deadline of the current DSI window (cluster clock); empty outside the window
+get_deadline() {
+  local dline mins now0
+  dline=$($NIGHT deadline)   # "runs started now stop at Mon 09 Nov 06:57:00 (513 min from now)"
+  mins=$(echo "$dline" | sed -n 's/.*(\([0-9]*\) min from now).*/\1/p')
+  now0=$(r "${GATEWAY:-aerides}" 'date +%s')
+  if [ -n "$mins" ] && [ -n "$now0" ]; then dl_s=$((now0 + 60 * mins)); deadline=$(echo "$dline" | sed -n 's/.*stop at \(.*\) (.*/\1/p')
+  else dl_s=""; fi
+}
+get_deadline
+log "guard started, plan $PLAN, current window ends ${deadline:-<outside the window>}"
 
 runs() { python -c "import yaml
 for r in yaml.safe_load(open('$PLAN', encoding='utf-8'))['runs']:
-    if r['kind'] != 'reference': print(r['name'], r['config'])" | tr -d '\r'; }
+    if r.get('kind') != 'reference': print(r['name'], r['config'])" | tr -d '\r'; }
 
 replace_host() {   # replace_host NAME OLD -> prints the new host (same GPU type, idle, provisioned)
   local name="$1" old="$2" type used new
   type=$(awk -v h="$old" '$1 == h {print $2}' bmuon/experiments/machines.txt)
-  used=$(r "${GATEWAY:-aerides}" 'cat ~/nequix/bmuon/runs/fig2-*/hosts.txt ~/nequix/bmuon/results/fig2/WATCHER 2>/dev/null' | tr '\n' ' ')
+  used=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs && cat $(runs | awk '{printf "%s/hosts.txt ", $1}') 2>/dev/null" | tr '\n' ' ')
   new=$($NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}' \
         | while read -r h; do [[ " $used mayenne ardennes indre manche " == *" $h "* ]] || echo "$h"; done | head -1)
   [ -n "$new" ] || return 1
@@ -44,11 +49,16 @@ replace_host() {   # replace_host NAME OLD -> prints the new host (same GPU type
 
 check_once() {
   local now; now=$(r "${GATEWAY:-aerides}" 'date +%s')
-  [ -n "$now" ] && [ $((dl_s - now)) -lt 1800 ] && { log "less than 30 min before the deadline: guard stops"; exit 0; }
+  [ -n "$now" ] && [ $((dl_s - now)) -lt 1800 ] && { log "less than 30 min before the end of the window: guard paused until the next window"; return 2; }
+  all_done=1
   while read -r name config; do
-    st=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs/$name 2>/dev/null && { [ -f DONE ] && echo DONE || cat hosts.txt; }")
-    [ -z "$st" ] && continue              # not launched (or gateway down)
+    st=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs/$name 2>/dev/null || { echo NOTLAUNCHED; exit 0; }; [ -f DONE ] && echo DONE || cat hosts.txt")
+    if [ -z "$st" ]; then                 # gateway unreachable: never count the run as DONE
+      all_done=0; log "$name: gateway unreachable, cannot check (will retry)"; continue
+    fi
+    [ "$st" = NOTLAUNCHED ] && continue
     [ "$st" = DONE ] && continue
+    all_done=0
     hosts=($st); missing=(); unreach=()
     for h in "${hosts[@]}"; do
       c=$(r "$h" "pgrep -u \$USER -fc 'night_rank[.]sh $name '")
@@ -83,8 +93,10 @@ check_once() {
       log "$name: start refused, will retry"
     fi
   done < <(runs)
-  # live-figure watcher
-  w=$(r "${GATEWAY:-aerides}" 'cat ~/nequix/bmuon/results/fig2/WATCHER 2>/dev/null')
+  [ "$all_done" = 1 ] && { log "every run of the plan is DONE: guard stops"; exit 0; }
+  # live-figure watcher (only when WATCHFILE names its host file on the shared home)
+  [ -n "${WATCHFILE:-}" ] || return 0
+  w=$(r "${GATEWAY:-aerides}" "cat ~/nequix/$WATCHFILE 2>/dev/null")
   if [ -n "$w" ]; then
     c=$(r "$w" "pgrep -u \$USER -fc 'fig2_watch[.]sh'")
     if [ "${c:-0}" = 0 ] && [ -z "${DRY:-}" ]; then
@@ -94,8 +106,17 @@ check_once() {
   fi
 }
 
-if [ -n "${DRY:-}" ]; then check_once; exit 0; fi
+if [ -n "${DRY:-}" ]; then [ -n "$dl_s" ] && check_once; exit 0; fi
 while :; do
+  if [ -z "$dl_s" ]; then           # outside the DSI window: wait for it to open (e.g. Monday 18:30)
+    sleep 600; get_deadline
+    [ -n "$dl_s" ] && log "window open again, ends $deadline: guard resumes"
+    continue
+  fi
   check_once
-  sleep 300
+  if [ $? = 2 ]; then              # window closing: the ranks stop by themselves at its end
+    now=$(r "${GATEWAY:-aerides}" 'date +%s'); [ -n "$now" ] && sleep $(( dl_s - now + 120 > 0 ? dl_s - now + 120 : 120 ))
+    dl_s=""; continue
+  fi
+  sleep "${INTERVAL:-300}"         # INTERVAL=900: lighter check (fewer SSH connections)
 done

@@ -1,0 +1,101 @@
+[Fri 21:32:10] guard started, plan bmuon/experiments/gradual_runs.yml, current window ends Mon 09 Nov 06:57:00
+[Sat 01:08:31] mp1-gradual-bmuon-mu-wd1e3: unreachable ferrari fiat mazda nissan (rebooting?), waiting
+[Sat 12:00:24] mp1-gradual-bmuon-mu-wd1e2: unreachable tarse (rebooting?), waiting
+[Sat 12:06:15] every run of the plan is DONE: guard stops
+[Sat 12:25:26] guard started, plan bmuon/experiments/gradual_runs.yml, current window ends <outside the window>
+[Sat 19:04:18] window open again, ends Mon 09 Nov 06:57:00: guard resumes
+[Sat 19:04:27] mp1-gradual-bmuon-mu-wd1e3: ranks missing on ferrari fiat ford mazda nissan niva peugeot pontiac : restart on ferrari fiat ford mazda nissan niva peugeot pontiac (resume from state.pkl)
+[Sat 19:05:48] mp1-gradual-bmuon-mu-wd1e3: ferrari busy (5878 MiB), replaced by acromion
+[Sat 19:06:46] mp1-gradual-bmuon-mu-wd1e3: fiat busy (5879 MiB), replaced by ain
+[Sat 19:07:43] mp1-gradual-bmuon-mu-wd1e3: ford busy (3389 MiB), replaced by allier
+[Sat 19:07:58] mp1-gradual-bmuon-mu-wd1e3: mazda busy (5878 MiB), replaced by apophyse
+[Sat 19:08:14] mp1-gradual-bmuon-mu-wd1e3: nissan busy (5878 MiB), replaced by astragale
+[Sat 19:08:30] mp1-gradual-bmuon-mu-wd1e3: niva busy (5896 MiB), replaced by atlas
+[Sat 19:09:27] mp1-gradual-bmuon-mu-wd1e3: peugeot busy (5878 MiB), replaced by axis
+[Sat 19:10:24] mp1-gradual-bmuon-mu-wd1e3: pontiac busy (5883 MiB), replaced by bugatti
+[Sat 19:10:25] mp1-gradual-bmuon-mu-wd1e3: start refused, will retry
+[Sat 19:10:33] mp1-gradual-muon-mag-wd1e3: ranks missing on porsche renault rolls rover royce skoda venturi volvo : restart on porsche renault rolls rover royce skoda venturi volvo (resume from state.pkl)
+[Sat 19:11:12] mp1-gradual-muon-mag-wd1e3: porsche busy (5922 MiB), replaced by cadillac
+[Sat 19:11:28] mp1-gradual-muon-mag-wd1e3: renault busy (5878 MiB), replaced by carmor
+[Sat 19:11:44] mp1-gradual-muon-mag-wd1e3: rover busy (5878 MiB), replaced by cher
+[Sat 19:12:00] mp1-gradual-muon-mag-wd1e3: royce busy (5878 MiB), replaced by charente
+[Sat 19:12:16] mp1-gradual-muon-mag-wd1e3: skoda busy (9056 MiB), replaced by chrysler
+[Sat 19:12:32] mp1-gradual-muon-mag-wd1e3: venturi busy (6610 MiB), replaced by coccyx
+[Sat 19:12:47] mp1-gradual-muon-mag-wd1e3: volvo busy (6635 MiB), replaced by corvette
+[Sat 19:12:48] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:12:56] mp1-gradual-bmuon-mag-wd1e3: ranks missing on cote cuboide femur frontal humerus metacarpe phalange radius : restart on cote cuboide femur frontal humerus metacarpe phalange radius (resume from state.pkl)
+[Sat 19:14:19] mp1-gradual-bmuon-mag-wd1e3: femur busy (3388 MiB), replaced by creuse
+[Sat 19:14:35] mp1-gradual-bmuon-mag-wd1e3: frontal busy (3388 MiB), replaced by cubitus
+[Sat 19:14:51] mp1-gradual-bmuon-mag-wd1e3: metacarpe busy (9072 MiB), replaced by dordogne
+[Sat 19:15:07] mp1-gradual-bmuon-mag-wd1e3: phalange busy (4880 MiB), replaced by jaguar
+[Sat 19:15:09] mp1-gradual-bmuon-mag-wd1e3: start refused, will retry
+[Sat 19:15:17] mp1-gradual-bmuon-mu-wd1e2: ranks missing on doubs finistere gironde jura landes loire marne tarse : restart on doubs finistere gironde jura landes loire marne tarse (resume from state.pkl)
+[Sat 19:15:57] mp1-gradual-bmuon-mu-wd1e2: finistere busy (6378 MiB), replaced by malleole
+[Sat 19:16:13] mp1-gradual-bmuon-mu-wd1e2: gironde busy (3388 MiB), replaced by maserati
+[Sat 19:16:30] mp1-gradual-bmuon-mu-wd1e2: jura busy (6378 MiB), replaced by morbihan
+[Sat 19:17:01] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 19:22:10] mp1-gradual-bmuon-mu-wd1e3: ranks missing on acromion ain allier apophyse astragale atlas axis bugatti : restart on acromion ain allier apophyse astragale atlas axis bugatti (resume from state.pkl)
+[Sat 19:22:51] mp1-gradual-muon-mag-wd1e3: ranks missing on cadillac carmor rolls cher charente chrysler coccyx corvette : restart on cadillac carmor rolls cher charente chrysler coccyx corvette (resume from state.pkl)
+[Sat 19:23:34] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:23:42] mp1-gradual-bmuon-mag-wd1e3: ranks missing on cote cuboide creuse cubitus humerus dordogne jaguar radius : restart on cote cuboide creuse cubitus humerus dordogne jaguar radius (resume from state.pkl)
+[Sat 19:24:23] mp1-gradual-bmuon-mu-wd1e2: ranks missing on doubs malleole maserati morbihan landes loire marne tarse : restart on doubs malleole maserati morbihan landes loire marne tarse (resume from state.pkl)
+[Sat 19:25:32] mp1-gradual-bmuon-mu-wd1e2: tarse busy (5678 MiB), replaced by vendee
+[Sat 19:25:33] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 19:30:49] mp1-gradual-muon-mag-wd1e3: ranks missing on cadillac carmor rolls cher charente chrysler coccyx corvette : restart on cadillac carmor rolls cher charente chrysler coccyx corvette (resume from state.pkl)
+[Sat 19:31:29] mp1-gradual-muon-mag-wd1e3: cadillac busy (5710 MiB), replaced by femur
+[Sat 19:32:11] mp1-gradual-muon-mag-wd1e3: charente busy (5686 MiB), replaced by fiat
+[Sat 19:32:27] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:32:44] mp1-gradual-bmuon-mu-wd1e2: ranks missing on doubs malleole maserati morbihan landes loire marne vendee : restart on doubs malleole maserati morbihan landes loire marne vendee (resume from state.pkl)
+[Sat 19:33:24] mp1-gradual-bmuon-mu-wd1e2: doubs busy (5702 MiB), replaced by nissan
+[Sat 19:33:42] mp1-gradual-bmuon-mu-wd1e2: morbihan busy (18532 MiB), replaced by bentley
+[Sat 19:33:57] mp1-gradual-bmuon-mu-wd1e2: landes busy (5717 MiB), replaced by ferrari
+[Sat 19:34:01] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 19:39:17] mp1-gradual-muon-mag-wd1e3: ranks missing on femur carmor rolls cher fiat chrysler coccyx corvette : restart on femur carmor rolls cher fiat chrysler coccyx corvette (resume from state.pkl)
+[Sat 19:39:59] mp1-gradual-muon-mag-wd1e3: cher busy (7020 MiB), replaced by cadillac
+[Sat 19:40:16] mp1-gradual-muon-mag-wd1e3: coccyx busy (5544 MiB), replaced by charente
+[Sat 19:41:15] mp1-gradual-muon-mag-wd1e3: corvette busy (7016 MiB), replaced by essonne
+[Sat 19:41:16] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:41:31] mp1-gradual-bmuon-mu-wd1e2: ranks missing on nissan malleole maserati bentley ferrari loire marne vendee : restart on nissan malleole maserati bentley ferrari loire marne vendee (resume from state.pkl)
+[Sat 19:42:52] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 19:48:08] mp1-gradual-muon-mag-wd1e3: ranks missing on femur carmor rolls cadillac fiat chrysler charente essonne : restart on femur carmor rolls cadillac fiat chrysler charente essonne (resume from state.pkl)
+[Sat 19:48:46] mp1-gradual-muon-mag-wd1e3: femur busy (5702 MiB), replaced by ford
+[Sat 19:49:01] mp1-gradual-muon-mag-wd1e3: carmor busy (7405 MiB), replaced by landes
+[Sat 19:49:17] mp1-gradual-muon-mag-wd1e3: cadillac busy (5710 MiB), replaced by metacarpe
+[Sat 19:49:32] mp1-gradual-muon-mag-wd1e3: fiat busy (5703 MiB), replaced by tarse
+[Sat 19:49:57] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:50:12] mp1-gradual-bmuon-mu-wd1e2: ranks missing on nissan malleole maserati bentley ferrari loire marne vendee : restart on nissan malleole maserati bentley ferrari loire marne vendee (resume from state.pkl)
+[Sat 19:51:31] mp1-gradual-bmuon-mu-wd1e2: vendee busy (5540 MiB), replaced by cadillac
+[Sat 19:51:32] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 19:56:48] mp1-gradual-muon-mag-wd1e3: ranks missing on ford landes rolls metacarpe tarse chrysler charente essonne : restart on ford landes rolls metacarpe tarse chrysler charente essonne (resume from state.pkl)
+[Sat 19:57:27] mp1-gradual-muon-mag-wd1e3: ford busy (4783 MiB), replaced by femur
+[Sat 19:57:44] mp1-gradual-muon-mag-wd1e3: landes busy (5693 MiB), replaced by fiat
+[Sat 19:58:01] mp1-gradual-muon-mag-wd1e3: metacarpe busy (5716 MiB), replaced by finistere
+[Sat 19:58:18] mp1-gradual-muon-mag-wd1e3: tarse busy (5702 MiB), replaced by peugeot
+[Sat 19:58:34] mp1-gradual-muon-mag-wd1e3: chrysler busy (6628 MiB), replaced by pontiac
+[Sat 19:58:49] mp1-gradual-muon-mag-wd1e3: charente busy (6632 MiB), replaced by porsche
+[Sat 19:59:05] mp1-gradual-muon-mag-wd1e3: essonne busy (7018 MiB), replaced by rover
+[Sat 19:59:06] mp1-gradual-muon-mag-wd1e3: start refused, will retry
+[Sat 19:59:21] mp1-gradual-bmuon-mu-wd1e2: ranks missing on nissan malleole maserati bentley ferrari loire marne cadillac : restart on nissan malleole maserati bentley ferrari loire marne cadillac (resume from state.pkl)
+[Sat 19:59:59] mp1-gradual-bmuon-mu-wd1e2: nissan busy (5702 MiB), replaced by royce
+[Sat 20:00:58] mp1-gradual-bmuon-mu-wd1e2: bentley busy (7761 MiB), replaced by sacrum
+[Sat 20:01:02] mp1-gradual-bmuon-mu-wd1e2: start refused, will retry
+[Sat 20:06:19] mp1-gradual-muon-mag-wd1e3: ranks missing on femur fiat rolls finistere peugeot pontiac porsche rover : restart on femur fiat rolls finistere peugeot pontiac porsche rover (resume from state.pkl)
+[Sat 20:07:07] mp1-gradual-bmuon-mu-wd1e2: ranks missing on royce malleole maserati sacrum ferrari loire marne cadillac : restart on royce malleole maserati sacrum ferrari loire marne cadillac (resume from state.pkl)
+[Sun 20:51:03] mp1-gradual-bmuon-mu-wd1e3: gateway unreachable, cannot check (will retry)
+[Sun 20:51:04] mp1-gradual-muon-mag-wd1e3: gateway unreachable, cannot check (will retry)
+[Sun 20:51:04] mp1-gradual-bmuon-mag-wd1e3: gateway unreachable, cannot check (will retry)
+[Sun 20:51:04] mp1-gradual-bmuon-mu-wd1e2: gateway unreachable, cannot check (will retry)
+[Mon 00:33:55] mp1-gradual-bmuon-mu-wd1e3: ranks missing on acromion ain allier apophyse astragale atlas axis bugatti : restart on acromion ain allier apophyse astragale atlas axis bugatti (resume from state.pkl)
+[Mon 00:34:30] mp1-gradual-muon-mag-wd1e3: ranks missing on femur fiat rolls finistere peugeot pontiac porsche rover : restart on femur fiat rolls finistere peugeot pontiac porsche rover (resume from state.pkl)
+[Mon 00:35:05] mp1-gradual-bmuon-mag-wd1e3: ranks missing on cote cuboide creuse cubitus humerus dordogne jaguar radius : restart on cote cuboide creuse cubitus humerus dordogne jaguar radius (resume from state.pkl)
+[Mon 00:35:40] mp1-gradual-bmuon-mu-wd1e2: ranks missing on royce malleole maserati sacrum ferrari loire marne cadillac : restart on royce malleole maserati sacrum ferrari loire marne cadillac (resume from state.pkl)
+[Mon 00:41:33] mp1-gradual-bmuon-mu-wd1e2: ranks missing on maserati : restart on royce malleole maserati sacrum ferrari loire marne cadillac (resume from state.pkl)
+[Mon 15:08:54] less than 30 min before the end of the window: guard paused until the next window
+[Mon 18:34:23] window open again, ends Tue 10 Nov 06:57:00: guard resumes
+[Mon 18:34:40] mp1-gradual-bmuon-mu-wd1e3: ranks missing on acromion ain allier apophyse astragale atlas axis bugatti : restart on acromion ain allier apophyse astragale atlas axis bugatti (resume from state.pkl)
+[Mon 18:36:48] mp1-gradual-bmuon-mu-wd1e3: atlas busy (5154 MiB), replaced by bentley
+[Mon 18:36:53] mp1-gradual-bmuon-mu-wd1e3: start refused, will retry
+[Mon 18:37:07] mp1-gradual-muon-mag-wd1e3: ranks missing on femur fiat rolls finistere peugeot pontiac porsche rover : restart on femur fiat rolls finistere peugeot pontiac porsche rover (resume from state.pkl)
+[Mon 18:38:14] mp1-gradual-bmuon-mag-wd1e3: ranks missing on cote cuboide creuse cubitus humerus dordogne jaguar radius : restart on cote cuboide creuse cubitus humerus dordogne jaguar radius (resume from state.pkl)
+[Mon 18:39:20] mp1-gradual-bmuon-mu-wd1e2: ranks missing on royce malleole maserati sacrum ferrari loire marne cadillac : restart on royce malleole maserati sacrum ferrari loire marne cadillac (resume from state.pkl)
+[Mon 18:45:27] mp1-gradual-bmuon-mu-wd1e3: ranks missing on acromion ain allier apophyse astragale bentley axis bugatti : restart on acromion ain allier apophyse astragale bentley axis bugatti (resume from state.pkl)

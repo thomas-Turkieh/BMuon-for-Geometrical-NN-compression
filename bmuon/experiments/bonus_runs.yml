@@ -1,0 +1,8 @@
+# Bonus runs: lower priority than gradual_runs.yml, on their own hosts (never shared with a priority run).
+# Small models trained from scratch (100 epochs) at the cost levels of the gradual runs.
+title: Bonus runs (lower priority)
+runs:
+  - {name: mp1-uniform-c20-wd1e3, label: "Uniform small from scratch, 20 % cost (wd 0.001)", config: bmuon/configs/bonus/uniform-c20-wd1e3.yml, ref: mp1-uniform-shrink-wd1e3}
+  - {name: mp1-uniform-c80-wd1e3, label: "Uniform small from scratch, 80 % cost (wd 0.001)", config: bmuon/configs/bonus/uniform-c80-wd1e3.yml, ref: mp1-bmuon-wd1e3}
+  - {name: mp1-uniform-c60-wd1e3, label: "Uniform small from scratch, 60 % cost (wd 0.001)", config: bmuon/configs/bonus/uniform-c60-wd1e3.yml, ref: mp1-bmuon-wd1e3}
+  - {name: mp1-uniform-c14-wd1e3, label: "Uniform small from scratch, 14 % cost (wd 0.001)", config: bmuon/configs/bonus/uniform-c14-wd1e3.yml, ref: mp1-uniform-shrink-wd1e3}

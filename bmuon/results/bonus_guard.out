@@ -1,0 +1,5 @@
+[Mon 19:12:35] bonus resume: checking hosts
+no overlap, starting the bonus guard on: coccyx perone rotule temporal saone somme vosges xiphoide
+[Mon 19:12:39] guard started, plan bmuon/experiments/bonus_runs.yml, current window ends Tue 10 Nov 06:57:00
+[Mon 19:12:49] mp1-uniform-c20-wd1e3: ranks missing on coccyx perone rotule temporal saone somme vosges xiphoide : restart on coccyx perone rotule temporal saone somme vosges xiphoide (resume from state.pkl)
+[Mon 20:45:06] guard started, plan bmuon/experiments/bonus_runs.yml, current window ends Tue 10 Nov 06:57:00

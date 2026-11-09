@@ -1,0 +1,14 @@
+# Gradual structured pruning on the full Nequix-MP-1 / MPtrj recipe, with exactly the settings of
+# the group's October runs (nequix-mp-1-bmuon.yml: full MPtrj, 100 epochs, global batch 256,
+# lr 0.01 warmup + cosine, EMA 0.999, MAE 20/20/5, cost_model "paths"), each run from scratch.
+# Only change: channels are removed for good during training (BMuon paper, Sec. 5.2 / App. E.4),
+# with the pruning starting later than in the paper (after 30 % of training, see GRADUAL_PLAN.md).
+base_config: ../nequix-mp-1-bmuon.yml
+weight_decay: 0.001          # as mp1-bmuon-wd1e3 and the published Nequix-MP-1 (override per run)
+save_every_steps: 1000       # as the October runs
+snapshot_every_epochs: 1     # one snapshot per epoch: every phase end is kept
+gradual:
+  prune_after_epochs: [29, 38, 47, 56, 65, 74]  # pruning before epochs 30, 39, 48, 57, 66, 75
+  levels: [0.2, 0.4, 0.6, 0.7, 0.8, 0.9]       # cumulative fraction of the type-I cost removed (paper, ImageNet)
+  by: "cost"                                   # levels measured in the budget cost (cost_model "paths")
+  min_keep: 1                                  # never empty a (block, irrep) group

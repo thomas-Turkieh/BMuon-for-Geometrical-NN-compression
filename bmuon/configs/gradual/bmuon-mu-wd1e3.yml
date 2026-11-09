@@ -1,0 +1,8 @@
+# BMuon-mu: as BMuon-mag, channels ranked by the learned allocation mu.
+# Post-training reference: mp1-bmuon-wd1e3.
+base_config: base.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/mp1-gradual-bmuon-mu-wd1e3"
+gradual:
+  score: "alloc"
+  anneal_budget: true

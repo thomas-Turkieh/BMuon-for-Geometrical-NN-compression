@@ -545,15 +545,18 @@ def train(config_path: str, overrides: list | None = None, coordinator: str | No
         level = float(done[-1])
         bs = jax.tree.map(lambda x: x[0], find_bmuon_state(opt_state))
         keep_old = np.asarray(bs.keep) > 0
-        if keep_old.sum() <= spec.num_channels - round(level * spec.num_channels):
+        by = gradual.get("by", "count")  # "cost": levels are fractions of the budget cost (cost_model)
+        if by == "count" and keep_old.sum() <= spec.num_channels - round(level * spec.num_channels):
             return model, ema_model, opt_state
         if gradual.get("score", "magnitude") == "alloc":
             scores = np.asarray(bs.alloc, np.float64).copy()
         else:
             scores = magnitude_scores(jax.tree.map(lambda x: x[0], model), spec)
         scores[~keep_old] = -np.inf
-        keep = select_channels(scores, spec, level, by="count",
+        keep = select_channels(scores, spec, level, by=by,
                                min_keep=int(gradual.get("min_keep", 1))) & keep_old
+        if np.array_equal(keep, keep_old):  # level already reached (e.g. after a resume)
+            return model, ema_model, opt_state
         keep_f = keep.astype(np.float32)
         model, ema_model = mask_slices(model, keep_f), mask_slices(ema_model, keep_f)
 
@@ -568,10 +571,13 @@ def train(config_path: str, overrides: list | None = None, coordinator: str | No
 
         opt_state = map_bmuon_state(opt_state, reset)
         if main_process:
-            print(f"gradual pruning before epoch {epoch}: level {level:.2f}, "
-                  f"{int(keep.sum())}/{spec.num_channels} channels kept", flush=True)
+            w = np.asarray(spec.weights, np.float64)
+            cost_kept = float(w[keep].sum() / w.sum())
+            print(f"gradual pruning before epoch {epoch}: level {level:.2f} (by {by}), "
+                  f"{int(keep.sum())}/{spec.num_channels} channels kept, cost kept {cost_kept:.3f}", flush=True)
             np.savez(out_dir / f"prune_epoch{epoch:03d}.npz", keep=keep, scores=scores, level=level)
-            logger.log({"prune/level": level, "prune/kept": int(keep.sum()), "epoch_start": epoch}, step)
+            logger.log({"prune/level": level, "prune/kept": int(keep.sum()),
+                        "prune/cost_kept": cost_kept, "epoch_start": epoch}, step)
         return model, ema_model, opt_state
 
     for epoch in range(start_epoch, config["n_epochs"]):

@@ -1,0 +1,7 @@
+# Gradual-pruning runs of November 2026 (weekend of 6-9 Nov.), see GRADUAL_PLAN.md.
+# Order = launch priority. "ref" = run whose post-training pruning curve is the comparison.
+runs:
+  - {name: mp1-gradual-bmuon-mu-wd1e3,  label: "BM-μ gradual (wd 0.001)",    config: bmuon/configs/gradual/bmuon-mu-wd1e3.yml,  ref: mp1-bmuon-wd1e3}
+  - {name: mp1-gradual-muon-mag-wd1e3,  label: "Muon-mag gradual (wd 0.001)", config: bmuon/configs/gradual/muon-mag-wd1e3.yml, ref: nequix-mp-1}
+  - {name: mp1-gradual-bmuon-mag-wd1e3, label: "BM-mag gradual (wd 0.001)",  config: bmuon/configs/gradual/bmuon-mag-wd1e3.yml, ref: mp1-bmuon-wd1e3}
+  - {name: mp1-gradual-bmuon-mu-wd1e2,  label: "BM-μ gradual (wd 0.01)",     config: bmuon/configs/gradual/bmuon-mu-wd1e2.yml,  ref: mp1-bmuon-wd1e2}

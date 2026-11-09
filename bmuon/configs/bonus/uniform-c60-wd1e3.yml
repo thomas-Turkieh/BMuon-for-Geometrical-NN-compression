@@ -1,0 +1,8 @@
+# Size-matched baseline: small model trained from scratch, uniform channel shrink to 0.601 of the
+# full Nequix-MP-1 paths cost (gradual level: 40 % removed).
+# Same recipe as the uniform-shrink baseline (Muon, wd 0.001, 100 epochs), from scratch.
+base_config: ../nequix-mp-1-uniform-wd1e3.yml
+hidden_irreps: "70x0e + 35x1o + 18x2e + 18x3o"
+out_dir: "bmuon/runs/mp1-uniform-c60-wd1e3"
+save_every_steps: 1000
+snapshot_every_epochs: 5

@@ -33,8 +33,14 @@ rsh() { local h="$1"; shift; ssh "${SSH_OPTS[@]}" -l "$CLUSTER_USER" "$(fqdn "$h
 here="$(cd "$(dirname "$0")" && pwd)"
 machines() { grep -v '^#' "$here/machines.txt" | awk 'NF{print $1, $2}'; }
 
-# seconds-since-epoch of the next STOP_AT, computed on the gateway (cluster clock); refuses daytime
+# seconds-since-epoch of the next stop, computed on the gateway (cluster clock); refuses daytime.
+# WINDOW=1: the DSI window of window.sh (weekend: Friday 18:00 -> Monday morning, no break).
 deadline() {
+  if [ -n "${WINDOW:-}" ]; then
+    rsh "$GATEWAY" "source ~/$REMOTE_REPO/bmuon/experiments/window.sh
+      left=\$(window_secs_until_stop) && echo \$(( \$(date +%s) + left )) || echo REFUSE"
+    return
+  fi
   rsh "$GATEWAY" "now=\$(date +%s); hm=\$((10#\$(date +%H%M))); s=\$(date -d 'today $STOP_AT' +%s);
     if [ \$hm -ge $REFUSE_FROM ] && [ \$hm -lt 1830 ]; then echo REFUSE; exit; fi
     [ \$now -ge \$s ] && s=\$(date -d 'tomorrow $STOP_AT' +%s); echo \$s"
@@ -158,7 +164,7 @@ status)
     hosts=($(rsh "$GATEWAY" "cat ~/$REMOTE_REPO/bmuon/runs/$name/hosts.txt"))
     alive=0; dead=""
     for h in "${hosts[@]}"; do
-      c=$(rsh "$h" 'pgrep -u $USER -fc "python -m [b]muon[.]train"' 2>/dev/null | tail -1)
+      c=$(rsh "$h" "pgrep -u \$USER -fc 'python -m [b]muon[.]train .*out_dir=bmuon/runs/$name( |\$)'" 2>/dev/null | tail -1)  # this run only
       [[ "$c" =~ ^[1-9] ]] && alive=$((alive+1)) || dead="$dead $h"
     done
     info=$(rsh "$GATEWAY" "cd ~/$REMOTE_REPO/bmuon/runs/$name; [ -f DONE ] && echo -n 'DONE | '; python3 - <<'EOF'

@@ -1,0 +1,9 @@
+# Weight-decay comparison: BMuon-mu with weight decay 0.01.
+# Post-training reference: mp1-bmuon-wd1e2 (same settings, global budget 0.3, no gradual pruning).
+base_config: base.yml
+optimizer: "bmuon"
+out_dir: "bmuon/runs/mp1-gradual-bmuon-mu-wd1e2"
+weight_decay: 0.01
+gradual:
+  score: "alloc"
+  anneal_budget: true
