@@ -115,7 +115,7 @@ start)
       4)  auto=(batch_size=64 grad_accum_steps=1);;
       8)  auto=(batch_size=32 grad_accum_steps=1 max_n_nodes=2048 max_n_edges=104000);;
       16) auto=(batch_size=16 grad_accum_steps=1 max_n_nodes=1024 max_n_edges=52000);;
-      32) auto=(batch_size=8 grad_accum_steps=1 max_n_nodes=512 max_n_edges=26000);;
+      32) auto=(batch_size=8 grad_accum_steps=1 max_n_nodes=512 max_n_edges=34704);;   # 34704 = largest MPtrj graph
       *)  echo "REFUSED: $n hosts; use 1, 2, 4, 8, 16 or 32 (global batch 256) or give batch_size/grad_accum_steps"; exit 1;;
     esac
   fi

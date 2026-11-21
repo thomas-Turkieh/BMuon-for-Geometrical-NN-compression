@@ -97,7 +97,21 @@ Validation errors are read from the training logs (MPtrj 5 % validation split).
 |---|---|---|---|---|
 | `uniform-small-cost20_wd1e-3_epoch099.nqx` | `mp1-uniform-c20-wd1e3` | 99 | 75.4 | 31.9 |
 
+### 2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size
+
+`wide-xK-…`: a model with K× wider tensor products than Nequix-MP-1, gradually pruned by BM-μ
+during training until its tensor-product cost equals that of Nequix-MP-1 (`nequix-mp1-size`).
+The file keeps the wide shape with the removed channels at exactly zero, so it is about 4 MB.
+
+| Model | Training run | Epoch | Val force MAE (meV/Å) | Val energy MAE (meV/atom) |
+|---|---|---|---|---|
+| `wide-x1.5-gradual-bmuon-mu_wd1e-3_epoch090_nequix-mp1-size.nqx` | `mp1-wide-x1.5-gradual-bmuon-mu` | 90 | 33.9 | 10.2 |
+
+This is a snapshot taken while the run was still training (last epoch: 99). The dense Nequix-MP-1
+trained with the same recipe (`mp1-bmuon-selwd`) ends at 34.4 meV/Å and 10.6 meV/atom at epoch 99.
+
 **Still to add when training ends:** the final models (epoch 99, 90 % of the cost removed) of the
-four gradual-pruning runs, and the small models at 80 %, 60 % and 14 % of the cost.
+four gradual-pruning runs, and the small models at 80 %, 60 % and 14 % of the cost; the final
+models (epoch 99) of the five wide runs.
 The published Nequix-MP-1 (Muon, 100 % of the cost) is in `models/nequix-mp-1.nqx` at the
 repository root.

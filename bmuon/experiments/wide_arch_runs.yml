@@ -1,0 +1,33 @@
+# Runs of two experiments started on 2026-11-10 (read by night_guard.sh and gradual_status.py).
+# Order = launch priority. 2026-11-12: 16 hosts per run (a 16- vs 32-host test of x4 gave the same
+# time per step, ~1.5 s), x6 with batch_size=8 grad_accum_steps=2 for memory; x2.5 and x1.5 added.
+# 2026-11-12 21:30: x6 stopped (too slow to ever finish, its run dir is kept), replaced by x1.25.
+# 2026-11-12: x4 stopped at the DSI's request (machines to free), run dir kept.
+# 2026-11-12 23:10: x2, x2.5, x1.5 resized to 8 hosts (DSI); only x3 stays on 16. hosts/gpus: number of machines and the GPU types they are taken from.
+#  * configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size: tensor products k times wider
+#    than Nequix-MP-1, gradually pruned (BM-mu) to 1/k of the cost, i.e. the size of Nequix-MP-1;
+#  * configs/2026-11-10_full-mptrj_learned-architecture-from-scratch: the architecture kept by
+#    BM-mu at 70 % of the cost removed, retrained from scratch, against a uniform one of the same cost.
+title: "Wide models pruned to Nequix-MP-1 size + learned architecture from scratch"
+runs:
+  - {name: mp1-wide-x2-gradual-bmuon-mu, label: "2x wide, BM-mu pruned to 50 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
+     hosts: 8, gpus: [a5000, 3090, 4000ada],
+     config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x2-bmuon-mu.yml}
+  - {name: mp1-wide-x3-gradual-bmuon-mu, label: "3x wide, BM-mu pruned to 33 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
+     hosts: 16, gpus: [4000ada, a5000, 3090],
+     config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x3-bmuon-mu.yml}
+  - {name: mp1-arch-learned-bmuon-mu-70pct-scratch, label: "learned 30 % architecture, from scratch", ref: mp1-uniform-shrink-wd1e3,
+     hosts: 8, gpus: [a4000, 4000ada, a5000, 3090],
+     config: bmuon/configs/2026-11-10_full-mptrj_learned-architecture-from-scratch/learned-bmuon-mu-70pct.yml}
+  - {name: mp1-arch-uniform-70pct-scratch, label: "uniform 30 % architecture, from scratch", ref: mp1-uniform-shrink-wd1e3,
+     hosts: 8, gpus: [a4000, 4000ada, a5000, 3090],
+     config: bmuon/configs/2026-11-10_full-mptrj_learned-architecture-from-scratch/uniform-70pct.yml}
+  - {name: mp1-wide-x2.5-gradual-bmuon-mu, label: "2.5x wide, BM-mu pruned to 40 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
+     hosts: 8, gpus: [4000ada, a5000, 3090],
+     config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x2.5-bmuon-mu.yml}
+  - {name: mp1-wide-x1.5-gradual-bmuon-mu, label: "1.5x wide, BM-mu pruned to 67 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
+     hosts: 8, gpus: [2000ada],
+     config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x1.5-bmuon-mu.yml}
+  - {name: mp1-wide-x1.25-gradual-bmuon-mu, label: "1.25x wide, BM-mu pruned to 20 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
+     hosts: 8, gpus: [a5000, 3090, 4000ada],
+     config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x1.25-bmuon-mu.yml}

@@ -40,6 +40,7 @@ import optax
 import yaml
 
 from bmuon.channels import build_channel_spec
+from bmuon.model import apply_tp_config
 from bmuon.optimizer import bmuon, find_bmuon_state, map_bmuon_state, weight_decay_keys
 from bmuon.prune import magnitude_scores, select_channels
 from nequix.data import (
@@ -436,7 +437,14 @@ def train(config_path: str, overrides: list | None = None, coordinator: str | No
         atom_energies=atom_energies,
         kernel=config["kernel"],
     )
+    # optional: wider tensor products (tp_expand) or a given per-block architecture
+    # (tp_input_irreps); snapshots then load with bmuon.model.load_pruned
+    model, tp_irreps = apply_tp_config(model, config, jax.random.fold_in(jax.random.key(config.get("seed", 0)), 7))
     config_to_save = {**config, **stats}
+    if tp_irreps is not None:
+        config_to_save["tp_input_irreps"] = tp_irreps
+        if main_process:
+            print(f"tensor-product input irreps per block: {tp_irreps}", flush=True)
 
     accum = int(config.get("grad_accum_steps", 1))
     if n_proc > 1:

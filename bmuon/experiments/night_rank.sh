@@ -11,6 +11,8 @@
 # blip...) the rank waits 60 s and starts again; train.py resumes from out_dir/state.pkl
 # (saved every save_every_steps). If out_dir/log.jsonl (written by rank 0 on the shared home)
 # has not moved for STALE seconds, the run is considered hung and every rank restarts.
+# Before each attempt, a GPU with >= BUSY_MIB (3000) MiB used by someone else stops the rank
+# (instead of crashing out of memory all night): the guard then replaces the host.
 set -u
 NAME="$1"; CONFIG="$2"; RANK="$3"; NPROC="$4"; COORD="$5"; DEADLINE="$6"; shift 6
 USER="${USER:-$(id -un)}"
@@ -37,6 +39,16 @@ while :; do
   [ "$left" -lt 300 ] && { log "deadline: no more (re)start"; break; }
   attempt=$((attempt + 1))
   pkill -9 -u "$USER" -f "$MINE" 2>/dev/null   # leftovers of an earlier attempt of this run
+  # GPU taken by someone else (nothing of ours runs here at this point): retrying would only crash
+  # out of memory again and again. Leave instead, so the guard sees the rank missing and moves the
+  # run to an idle host (night.sh start refuses a busy GPU, the guard then replaces it).
+  sleep 3
+  used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits 2>/dev/null | head -1)
+  if [ -n "$used" ] && [ "$used" -ge "${BUSY_MIB:-3000}" ]; then
+    log "GPU busy (${used} MiB used by another process): this rank stops, the guard will replace the host"
+    echo "$(hostname -s) rank $RANK $(date -Is) GPU-BUSY ${used} MiB: rank stopped" >> "$OUT/hosts.log"
+    break
+  fi
   log "attempt $attempt, $left s before the deadline"
   echo "$(hostname -s) rank $RANK $(date -Is) attempt $attempt" >> "$OUT/hosts.log"
   started=$(date +%s)

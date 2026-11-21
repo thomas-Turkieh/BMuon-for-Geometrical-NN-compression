@@ -1,0 +1,11 @@
+# Does gradual pruning learn an architecture? The per-block tensor-product widths kept by BM-mu
+# (wd 0.001) at 70 % of the cost removed (mp1-gradual-bmuon-mu-wd1e3, snapshot epoch 65, 359/857
+# channels, cost kept 0.300) are retrained from scratch with random weights, as a small model.
+# Control: the same skeleton with every (block, irrep) cut by the same fraction, at the same cost.
+# Both keep the hidden width of Nequix-MP-1 (only the tensor-product inputs are smaller), so the
+# allocation is the only difference. Architectures: python -m bmuon.experiments.arch_from_pruned.
+# Recipe of the small from-scratch models: Muon, weight decay 0.001, 100 epochs, full MPtrj.
+base_config: ../nequix-mp-1-muon.yml
+weight_decay: 0.001
+save_every_steps: 1000
+snapshot_every_epochs: 5

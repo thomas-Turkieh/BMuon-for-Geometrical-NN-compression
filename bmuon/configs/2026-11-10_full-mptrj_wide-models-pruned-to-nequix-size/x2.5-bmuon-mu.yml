@@ -1,0 +1,6 @@
+# Tensor products 2.5x wider than Nequix-MP-1, pruned to 1/2.5 of the cost (= Nequix-MP-1).
+base_config: base.yml
+out_dir: "bmuon/runs/mp1-wide-x2.5-gradual-bmuon-mu"
+tp_expand: 2.5
+gradual:
+  levels: [0.1416, 0.2632, 0.3675, 0.4571, 0.534, 0.6]   # cumulative fraction of the cost removed

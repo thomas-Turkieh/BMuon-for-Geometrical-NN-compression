@@ -75,7 +75,7 @@ def main():
         per_ep = sum(times) / len(times)
         left_h = per_ep * (n_epochs - 1 - ep) / 60
         kept = prunes[-1] if prunes else None
-        prune_txt = (f"{kept['prune/level']:.0%} of the cost removed, {kept['prune/kept']}/857 channels kept"
+        prune_txt = (f"{kept['prune/level']:.0%} of the cost removed, {kept['prune/kept']} channels kept"
                      if kept else "no pruning yet" if gradual else "no pruning (baseline)")
         ref = ref_val.get(ep)
         ref_txt = (f"ref {r['ref']} at ep. {ep}: F {1000 * ref['val/force_mae']:.1f}, "

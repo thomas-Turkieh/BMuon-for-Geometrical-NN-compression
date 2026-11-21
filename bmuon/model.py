@@ -148,6 +148,34 @@ def with_tp_irreps(model: Nequix, tp_irreps: list, kernel: bool | None = None) -
     return eqx.tree_at(lambda m: m.layers, model, convs)
 
 
+def apply_tp_config(model: Nequix, config: dict, key: jax.Array) -> tuple[Nequix, list | None]:
+    """Rebuild the blocks of a freshly built ``model`` when the config asks for other
+    tensor-product widths. Weights of the rebuilt blocks are random (initialisation as Nequix).
+
+    * ``tp_expand: k``: every block's tensor product takes k times the copies of its input
+      (a model k times wider in the pruned part; hidden width, skip and readout unchanged);
+    * ``tp_input_irreps: [one irreps string per block]``: explicit copies per block, e.g. the
+      architecture of a pruned model (``physical_prune.kept_counts``).
+
+    Returns the model and the per-block irreps (None when the config asks for neither).
+    """
+    tp, k = config.get("tp_input_irreps"), config.get("tp_expand")
+    if tp is None and not k:
+        return model, None
+    if tp is None:
+        tp = [e3nn.Irreps([(int(round(float(k) * m)), ir) for m, ir in conv.linear_1.irreps_out]) for conv in model.layers]
+    tp = [e3nn.Irreps(s) for s in tp]
+    if len(tp) != len(model.layers):
+        raise ValueError(f"tp_input_irreps has {len(tp)} entries for {len(model.layers)} blocks")
+    convs = []
+    for t, (conv, irreps) in enumerate(zip(model.layers, tp)):
+        kw = conv_kwargs(model, conv)
+        kw.update(mlp_init_scale=config["mlp_init_scale"], kernel=config["kernel"])
+        convs.append(PrunableConvolution(jax.random.fold_in(key, t), tp_input_irreps=irreps, **kw))
+    model = eqx.tree_at(lambda m: m.layers, model, convs)
+    return model, [str(getattr(c, "tp_input_irreps")) for c in convs]
+
+
 # ------------------------------------------------------------------ save / load
 
 

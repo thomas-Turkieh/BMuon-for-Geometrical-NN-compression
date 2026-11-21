@@ -1,0 +1,20 @@
+# Wide models pruned down to the size of Nequix-MP-1 (full MPtrj, 100 epochs).
+# The tensor products of every block take k times the copies of Nequix-MP-1 (tp_expand: k; hidden
+# width, skip connections, embedding and readout unchanged). The model is trained with BMuon and
+# pruned gradually by the learned allocation mu (BM-mu, the best method of the gradual-pruning
+# experiment) until 1 - 1/k of the channel cost is removed: the final model has the tensor-product
+# cost and the hidden width of Nequix-MP-1, and is compared with it.
+# Recipe as the gradual-pruning runs (mp1-gradual-bmuon-mu-wd1e3): weight decay 0.001, global batch
+# 256, lr 0.01 warmup + cosine, EMA 0.999, cost model "paths". Pruning events at the same epochs,
+# levels geometric in the kept cost (the same fraction removed at each event), recovery 75 -> 99.
+base_config: ../nequix-mp-1-bmuon.yml
+optimizer: "bmuon"
+weight_decay: 0.001
+save_every_steps: 1000
+snapshot_every_epochs: 1     # every phase end is kept
+gradual:
+  prune_after_epochs: [29, 38, 47, 56, 65, 74]  # pruning before epochs 30, 39, 48, 57, 66, 75
+  by: "cost"
+  min_keep: 1
+  score: "alloc"
+  anneal_budget: true

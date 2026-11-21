@@ -1,0 +1,8 @@
+# Control: every (block, irrep) keeps 29.7 % of its copies, cost kept 0.301 (as the learned one).
+base_config: base.yml
+out_dir: "bmuon/runs/mp1-arch-uniform-70pct-scratch"
+tp_input_irreps:
+  - "26x0e"
+  - "38x0e + 19x1o + 10x2e + 10x3o"
+  - "38x0e + 19x1o + 10x2e + 10x3o"
+  - "38x0e + 19x1o + 10x2e + 10x3o"

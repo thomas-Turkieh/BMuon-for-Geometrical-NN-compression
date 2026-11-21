@@ -27,22 +27,22 @@
 | BM-mag (wd 0.001) (wd 0.001) | gradual | 56 | 60.1 % | 41.5 | 13.70 | 37.4 |
 | BM-mag (wd 0.001) (wd 0.001) | gradual | 65 | 70.1 % | 43.5 | 14.63 | 36.2 |
 | BM-mag (wd 0.001) (wd 0.001) | gradual | 74 | 80.1 % | 47.8 | 16.37 |  |
-| BM-mag (wd 0.001) (wd 0.001) | gradual | 76 | 90.1 % | 79.1 | 33.48 |  |
+| BM-mag (wd 0.001) (wd 0.001) | gradual | 91 | 90.1 % | 62.8 | 24.26 |  |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 29 | 0.0 % | 39.6 | 13.39 | 41.6 |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 38 | 20.1 % | 38.5 | 12.92 | 40.1 |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 47 | 40.0 % | 39.4 | 12.77 | 38.7 |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 56 | 60.1 % | 41.4 | 13.44 | 37.4 |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 65 | 70.0 % | 41.4 | 13.57 | 36.2 |
 | BM-μ (wd 0.001) (wd 0.001) | gradual | 74 | 80.0 % | 44.8 | 14.53 |  |
-| BM-μ (wd 0.001) (wd 0.001) | gradual | 81 | 90.0 % | 52.0 | 18.09 |  |
+| BM-μ (wd 0.001) (wd 0.001) | gradual | 96 | 90.0 % | 49.8 | 16.60 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 29 | 0.0 % | 39.2 | 12.98 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 38 | 20.0 % | 40.9 | 14.23 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 47 | 40.1 % | 41.1 | 14.47 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 56 | 60.0 % | 53.5 | 20.02 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 65 | 70.1 % | 51.5 | 19.11 |  |
 | Muon-mag (wd 0.001) (wd 0.001) | gradual | 74 | 80.0 % | 54.3 | 19.84 |  |
-| Muon-mag (wd 0.001) (wd 0.001) | gradual | 81 | 90.1 % | 66.1 | 25.04 |  |
-| small uniform model from scratch (Muon) (wd 0.001) | scratch | 85 | 80.0 % | 73.6 | 29.44 |  |
+| Muon-mag (wd 0.001) (wd 0.001) | gradual | 99 | 90.1 % | 63.8 | 23.50 |  |
+| small uniform model from scratch (Muon) (wd 0.001) | scratch | 99 | 80.0 % | 73.4 | 29.18 |  |
 | small uniform model from scratch (Muon) (wd 0.001) | scratch | 99 | 64.5 % | 51.0 | 17.80 |  |
 | BMuon, pruned by μ (wd 0.01) | classic alloc | 80 | 0.0 % | 37.7 | 12.64 |  |
 | BMuon, pruned by μ (wd 0.01) | classic alloc | 80 | 20.1 % | 40.6 | 14.44 |  |
@@ -64,4 +64,4 @@
 | BM-μ (wd 0.01) (wd 0.01) | gradual | 56 | 60.1 % | 45.4 | 17.13 | 44.5 |
 | BM-μ (wd 0.01) (wd 0.01) | gradual | 65 | 70.1 % | 45.2 | 16.24 | 42.3 |
 | BM-μ (wd 0.01) (wd 0.01) | gradual | 74 | 80.0 % | 45.5 | 15.84 | 40.0 |
-| BM-μ (wd 0.01) (wd 0.01) | gradual | 79 | 90.0 % | 50.1 | 18.00 | 38.8 |
+| BM-μ (wd 0.01) (wd 0.01) | gradual | 96 | 90.0 % | 45.8 | 15.69 |  |

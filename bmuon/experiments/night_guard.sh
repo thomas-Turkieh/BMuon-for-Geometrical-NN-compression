@@ -2,7 +2,9 @@
 # Keeps the runs of a plan alive from the PC (Git Bash), across lab reboots and over several DSI
 # windows (e.g. a whole weekend, then the following nights): every 5 min, every run of the plan
 # that is not DONE and has lost a rank is stopped and started again on the same hosts with
-# night.sh, so it resumes from its last state.pkl. A host unreachable for 15 min is replaced by an
+# night.sh, so it resumes from its last state.pkl. A run whose ranks are all up but whose
+# log.jsonl has not moved for STALE_MIN (40) min is stuck and restarted the same way; a start
+# refused because a GPU is busy swaps that host. A host unreachable for 15 min is replaced by an
 # idle host of the same GPU type. Pauses at the end of a window, resumes when the next one opens,
 # exits when every run is DONE. WINDOW=1 uses the DSI window of window.sh.
 #
@@ -31,17 +33,22 @@ get_deadline() {
 }
 get_deadline
 log "guard started, plan $PLAN, current window ends ${deadline:-<outside the window>}"
+# a run whose log.jsonl has not moved for STALE_MIN minutes while every rank is up is stuck (e.g.
+# ranks crashing out of memory in a loop on a GPU someone else took): restart it like a lost rank.
+# The clock starts at the last (re)start by this guard, or at the guard start.
+declare -A started   # run -> gateway time of the last start by this guard
+t0=$(r "${GATEWAY:-aerides}" 'date +%s')
 
 runs() { python -c "import yaml
 for r in yaml.safe_load(open('$PLAN', encoding='utf-8'))['runs']:
-    if r.get('kind') != 'reference': print(r['name'], r['config'])" | tr -d '\r'; }
+    if r.get('kind') != 'reference': print(r['name'], r['config'], r.get('set', ''))" | tr -d '\r'; }   # set: extra k=v for night.sh start
 
 replace_host() {   # replace_host NAME OLD -> prints the new host (same GPU type, idle, provisioned)
   local name="$1" old="$2" type used new
   type=$(awk -v h="$old" '$1 == h {print $2}' bmuon/experiments/machines.txt)
   used=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs && cat $(runs | awk '{printf "%s/hosts.txt ", $1}') 2>/dev/null" | tr '\n' ' ')
   new=$($NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}' \
-        | while read -r h; do [[ " $used mayenne ardennes indre manche " == *" $h "* ]] || echo "$h"; done | head -1)
+        | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " == *" $h "* ]] || echo "$h"; done | head -1)
   [ -n "$new" ] || return 1
   $NIGHT provision "$new" >> "$LOG" 2>&1
   echo "$new"
@@ -51,21 +58,26 @@ check_once() {
   local now; now=$(r "${GATEWAY:-aerides}" 'date +%s')
   [ -n "$now" ] && [ $((dl_s - now)) -lt 1800 ] && { log "less than 30 min before the end of the window: guard paused until the next window"; return 2; }
   all_done=1
-  while read -r name config; do
-    st=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs/$name 2>/dev/null || { echo NOTLAUNCHED; exit 0; }; [ -f DONE ] && echo DONE || cat hosts.txt")
+  while read -r name config sets; do
+    st=$(r "${GATEWAY:-aerides}" "cd ~/nequix/bmuon/runs/$name 2>/dev/null || { echo NOTLAUNCHED; exit 0; }; [ -f DONE ] && echo DONE || { stat -c %Y log.jsonl 2>/dev/null || echo 0; cat hosts.txt; }")
     if [ -z "$st" ]; then                 # gateway unreachable: never count the run as DONE
       all_done=0; log "$name: gateway unreachable, cannot check (will retry)"; continue
     fi
     [ "$st" = NOTLAUNCHED ] && continue
     [ "$st" = DONE ] && continue
     all_done=0
-    hosts=($st); missing=(); unreach=()
+    read -r mtime rest <<< "$(echo $st)"   # first line: log.jsonl mtime, then the hosts
+    hosts=($rest); missing=(); unreach=()
     for h in "${hosts[@]}"; do
       c=$(r "$h" "pgrep -u \$USER -fc 'night_rank[.]sh $name '")
       if [ -z "$c" ]; then unreach+=("$h"); down[$h]=$(( ${down[$h]:-0} + 1 ))
       else down[$h]=0; [ "$c" -ge 1 ] || missing+=("$h"); fi
     done
-    [ ${#missing[@]} -eq 0 ] && [ ${#unreach[@]} -eq 0 ] && continue
+    if [ ${#missing[@]} -eq 0 ] && [ ${#unreach[@]} -eq 0 ]; then
+      ref=${started[$name]:-${t0:-$now}}; [ "${mtime:-0}" -gt "${ref:-0}" ] && ref=$mtime
+      { [ -n "$now" ] && [ -n "$ref" ] && [ $(( now - ref )) -gt $(( 60 * ${STALE_MIN:-40} )) ]; } || continue
+      log "$name: every rank is up but log.jsonl has not moved for $(( (now - ref) / 60 )) min: stuck, restart"
+    fi
     if [ ${#unreach[@]} -gt 0 ]; then
       long=(); for h in "${unreach[@]}"; do [ "${down[$h]}" -ge 3 ] && long+=("$h"); done
       if [ ${#long[@]} -eq 0 ]; then log "$name: unreachable ${unreach[*]} (rebooting?), waiting"; continue; fi
@@ -80,8 +92,11 @@ check_once() {
     [ -n "${DRY:-}" ] && continue
     $NIGHT stop "${hosts[*]}" >> "$LOG" 2>&1
     $NIGHT stop "$name" >> "$LOG" 2>&1
+    started[$name]=$now
     sleep 5
-    if ! $NIGHT start "$name" "$config" "${hosts[*]}" >> "$LOG" 2>&1; then
+    # the cluster deletes /tmp files older than 10 days: reinstall the env where its markers are gone
+    $NIGHT provision "${hosts[*]}" >> "$LOG" 2>&1
+    if ! $NIGHT start "$name" "$config" "${hosts[*]}" ${sets:+--set $sets} >> "$LOG" 2>&1; then
       # a host may have been taken by someone else: swap the busy ones and retry next check
       for h in "${hosts[@]}"; do
         m=$(r "$h" "nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1")

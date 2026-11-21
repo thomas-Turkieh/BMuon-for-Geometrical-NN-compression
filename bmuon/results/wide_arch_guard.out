@@ -1,0 +1,459 @@
+[Tue 19:29:28] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Wed 11 Nov 07:25:00
+[Tue 19:31:39] mp1-wide-x3-gradual-bmuon-mu: ranks missing on saone : restart on landes malleole marne maserati mazda metacarpe moselle niva parietal perone peugeot phalange pontiac porsche radius renault rotule rover royce sacrum saone simca skoda somme tarse temporal tibia vendee venturi volvo vosges xiphoide (resume from state.pkl)
+[Tue 19:46:29] mp1-wide-x3-gradual-bmuon-mu: ranks missing on saone : restart on landes malleole marne maserati mazda metacarpe moselle niva parietal perone peugeot phalange pontiac porsche radius renault rotule rover royce sacrum saone simca skoda somme tarse temporal tibia vendee venturi volvo vosges xiphoide (resume from state.pkl)
+[Tue 20:01:20] mp1-wide-x3-gradual-bmuon-mu: ranks missing on saone : restart on landes malleole marne maserati mazda metacarpe moselle niva parietal perone peugeot phalange pontiac porsche radius renault rotule rover royce sacrum saone simca skoda somme tarse temporal tibia vendee venturi volvo vosges xiphoide (resume from state.pkl)
+[Tue 20:16:25] mp1-wide-x3-gradual-bmuon-mu: ranks missing on radius renault rotule rover royce sacrum saone simca skoda somme tarse temporal tibia vendee venturi volvo vosges xiphoide : restart on landes malleole marne maserati mazda metacarpe moselle niva parietal perone peugeot phalange pontiac porsche radius renault rotule rover royce sacrum saone simca skoda somme tarse temporal tibia vendee venturi volvo vosges xiphoide (resume from state.pkl)
+[Tue 21:15:17] mp1-wide-x4-gradual-bmuon-mu: unreachable acromion apophyse astragale axis bentley bugatti cadillac chrysler coccyx corvette cote cubitus cuboide femur ferrari fiat ford frontal humerus jaguar jura lada (rebooting?), waiting
+[Tue 21:15:17] mp1-wide-x3-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 21:15:18] mp1-wide-x6-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 21:15:18] mp1-arch-learned-bmuon-mu-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Tue 21:15:19] mp1-arch-uniform-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Wed 11:06:10] less than 30 min before the end of the window: guard paused until the next window
+[Wed 20:17:58] old guard (frozen since the PC sleep) stopped by hand, new guard started
+[Wed 20:18:05] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Thu 12 Nov 07:25:00
+[Wed 20:18:44] mp1-wide-x2-gradual-bmuon-mu: ranks missing on autruche coucou dindon epervier faisan gelinotte harpie kamiche linotte loriol mouette nandou ombrette perdrix quetzal quiscale : restart on autruche coucou dindon epervier faisan gelinotte harpie kamiche linotte loriol mouette nandou ombrette perdrix quetzal quiscale (resume from state.pkl)
+[Wed 20:20:09] mp1-wide-x2-gradual-bmuon-mu: autruche busy (18862 MiB), replaced by sitelle
+[Wed 20:29:20] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Wed 20:29:22] mp1-wide-x4-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Wed 20:29:23] mp1-wide-x3-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Wed 20:29:23] mp1-wide-x6-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Wed 20:29:23] mp1-arch-learned-bmuon-mu-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Wed 20:29:23] mp1-arch-uniform-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Wed 20:36:41] guard started, plan C:/Users/thoma/AppData/Local/Temp/claude/5e30be0dd70cc22d/6e62f637-c320-4d93-929f-72072a1301d4/scratchpad/tonight_runs.yml, current window ends Thu 12 Nov 07:25:00
+[Wed 20:38:35] x2 started by hand (ablette busy -> gymnote); guard restarted on tonight plan (x3, x6 excluded)
+[Wed 20:38:37] guard started, plan C:/Users/thoma/AppData/Local/Temp/claude/5e30be0dd70cc22d/6e62f637-c320-4d93-929f-72072a1301d4/scratchpad/tonight_runs.yml, current window ends Thu 12 Nov 07:25:00
+[Wed 20:45:13] guard restarted (single instance)
+[Wed 20:45:16] guard started, plan C:/Users/thoma/AppData/Local/Temp/claude/5e30be0dd70cc22d/6e62f637-c320-4d93-929f-72072a1301d4/scratchpad/tonight_runs.yml, current window ends Thu 12 Nov 07:25:00
+[Thu 04:07:47] mp1-wide-x4-gradual-bmuon-mu: unreachable cote creuse cubitus cuboide dordogne doubs essonne femur finistere frontal landes marne metacarpe moselle niva parietal perone peugeot pontiac porsche radius rolls rotule rover royce simca skoda somme (rebooting?), waiting
+[Thu 04:08:37] mp1-arch-learned-bmuon-mu-70pct-scratch: unreachable allemagne angleterre belgique groenland hollande (rebooting?), waiting
+[Thu 04:08:45] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco suede autriche axis carmor cher coccyx : restart on malte monaco suede autriche axis carmor cher coccyx (resume from state.pkl)
+[Thu 04:19:29] mp1-wide-x2-gradual-bmuon-mu: ranks missing on coucou faisan sitelle gymnote barbue labre lieu lotte mulet murene anchois anguille barbeau brochet carrelet gardon : restart on coucou faisan sitelle gymnote barbue labre lieu lotte mulet murene anchois anguille barbeau brochet carrelet gardon (resume from state.pkl)
+[Thu 04:20:41] mp1-wide-x4-gradual-bmuon-mu: ranks missing on cote creuse cubitus cuboide dordogne doubs essonne femur finistere frontal humerus lada landes marne metacarpe moselle niva parietal perone peugeot pontiac porsche radius renault rolls rotule rover royce simca skoda somme vendee : restart on cote creuse cubitus cuboide dordogne doubs essonne femur finistere frontal humerus lada landes marne metacarpe moselle niva parietal perone peugeot pontiac porsche radius renault rolls rotule rover royce simca skoda somme vendee (resume from state.pkl)
+[Thu 04:21:59] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on allemagne angleterre belgique groenland hollande hongrie france islande : restart on allemagne angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Thu 07:04:15] less than 30 min before the end of the window: guard paused until the next window
+[Thu 19:03:33] window open again, ends Fri 13 Nov 07:25:00: guard resumes
+[Thu 19:03:57] mp1-wide-x2-gradual-bmuon-mu: unreachable gardon (rebooting?), waiting
+[Thu 19:04:22] mp1-wide-x4-gradual-bmuon-mu: ranks missing on cote creuse cubitus cuboide dordogne doubs essonne femur finistere frontal humerus lada landes marne metacarpe moselle niva parietal perone peugeot pontiac porsche radius renault rolls rotule rover royce simca skoda somme vendee : restart on cote creuse cubitus cuboide dordogne doubs essonne femur finistere frontal humerus lada landes marne metacarpe moselle niva parietal perone peugeot pontiac porsche radius renault rolls rotule rover royce simca skoda somme vendee (resume from state.pkl)
+[Thu 19:05:41] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on allemagne angleterre belgique groenland hollande hongrie france islande : restart on allemagne angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Thu 19:06:18] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco suede autriche axis carmor cher coccyx : restart on malte monaco suede autriche axis carmor cher coccyx (resume from state.pkl)
+[Thu 19:06:50] mp1-arch-uniform-70pct-scratch: suede busy (10617 MiB), replaced by espagne
+[Thu 19:06:55] mp1-arch-uniform-70pct-scratch: start refused, will retry
+[Thu 19:17:19] mp1-wide-x2-gradual-bmuon-mu: unreachable gardon (rebooting?), waiting
+[Thu 19:17:56] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche axis carmor cher coccyx : restart on malte monaco espagne autriche axis carmor cher coccyx (resume from state.pkl)
+[Thu 19:32:44] guard stopped; x2 restarted by hand on coucou sitelle barbue labre lieu lotte mulet murene anguille barbeau brochet carrelet raie rouget roussette saumon
+[Thu 19:50:07] guard restarted on the full plan (16 hosts per run, x2.5 x6 x1.5 added)
+[Thu 19:50:09] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Fri 13 Nov 07:25:00
+[Thu 21:25:24] x6 stopped by request, x1.25 started on its hosts
+[Thu 22:57:23] x4 stopped and removed from the plan (DSI request)
+[Thu 22:58:42] x1.25 restarted by hand (killed by mistake by the x6 stop: same hosts)
+[Thu 22:59:23] x1.25 restarted on 8 hosts (DSI: fewer machines)
+[Thu 23:04:09] guard stopped; x2, x2.5, x1.5 resized to 8 hosts (DSI)
+[Thu 23:06:12] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Fri 13 Nov 07:25:00
+[Fri 00:33:18] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee bugatti : restart on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee allier astragale bentley bugatti (resume from state.pkl)
+[Fri 00:34:12] mp1-wide-x3-gradual-bmuon-mu: allier busy (7435 MiB), replaced by cote
+[Fri 00:34:28] mp1-wide-x3-gradual-bmuon-mu: bentley busy (7637 MiB), replaced by creuse
+[Fri 00:34:29] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 00:34:37] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on allemagne angleterre belgique groenland hollande hongrie france islande : restart on allemagne angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 00:35:08] mp1-arch-learned-bmuon-mu-70pct-scratch: allemagne busy (4828 MiB), replaced by lituanie
+[Fri 00:35:15] mp1-arch-learned-bmuon-mu-70pct-scratch: start refused, will retry
+[Fri 00:35:21] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche axis carmor cher coccyx : restart on malte monaco espagne autriche axis carmor cher coccyx (resume from state.pkl)
+[Fri 00:36:01] mp1-arch-uniform-70pct-scratch: axis busy (7497 MiB), replaced by cubitus
+[Fri 00:36:16] mp1-arch-uniform-70pct-scratch: carmor busy (6389 MiB), replaced by doubs
+[Fri 00:36:18] mp1-arch-uniform-70pct-scratch: start refused, will retry
+[Fri 00:36:25] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac chrysler corvette fiat jaguar malleole : restart on cadillac charente chrysler corvette fiat ford jaguar malleole (resume from state.pkl)
+[Fri 00:37:10] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on thon truite : restart on silure hibou thon truite albatros linotte mouette quiscale (resume from state.pkl)
+[Fri 00:47:47] mp1-wide-x2-gradual-bmuon-mu: ranks missing on coucou : restart on coucou sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 00:48:29] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti : restart on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti (resume from state.pkl)
+[Fri 00:49:19] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on lituanie angleterre belgique groenland hollande hongrie france islande : restart on lituanie angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 00:49:55] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche cubitus doubs cher coccyx : restart on malte monaco espagne autriche cubitus doubs cher coccyx (resume from state.pkl)
+[Fri 00:50:43] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on truite : restart on silure hibou thon truite albatros linotte mouette quiscale (resume from state.pkl)
+[Fri 06:37:42] mp1-wide-x2-gradual-bmuon-mu: ranks missing on coucou sitelle barbue labre lieu lotte mulet murene : restart on coucou sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 06:38:07] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Fri 06:38:20] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti : restart on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti (resume from state.pkl)
+[Fri 06:39:00] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 06:39:07] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on lituanie angleterre belgique groenland hollande hongrie france islande : restart on lituanie angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 06:39:33] mp1-arch-learned-bmuon-mu-70pct-scratch: start refused, will retry
+[Fri 06:39:41] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche cubitus doubs cher coccyx : restart on malte monaco espagne autriche cubitus doubs cher coccyx (resume from state.pkl)
+[Fri 06:40:10] mp1-arch-uniform-70pct-scratch: start refused, will retry
+[Fri 06:40:18] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac charente chrysler corvette fiat ford jaguar malleole : restart on cadillac charente chrysler corvette fiat ford jaguar malleole (resume from state.pkl)
+[Fri 06:40:45] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Fri 06:40:52] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea : restart on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea (resume from state.pkl)
+[Fri 06:41:22] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Fri 06:41:29] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on silure hibou thon truite albatros linotte mouette quiscale : restart on silure hibou thon truite albatros linotte mouette quiscale (resume from state.pkl)
+[Fri 06:41:56] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 06:52:05] mp1-wide-x2-gradual-bmuon-mu: ranks missing on coucou sitelle barbue labre lieu lotte mulet murene : restart on coucou sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 06:52:31] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Fri 06:52:44] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti : restart on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti (resume from state.pkl)
+[Fri 06:53:25] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 06:53:32] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on lituanie angleterre belgique groenland hollande hongrie france islande : restart on lituanie angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 06:53:59] mp1-arch-learned-bmuon-mu-70pct-scratch: start refused, will retry
+[Fri 06:54:06] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche cubitus doubs cher coccyx : restart on malte monaco espagne autriche cubitus doubs cher coccyx (resume from state.pkl)
+[Fri 06:54:33] mp1-arch-uniform-70pct-scratch: start refused, will retry
+[Fri 06:54:41] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac charente chrysler corvette fiat ford jaguar malleole : restart on cadillac charente chrysler corvette fiat ford jaguar malleole (resume from state.pkl)
+[Fri 06:55:07] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Fri 06:55:16] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea : restart on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea (resume from state.pkl)
+[Fri 06:55:35] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Fri 06:55:43] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on silure hibou thon truite albatros linotte mouette quiscale : restart on silure hibou thon truite albatros linotte mouette quiscale (resume from state.pkl)
+[Fri 06:56:02] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 07:06:04] less than 30 min before the end of the window: guard paused until the next window
+[Fri 20:09:33] guard restarted (it had died with the previous session; PC hibernated at 18:31)
+[Fri 20:09:39] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Fri 20:09:55] mp1-wide-x2-gradual-bmuon-mu: ranks missing on coucou sitelle barbue labre lieu lotte mulet murene : restart on coucou sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 20:11:29] mp1-wide-x2-gradual-bmuon-mu: coucou busy (18084 MiB), replaced by autruche
+[Fri 20:12:48] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Fri 20:13:24] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti : restart on perone peugeot pontiac porsche radius rolls rover royce simca skoda somme vendee cote astragale creuse bugatti (resume from state.pkl)
+[Fri 20:15:06] mp1-wide-x3-gradual-bmuon-mu: porsche busy (18009 MiB), replaced by allier
+[Fri 20:16:56] mp1-wide-x3-gradual-bmuon-mu: rover busy (14926 MiB), replaced by carmor
+[Fri 20:18:10] mp1-wide-x3-gradual-bmuon-mu: royce busy (12785 MiB), replaced by dordogne
+[Fri 20:18:55] mp1-wide-x3-gradual-bmuon-mu: cote busy (12677 MiB), replaced by essonne
+[Fri 20:19:01] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 20:19:24] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on lituanie angleterre belgique groenland hollande hongrie france islande : restart on lituanie angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 20:21:09] mp1-arch-learned-bmuon-mu-70pct-scratch: lituanie busy (11565 MiB), replaced by allemagne
+[Fri 20:21:35] mp1-arch-learned-bmuon-mu-70pct-scratch: start refused, will retry
+[Fri 20:21:50] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche cubitus doubs cher coccyx : restart on malte monaco espagne autriche cubitus doubs cher coccyx (resume from state.pkl)
+[Fri 20:23:46] mp1-arch-uniform-70pct-scratch: cher busy (12786 MiB), replaced by femur
+[Fri 20:25:07] mp1-arch-uniform-70pct-scratch: coccyx busy (12785 MiB), replaced by ferrari
+[Fri 20:25:08] mp1-arch-uniform-70pct-scratch: start refused, will retry
+[Fri 20:25:22] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac charente chrysler corvette fiat ford jaguar malleole : restart on cadillac charente chrysler corvette fiat ford jaguar malleole (resume from state.pkl)
+[Fri 20:26:10] mp1-wide-x2.5-gradual-bmuon-mu: charente busy (12786 MiB), replaced by acromion
+[Fri 20:26:48] mp1-wide-x2.5-gradual-bmuon-mu: chrysler busy (18659 MiB), replaced by ain
+[Fri 20:28:15] mp1-wide-x2.5-gradual-bmuon-mu: malleole busy (18009 MiB), replaced by apophyse
+[Fri 20:28:22] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Fri 20:28:49] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea : restart on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea (resume from state.pkl)
+[Fri 20:29:56] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Fri 20:30:15] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on silure hibou thon truite albatros linotte mouette quiscale : restart on silure hibou thon truite albatros linotte mouette quiscale (resume from state.pkl)
+[Fri 20:31:52] mp1-wide-x1.25-gradual-bmuon-mu: hibou busy (18064 MiB), replaced by faisan
+[Fri 20:33:53] mp1-wide-x1.25-gradual-bmuon-mu: albatros busy (18064 MiB), replaced by faisan
+[Fri 20:35:19] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 20:40:27] x1.25: hibou (busy, left by a failed swap) replaced by ablette by hand; guard restarted with auto-provision before start
+[Fri 20:40:36] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Fri 20:40:50] mp1-wide-x2-gradual-bmuon-mu: ranks missing on autruche sitelle barbue labre lieu lotte mulet murene : restart on autruche sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 20:42:23] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Fri 20:42:48] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac allier radius rolls carmor dordogne simca skoda somme vendee essonne astragale creuse bugatti : restart on perone peugeot pontiac allier radius rolls carmor dordogne simca skoda somme vendee essonne astragale creuse bugatti (resume from state.pkl)
+[Fri 20:44:55] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 20:45:20] mp1-arch-learned-bmuon-mu-70pct-scratch: ranks missing on allemagne angleterre belgique groenland hollande hongrie france islande : restart on allemagne angleterre belgique groenland hollande hongrie france islande (resume from state.pkl)
+[Fri 20:46:51] mp1-arch-uniform-70pct-scratch: ranks missing on malte monaco espagne autriche cubitus doubs femur ferrari : restart on malte monaco espagne autriche cubitus doubs femur ferrari (resume from state.pkl)
+[Fri 20:48:28] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac acromion ain corvette fiat ford jaguar apophyse : restart on cadillac acromion ain corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Fri 20:50:16] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea : restart on barlia calanthe diuris encyclia epipactis isotria habenaria ipsea (resume from state.pkl)
+[Fri 20:51:41] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on silure ablette thon truite faisan linotte mouette quiscale : restart on silure ablette thon truite faisan linotte mouette quiscale (resume from state.pkl)
+[Fri 20:53:02] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 21:03:21] mp1-wide-x2-gradual-bmuon-mu: ranks missing on autruche sitelle barbue labre lieu lotte mulet murene : restart on autruche sitelle barbue labre lieu lotte mulet murene (resume from state.pkl)
+[Fri 21:04:53] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac allier radius rolls carmor dordogne simca skoda somme vendee essonne astragale creuse bugatti : restart on perone peugeot pontiac allier radius rolls carmor dordogne simca skoda somme vendee essonne astragale creuse bugatti (resume from state.pkl)
+[Fri 21:07:55] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on silure ablette thon truite faisan linotte mouette quiscale : restart on silure ablette thon truite faisan linotte mouette quiscale (resume from state.pkl)
+[Fri 21:09:15] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 21:10:22] x1.25: linotte mouette quiscale (a5000, taken by others, no free a5000) replaced by hand by brochet carrelet gymnote (3090)
+[Sat 15:34:48] mp1-wide-x2-gradual-bmuon-mu: unreachable mulet (rebooting?), waiting
+[Sat 15:35:15] mp1-wide-x3-gradual-bmuon-mu: unreachable somme (rebooting?), waiting
+[Sat 17:04:28] mp1-wide-x2-gradual-bmuon-mu: unreachable lotte (rebooting?), waiting
+[Sat 17:06:32] mp1-wide-x3-gradual-bmuon-mu: unreachable allier (rebooting?), waiting
+[Sat 17:07:22] mp1-wide-x2.5-gradual-bmuon-mu: unreachable ain (rebooting?), waiting
+[Sat 17:09:44] mp1-wide-x1.25-gradual-bmuon-mu: unreachable silure ablette thon truite brochet carrelet gymnote (rebooting?), waiting
+[Sat 17:21:06] mp1-wide-x2-gradual-bmuon-mu: unreachable barbue labre lieu lotte mulet murene (rebooting?), waiting
+[Sat 17:22:27] mp1-wide-x3-gradual-bmuon-mu: unreachable allier carmor dordogne somme vendee essonne creuse (rebooting?), waiting
+[Sat 17:22:47] mp1-wide-x2.5-gradual-bmuon-mu: unreachable ain (rebooting?), waiting
+[Sat 17:24:09] mp1-wide-x1.25-gradual-bmuon-mu: unreachable silure ablette thon truite brochet carrelet gymnote (rebooting?), waiting
+[Sat 17:35:32] mp1-wide-x2-gradual-bmuon-mu: no idle host to replace lotte, waiting
+[Sat 17:37:52] mp1-wide-x3-gradual-bmuon-mu: allier unreachable for 15 min, replaced by atlas
+[Sat 17:37:52] mp1-wide-x3-gradual-bmuon-mu: ranks missing on  allier carmor dordogne somme vendee essonne creuse: restart on perone peugeot pontiac atlas radius rolls carmor dordogne simca skoda somme vendee essonne astragale creuse bugatti (resume from state.pkl)
+[Sat 17:41:38] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Sat 17:42:15] mp1-wide-x2.5-gradual-bmuon-mu: ain unreachable for 15 min, replaced by atlas
+[Sat 17:42:15] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on  ain: restart on cadillac acromion atlas corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Sat 17:45:41] mp1-wide-x1.25-gradual-bmuon-mu: no idle host to replace silure, waiting
+[Sat 17:57:01] mp1-wide-x2-gradual-bmuon-mu: no idle host to replace barbue, waiting
+[Sat 17:59:39] mp1-wide-x3-gradual-bmuon-mu: allier unreachable for 15 min, replaced by cote
+[Sat 18:00:15] mp1-wide-x3-gradual-bmuon-mu: carmor unreachable for 15 min, replaced by ain
+[Sat 18:03:11] ~17:00 13 hosts went offline (lotte murene silure ablette thon allier carmor dordogne somme vendee essonne creuse ain); repaired by hand: new hosts for x2 x1.25 x3, x2.5 moved off atlas (avoid list, also grabbed for x3) to jura; guard avoid list completed
+[Sat 18:11:25] x2 on roussette sitelle barbue labre lieu rouget mulet saumon ; x1.25 on sole piranha raie truite faisan brochet carrelet gymnote (autruche anchois anguille barbeau taken by others)
+[Sat 18:11:41] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Sat 18:22:37] x3/x2.5 crash loop: zombie ranks of the pre-17:00 runs on hosts back online (allier, ain, ...) reconnected with the same rank ids; killed on the 13 hosts, x3 and x2.5 restarted
+[Sat 18:24:10] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius landes cubitus doubs simca skoda femur ferrari finistere astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda femur ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Sat 18:24:43] x3: rolls (taken by another user) replaced by landes
+[Sat 18:25:54] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Sat 18:36:30] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Sat 19:25:29] mp1-wide-x3-gradual-bmuon-mu: unreachable finistere (rebooting?), waiting
+[Sat 19:39:19] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette barbue lieu mulet saumon (rebooting?), waiting
+[Sat 19:40:45] mp1-wide-x3-gradual-bmuon-mu: unreachable landes doubs finistere (rebooting?), waiting
+[Sat 19:44:42] mp1-wide-x1.25-gradual-bmuon-mu: unreachable sole raie brochet gymnote (rebooting?), waiting
+[Sat 19:57:38] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette labre lieu rouget mulet saumon (rebooting?), waiting
+[Sat 19:59:34] mp1-wide-x3-gradual-bmuon-mu: finistere unreachable for 15 min, replaced by axis
+[Sat 19:59:34] mp1-wide-x3-gradual-bmuon-mu: ranks missing on  landes finistere: restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda femur ferrari axis astragale humerus bugatti (resume from state.pkl)
+[Sat 20:03:23] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Sat 20:16:38] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius cubitus simca skoda femur ferrari astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda femur ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Sat 20:18:50] mp1-wide-x3-gradual-bmuon-mu: femur busy (3892 MiB), replaced by ain
+[Sat 20:19:02] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Sat 20:30:55] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Sat 22:05:39] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Sun 07:36:56] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite faisan brochet carrelet gymnote : restart on sole ombrette loriol truite faisan brochet carrelet gymnote (resume from state.pkl)
+[Sun 08:10:32] mp1-wide-x1.5-gradual-bmuon-mu: unreachable habenaria (rebooting?), waiting
+[Sun 08:21:38] mp1-wide-x1.5-gradual-bmuon-mu: unreachable habenaria (rebooting?), waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 08:32:46] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 08:43:53] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 08:55:02] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 09:06:08] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 09:17:15] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 09:28:22] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 09:39:30] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+bmuon/experiments/night_guard.sh: command substitution: line 45: conditional binary operator expected
+bmuon/experiments/night_guard.sh: command substitution: line 45: syntax error near `"*'
+bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$type" | awk '$3 == "gpu-free" && $4 == "cpu-ok" && /ours=0/ {print $2}'         | while read -r h; do [[ " $used mayenne ardennes indre manche baudroie morbihan atlas nissan saone aerides raie " ==*" $h "* ]] || echo "$h"; done | head -1)'
+[Sun 09:50:38] mp1-wide-x1.5-gradual-bmuon-mu: no idle host to replace habenaria, waiting
+[Sun 09:57:47] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Mon 16 Nov 07:25:00
+[Sun 12:53:37] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette (rebooting?), waiting
+[Sun 13:15:47] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette (rebooting?), waiting
+[Sun 21:35:51] mp1-wide-x3-gradual-bmuon-mu: unreachable simca skoda astragale (rebooting?), waiting
+[Mon 00:42:50] mp1-wide-x2-gradual-bmuon-mu: ranks missing on roussette sitelle barbue labre lieu rouget mulet saumon : restart on roussette sitelle barbue labre lieu rouget mulet saumon (resume from state.pkl)
+[Mon 00:43:53] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Mon 00:45:15] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac acromion jura corvette fiat ford jaguar apophyse : restart on cadillac acromion jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 00:46:10] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Mon 00:47:06] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite faisan brochet carrelet gymnote : restart on sole ombrette loriol truite faisan brochet carrelet gymnote (resume from state.pkl)
+[Mon 00:47:55] mp1-wide-x1.25-gradual-bmuon-mu: faisan busy (10576 MiB), replaced by albatros
+[Mon 00:47:59] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Mon 00:58:55] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite albatros brochet carrelet gymnote : restart on sole ombrette loriol truite albatros brochet carrelet gymnote (resume from state.pkl)
+[Mon 06:38:25] mp1-wide-x2-gradual-bmuon-mu: ranks missing on roussette sitelle barbue labre lieu rouget mulet saumon : restart on roussette sitelle barbue labre lieu rouget mulet saumon (resume from state.pkl)
+[Mon 06:39:27] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Mon 06:40:50] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac acromion jura corvette fiat ford jaguar apophyse : restart on cadillac acromion jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 06:41:44] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Mon 06:42:39] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite albatros brochet carrelet gymnote : restart on sole ombrette loriol truite albatros brochet carrelet gymnote (resume from state.pkl)
+[Mon 07:04:22] less than 30 min before the end of the window: guard paused until the next window
+[Mon 18:45:26] window open again, ends Tue 17 Nov 07:25:00: guard resumes
+[Mon 18:45:50] mp1-wide-x2-gradual-bmuon-mu: ranks missing on roussette sitelle barbue labre lieu rouget mulet saumon : restart on roussette sitelle barbue labre lieu rouget mulet saumon (resume from state.pkl)
+[Mon 18:48:24] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone peugeot pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Mon 18:50:21] mp1-wide-x3-gradual-bmuon-mu: peugeot busy (17522 MiB), replaced by allier
+[Mon 18:50:49] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Mon 18:52:02] mp1-wide-x2.5-gradual-bmuon-mu: unreachable acromion jura corvette fiat ford jaguar apophyse (rebooting?), waiting
+[Mon 18:52:03] mp1-wide-x1.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Mon 18:52:03] mp1-wide-x1.25-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Mon 21:33:52] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Tue 17 Nov 07:25:00
+[Mon 21:34:00] mp1-wide-x2-gradual-bmuon-mu: ranks missing on roussette sitelle barbue labre lieu rouget mulet saumon : restart on roussette sitelle barbue labre lieu rouget mulet saumon (resume from state.pkl)
+[Mon 21:34:56] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Mon 21:36:11] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac acromion jura corvette fiat ford jaguar apophyse : restart on cadillac acromion jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 21:36:58] mp1-wide-x2.5-gradual-bmuon-mu: acromion busy (3316 MiB), replaced by axis
+[Mon 21:37:06] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Mon 21:37:14] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Mon 21:38:03] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite albatros brochet carrelet gymnote : restart on sole ombrette loriol truite albatros brochet carrelet gymnote (resume from state.pkl)
+[Mon 21:49:45] mp1-wide-x2-gradual-bmuon-mu: unreachable rouget saumon (rebooting?), waiting
+[Mon 21:51:53] mp1-wide-x3-gradual-bmuon-mu: unreachable perone allier pontiac cote radius cubitus simca skoda ferrari astragale humerus bugatti (rebooting?), waiting
+[Mon 21:53:07] mp1-wide-x2.5-gradual-bmuon-mu: unreachable cadillac axis corvette fiat ford jaguar apophyse (rebooting?), waiting
+[Mon 22:04:12] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 22:05:46] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Mon 22:05:56] mp1-wide-x1.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Mon 22:06:06] mp1-wide-x1.25-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Mon 22:16:55] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 22:29:18] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on ford : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Mon 23:45:18] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette (rebooting?), waiting
+[Tue 01:56:09] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette barbue labre lieu rouget mulet saumon (rebooting?), waiting
+[Tue 01:57:07] mp1-wide-x3-gradual-bmuon-mu: unreachable allier landes doubs ain finistere (rebooting?), waiting
+[Tue 01:57:24] mp1-wide-x2.5-gradual-bmuon-mu: unreachable jura (rebooting?), waiting
+[Tue 02:08:59] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette (rebooting?), waiting
+[Tue 02:19:54] mp1-wide-x2-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 02:20:04] mp1-wide-x3-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 02:20:14] mp1-arch-learned-bmuon-mu-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Tue 02:20:24] mp1-arch-uniform-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Tue 02:20:34] mp1-wide-x2.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 02:20:44] mp1-wide-x1.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 02:20:54] mp1-wide-x1.25-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Tue 03:46:30] mp1-wide-x2-gradual-bmuon-mu: unreachable roussette (rebooting?), waiting
+[Tue 06:37:13] mp1-wide-x2-gradual-bmuon-mu: ranks missing on roussette sitelle barbue labre lieu rouget mulet saumon : restart on roussette sitelle barbue labre lieu rouget mulet saumon (resume from state.pkl)
+[Tue 06:37:50] mp1-wide-x2-gradual-bmuon-mu: roussette busy (16430 MiB), replaced by ablette
+[Tue 06:37:59] mp1-wide-x2-gradual-bmuon-mu: barbue busy (16390 MiB), replaced by anguille
+[Tue 06:38:08] mp1-wide-x2-gradual-bmuon-mu: labre busy (16430 MiB), replaced by thon
+[Tue 06:38:17] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Tue 06:38:29] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Tue 06:39:37] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Tue 06:40:20] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Tue 06:41:03] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite albatros brochet carrelet gymnote : restart on sole ombrette loriol truite albatros brochet carrelet gymnote (resume from state.pkl)
+[Tue 06:42:30] mp1-wide-x1.25-gradual-bmuon-mu: albatros busy (22018 MiB), replaced by bengali
+[Tue 06:42:44] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Tue 06:52:52] mp1-wide-x2-gradual-bmuon-mu: ranks missing on ablette sitelle anguille thon lieu rouget mulet saumon : restart on ablette sitelle anguille thon lieu rouget mulet saumon (resume from state.pkl)
+[Tue 06:53:55] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Tue 06:54:30] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite bengali brochet carrelet gymnote : restart on sole ombrette loriol truite bengali brochet carrelet gymnote (resume from state.pkl)
+[Tue 06:55:21] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Tue 07:05:22] less than 30 min before the end of the window: guard paused until the next window
+[Tue 09:59:18] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends <outside the window>
+[Tue 18:30:17] window open again, ends Wed 18 Nov 07:25:00: guard resumes
+[Tue 18:30:26] mp1-wide-x2-gradual-bmuon-mu: ranks missing on ablette sitelle anguille thon lieu rouget mulet saumon : restart on ablette sitelle anguille thon lieu rouget mulet saumon (resume from state.pkl)
+[Tue 18:31:05] mp1-wide-x2-gradual-bmuon-mu: ablette busy (8869 MiB), replaced by anchois
+[Tue 18:31:16] mp1-wide-x2-gradual-bmuon-mu: lieu busy (22150 MiB), replaced by barbeau
+[Tue 18:31:25] mp1-wide-x2-gradual-bmuon-mu: mulet busy (22361 MiB), replaced by labre
+[Tue 18:31:27] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Tue 18:31:41] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Tue 18:32:50] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Tue 18:33:35] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Tue 18:34:19] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole ombrette loriol truite bengali brochet carrelet gymnote : restart on sole ombrette loriol truite bengali brochet carrelet gymnote (resume from state.pkl)
+[Tue 18:49:14] mp1-wide-x1.25-gradual-bmuon-mu: ombrette busy (13415 MiB), replaced by autruche
+[Tue 18:49:41] mp1-wide-x1.25-gradual-bmuon-mu: carrelet busy (22241 MiB), replaced by lotte
+[Tue 18:49:59] mp1-wide-x1.25-gradual-bmuon-mu: gymnote busy (13202 MiB), replaced by murene
+[Tue 18:50:01] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Tue 19:00:18] mp1-wide-x2-gradual-bmuon-mu: ranks missing on anchois sitelle anguille thon barbeau rouget labre saumon : restart on anchois sitelle anguille thon barbeau rouget labre saumon (resume from state.pkl)
+[Tue 19:01:26] mp1-wide-x2-gradual-bmuon-mu: barbeau busy (7269 MiB), replaced by piranha
+[Tue 19:01:32] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Tue 19:02:41] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole autruche loriol truite bengali brochet lotte murene : restart on sole autruche loriol truite bengali brochet lotte murene (resume from state.pkl)
+[Tue 19:04:33] mp1-wide-x1.25-gradual-bmuon-mu: loriol busy (8599 MiB), replaced by dindon
+[Tue 19:04:43] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Tue 19:14:59] mp1-wide-x2-gradual-bmuon-mu: ranks missing on anchois sitelle anguille thon piranha rouget labre saumon : restart on anchois sitelle anguille thon piranha rouget labre saumon (resume from state.pkl)
+[Tue 19:17:13] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole autruche dindon truite bengali brochet lotte murene : restart on sole autruche dindon truite bengali brochet lotte murene (resume from state.pkl)
+[Wed 00:23:43] mp1-wide-x1.25-gradual-bmuon-mu: unreachable lotte (rebooting?), waiting
+[Wed 00:33:51] mp1-wide-x2-gradual-bmuon-mu: ranks missing on anchois sitelle anguille thon piranha rouget labre saumon : restart on anchois sitelle anguille thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 00:34:43] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Wed 00:36:33] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Wed 00:37:55] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 00:38:42] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole autruche dindon truite bengali brochet lotte murene : restart on sole autruche dindon truite bengali brochet lotte murene (resume from state.pkl)
+[Wed 00:40:09] mp1-wide-x1.25-gradual-bmuon-mu: bengali busy (12345 MiB), replaced by epervier
+[Wed 00:40:13] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 00:50:49] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on pogonia : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 00:51:36] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole autruche dindon truite epervier brochet lotte murene : restart on sole autruche dindon truite epervier brochet lotte murene (resume from state.pkl)
+[Wed 00:52:19] mp1-wide-x1.25-gradual-bmuon-mu: autruche busy (18939 MiB), replaced by mouette
+[Wed 00:53:15] mp1-wide-x1.25-gradual-bmuon-mu: dindon busy (21530 MiB), replaced by nandou
+[Wed 00:53:26] mp1-wide-x1.25-gradual-bmuon-mu: epervier busy (18863 MiB), replaced by ombrette
+[Wed 00:53:30] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 01:04:14] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette nandou truite ombrette brochet lotte murene : restart on sole mouette nandou truite ombrette brochet lotte murene (resume from state.pkl)
+[Wed 01:05:40] mp1-wide-x1.25-gradual-bmuon-mu: nandou busy (4216 MiB), replaced by quetzal
+[Wed 01:05:45] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 01:16:30] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite ombrette brochet lotte murene : restart on sole mouette quetzal truite ombrette brochet lotte murene (resume from state.pkl)
+[Wed 06:39:02] mp1-wide-x2-gradual-bmuon-mu: ranks missing on anchois sitelle anguille thon piranha rouget labre saumon : restart on anchois sitelle anguille thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 06:39:55] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Wed 06:41:08] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Wed 06:41:55] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 06:42:41] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite ombrette brochet lotte murene : restart on sole mouette quetzal truite ombrette brochet lotte murene (resume from state.pkl)
+[Wed 07:04:03] less than 30 min before the end of the window: guard paused until the next window
+[Wed 19:00:13] window open again, ends Thu 19 Nov 07:25:00: guard resumes
+[Wed 19:00:30] mp1-wide-x2-gradual-bmuon-mu: ranks missing on anchois sitelle anguille thon piranha rouget labre saumon : restart on anchois sitelle anguille thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 19:01:36] mp1-wide-x2-gradual-bmuon-mu: anchois busy (22325 MiB), replaced by carrelet
+[Wed 19:01:55] mp1-wide-x2-gradual-bmuon-mu: anguille busy (22277 MiB), replaced by gardon
+[Wed 19:02:06] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Wed 19:02:34] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti : restart on perone allier pontiac cote radius landes cubitus doubs simca skoda ain ferrari finistere astragale humerus bugatti (resume from state.pkl)
+[Wed 19:04:27] mp1-wide-x3-gradual-bmuon-mu: allier busy (16142 MiB), replaced by carmor
+[Wed 19:06:03] mp1-wide-x3-gradual-bmuon-mu: ain busy (16142 MiB), replaced by charente
+[Wed 19:07:23] mp1-wide-x3-gradual-bmuon-mu: astragale busy (16037 MiB), replaced by cher
+[Wed 19:07:28] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Wed 19:07:45] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac axis jura corvette fiat ford jaguar apophyse : restart on cadillac axis jura corvette fiat ford jaguar apophyse (resume from state.pkl)
+[Wed 19:09:51] mp1-wide-x2.5-gradual-bmuon-mu: axis busy (16142 MiB), replaced by chrysler
+[Wed 19:11:22] mp1-wide-x2.5-gradual-bmuon-mu: apophyse busy (16142 MiB), replaced by coccyx
+[Wed 19:11:24] mp1-wide-x2.5-gradual-bmuon-mu: start refused, will retry
+[Wed 19:11:39] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on barlia calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 19:13:26] mp1-wide-x1.5-gradual-bmuon-mu: barlia busy (9864 MiB), replaced by gennaria
+[Wed 19:13:40] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Wed 19:13:57] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite ombrette brochet lotte murene : restart on sole mouette quetzal truite ombrette brochet lotte murene (resume from state.pkl)
+[Wed 19:15:26] mp1-wide-x1.25-gradual-bmuon-mu: ombrette busy (10729 MiB), replaced by bengali
+[Wed 19:15:47] mp1-wide-x1.25-gradual-bmuon-mu: brochet busy (3796 MiB), replaced by barbeau
+[Wed 19:15:53] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 19:26:10] mp1-wide-x2-gradual-bmuon-mu: ranks missing on carrelet sitelle gardon thon piranha rouget labre saumon : restart on carrelet sitelle gardon thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 19:27:14] mp1-wide-x2-gradual-bmuon-mu: gardon busy (13490 MiB), replaced by barbue
+[Wed 19:27:23] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Wed 19:27:50] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti : restart on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti (resume from state.pkl)
+[Wed 19:29:47] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac chrysler jura corvette fiat ford jaguar coccyx : restart on cadillac chrysler jura corvette fiat ford jaguar coccyx (resume from state.pkl)
+[Wed 19:31:24] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on gennaria calanthe diuris encyclia epipactis isotria pogonia ipsea : restart on gennaria calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 19:33:09] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite bengali barbeau lotte murene : restart on sole mouette quetzal truite bengali barbeau lotte murene (resume from state.pkl)
+[Wed 19:34:55] mp1-wide-x1.25-gradual-bmuon-mu: barbeau busy (18672 MiB), replaced by requin
+[Wed 19:35:02] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 19:45:22] mp1-wide-x2-gradual-bmuon-mu: ranks missing on carrelet sitelle barbue thon piranha rouget labre saumon : restart on carrelet sitelle barbue thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 19:46:27] mp1-wide-x2-gradual-bmuon-mu: carrelet busy (18910 MiB), replaced by barbeau
+[Wed 19:46:52] mp1-wide-x2-gradual-bmuon-mu: start refused, will retry
+[Wed 19:47:49] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on gennaria calanthe diuris encyclia epipactis isotria ipsea : restart on gennaria calanthe diuris encyclia epipactis isotria pogonia ipsea (resume from state.pkl)
+[Wed 19:49:37] mp1-wide-x1.5-gradual-bmuon-mu: gennaria busy (11075 MiB), replaced by liparis
+[Wed 19:57:05] mp1-wide-x1.5-gradual-bmuon-mu: calanthe busy (10704 MiB), replaced by lycaste
+[Wed 19:57:28] mp1-wide-x1.5-gradual-bmuon-mu: isotria busy (10704 MiB), replaced by barlia
+[Wed 19:58:29] mp1-wide-x1.5-gradual-bmuon-mu: ipsea busy (10704 MiB), replaced by malaxis
+[Wed 19:58:31] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Wed 19:58:46] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite bengali requin lotte murene : restart on sole mouette quetzal truite bengali requin lotte murene (resume from state.pkl)
+[Wed 20:00:01] mp1-wide-x1.25-gradual-bmuon-mu: murene busy (16720 MiB), replaced by carrelet
+[Wed 20:00:02] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 20:10:20] mp1-wide-x2-gradual-bmuon-mu: ranks missing on barbeau sitelle barbue thon piranha rouget labre saumon : restart on barbeau sitelle barbue thon piranha rouget labre saumon (resume from state.pkl)
+[Wed 20:12:22] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on liparis lycaste diuris encyclia epipactis barlia pogonia malaxis : restart on liparis lycaste diuris encyclia epipactis barlia pogonia malaxis (resume from state.pkl)
+[Wed 20:13:40] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite bengali requin lotte carrelet : restart on sole mouette quetzal truite bengali requin lotte carrelet (resume from state.pkl)
+[Wed 20:15:36] mp1-wide-x1.25-gradual-bmuon-mu: bengali busy (18761 MiB), replaced by harpie
+[Wed 20:15:57] mp1-wide-x1.25-gradual-bmuon-mu: carrelet busy (18586 MiB), replaced by lieu
+[Wed 20:15:59] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 20:27:15] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on diuris encyclia epipactis barlia : restart on liparis lycaste diuris encyclia epipactis barlia pogonia malaxis (resume from state.pkl)
+[Wed 20:28:28] mp1-wide-x1.5-gradual-bmuon-mu: diuris busy (9874 MiB), replaced by gennaria
+[Wed 20:28:49] mp1-wide-x1.5-gradual-bmuon-mu: encyclia busy (9874 MiB), replaced by habenaria
+[Wed 20:29:11] mp1-wide-x1.5-gradual-bmuon-mu: epipactis busy (9874 MiB), replaced by ipsea
+[Wed 20:29:32] mp1-wide-x1.5-gradual-bmuon-mu: barlia busy (9874 MiB), replaced by isotria
+[Wed 20:29:38] mp1-wide-x1.5-gradual-bmuon-mu: start refused, will retry
+[Wed 20:29:53] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite harpie requin lotte lieu : restart on sole mouette quetzal truite harpie requin lotte lieu (resume from state.pkl)
+[Wed 21:03:28] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends Thu 19 Nov 07:25:00
+[Wed 21:04:26] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on liparis lycaste gennaria habenaria ipsea isotria pogonia malaxis : restart on liparis lycaste gennaria habenaria ipsea isotria pogonia malaxis (resume from state.pkl)
+[Wed 21:05:26] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite harpie requin lotte lieu : restart on sole mouette quetzal truite harpie requin lotte lieu (resume from state.pkl)
+[Wed 21:07:03] mp1-wide-x1.25-gradual-bmuon-mu: harpie busy (20458 MiB), replaced by coucou
+[Wed 21:07:08] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 21:18:07] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite coucou requin lotte lieu : restart on sole mouette quetzal truite coucou requin lotte lieu (resume from state.pkl)
+[Wed 21:19:06] mp1-wide-x1.25-gradual-bmuon-mu: requin busy (6274 MiB), replaced by ablette
+[Wed 21:19:09] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 21:30:12] mp1-wide-x1.25-gradual-bmuon-mu: unreachable lotte (rebooting?), waiting
+[Wed 21:40:59] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole mouette quetzal truite coucou ablette lotte lieu : restart on sole mouette quetzal truite coucou ablette lotte lieu (resume from state.pkl)
+[Wed 21:42:27] mp1-wide-x1.25-gradual-bmuon-mu: mouette busy (11091 MiB), replaced by jabiru
+[Wed 21:42:35] mp1-wide-x1.25-gradual-bmuon-mu: quetzal busy (10869 MiB), replaced by epervier
+[Wed 21:42:45] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 21:53:29] mp1-wide-x1.5-gradual-bmuon-mu: unreachable habenaria (rebooting?), waiting
+[Wed 21:53:37] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole jabiru epervier truite coucou ablette lotte lieu : restart on sole jabiru epervier truite coucou ablette lotte lieu (resume from state.pkl)
+[Wed 21:54:27] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 22:05:10] mp1-wide-x1.5-gradual-bmuon-mu: unreachable habenaria (rebooting?), waiting
+[Wed 22:05:19] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on sole jabiru epervier truite coucou ablette lotte lieu : restart on sole jabiru epervier truite coucou ablette lotte lieu (resume from state.pkl)
+[Wed 22:06:11] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Wed 22:17:10] mp1-wide-x1.5-gradual-bmuon-mu: habenaria unreachable for 15 min, replaced by barlia
+[Wed 22:17:10] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on  habenaria: restart on liparis lycaste gennaria barlia ipsea isotria pogonia malaxis (resume from state.pkl)
+[Wed 22:18:00] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on bengali jabiru epervier truite coucou ablette urabu lieu : restart on bengali jabiru epervier truite coucou ablette urabu lieu (resume from state.pkl)
+[Thu 10:43:03] less than 30 min before the end of the window: guard paused until the next window
+[Thu 10:44:02] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends <outside the window>
+[Thu 21:10:37] window open again, ends Fri 20 Nov 07:25:00: guard resumes
+[Thu 21:10:45] mp1-wide-x2-gradual-bmuon-mu: ranks missing on barbeau sitelle barbue thon piranha rouget labre saumon : restart on barbeau sitelle barbue thon piranha rouget labre saumon (resume from state.pkl)
+[Thu 21:11:35] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti : restart on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti (resume from state.pkl)
+[Thu 21:12:42] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac chrysler jura corvette fiat ford jaguar coccyx : restart on cadillac chrysler jura corvette fiat ford jaguar coccyx (resume from state.pkl)
+[Thu 21:13:25] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on liparis lycaste gennaria barlia ipsea isotria pogonia malaxis : restart on liparis lycaste gennaria barlia ipsea isotria pogonia malaxis (resume from state.pkl)
+[Thu 21:14:08] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on bengali jabiru epervier truite coucou ablette urabu lieu : restart on bengali jabiru epervier truite coucou ablette urabu lieu (resume from state.pkl)
+[Thu 21:14:45] mp1-wide-x1.25-gradual-bmuon-mu: bengali busy (18705 MiB), replaced by faisan
+[Thu 21:15:39] mp1-wide-x1.25-gradual-bmuon-mu: jabiru busy (13471 MiB), replaced by gelinotte
+[Thu 21:15:47] mp1-wide-x1.25-gradual-bmuon-mu: epervier busy (23907 MiB), replaced by loriol
+[Thu 21:15:56] mp1-wide-x1.25-gradual-bmuon-mu: coucou busy (17629 MiB), replaced by mouette
+[Thu 21:16:05] mp1-wide-x1.25-gradual-bmuon-mu: urabu busy (4081 MiB), replaced by nandou
+[Thu 21:16:06] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Thu 21:26:42] mp1-wide-x2.5-gradual-bmuon-mu: unreachable ford (rebooting?), waiting
+[Thu 21:26:58] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on faisan gelinotte loriol truite mouette ablette nandou lieu : restart on faisan gelinotte loriol truite mouette ablette nandou lieu (resume from state.pkl)
+[Thu 21:38:04] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on ford : restart on cadillac chrysler jura corvette fiat ford jaguar coccyx (resume from state.pkl)
+[Fri 10:04:29] guard started, plan bmuon/experiments/wide_arch_runs.yml, current window ends <outside the window>
+[Fri 18:05:51] window open again, ends Mon 23 Nov 07:25:00: guard resumes
+[Fri 18:05:59] mp1-wide-x2-gradual-bmuon-mu: ranks missing on barbeau sitelle barbue thon piranha rouget labre saumon : restart on barbeau sitelle barbue thon piranha rouget labre saumon (resume from state.pkl)
+[Fri 18:06:49] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti : restart on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente ferrari finistere cher humerus bugatti (resume from state.pkl)
+[Fri 18:08:40] mp1-wide-x3-gradual-bmuon-mu: ferrari busy (5102 MiB), replaced by acromion
+[Fri 18:08:44] mp1-wide-x3-gradual-bmuon-mu: start refused, will retry
+[Fri 18:08:52] mp1-wide-x2.5-gradual-bmuon-mu: ranks missing on cadillac chrysler jura corvette fiat ford jaguar coccyx : restart on cadillac chrysler jura corvette fiat ford jaguar coccyx (resume from state.pkl)
+[Fri 18:09:37] mp1-wide-x1.5-gradual-bmuon-mu: ranks missing on liparis lycaste gennaria barlia ipsea isotria pogonia malaxis : restart on liparis lycaste gennaria barlia ipsea isotria pogonia malaxis (resume from state.pkl)
+[Fri 18:10:22] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on faisan gelinotte loriol truite mouette ablette nandou lieu : restart on faisan gelinotte loriol truite mouette ablette nandou lieu (resume from state.pkl)
+[Fri 18:11:04] mp1-wide-x1.25-gradual-bmuon-mu: ablette busy (7594 MiB), replaced by anchois
+[Fri 18:11:06] mp1-wide-x1.25-gradual-bmuon-mu: start refused, will retry
+[Fri 18:21:29] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente acromion finistere cher humerus bugatti : restart on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente acromion finistere cher humerus bugatti (resume from state.pkl)
+[Fri 18:22:53] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on faisan gelinotte loriol truite mouette anchois nandou lieu : restart on faisan gelinotte loriol truite mouette anchois nandou lieu (resume from state.pkl)
+[Fri 22:13:10] mp1-wide-x2-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Fri 22:13:11] mp1-wide-x3-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Fri 22:13:12] mp1-arch-learned-bmuon-mu-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Fri 22:13:12] mp1-arch-uniform-70pct-scratch: gateway unreachable, cannot check (will retry)
+[Fri 22:13:13] mp1-wide-x2.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Fri 22:13:13] mp1-wide-x1.5-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Fri 22:13:14] mp1-wide-x1.25-gradual-bmuon-mu: gateway unreachable, cannot check (will retry)
+[Sat 10:26:18] mp1-wide-x2-gradual-bmuon-mu: every rank is up but log.jsonl has not moved for 41 min: stuck, restart
+[Sat 10:26:18] mp1-wide-x2-gradual-bmuon-mu: ranks missing on  : restart on barbeau sitelle barbue thon piranha rouget labre saumon (resume from state.pkl)
+[Sat 10:27:44] mp1-wide-x1.25-gradual-bmuon-mu: every rank is up but log.jsonl has not moved for 40 min: stuck, restart
+[Sat 10:27:44] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on  : restart on faisan gelinotte loriol truite mouette anchois nandou lieu (resume from state.pkl)
+[Sat 10:38:56] mp1-wide-x3-gradual-bmuon-mu: every rank is up but log.jsonl has not moved for 42 min: stuck, restart
+[Sat 10:38:56] mp1-wide-x3-gradual-bmuon-mu: ranks missing on  : restart on perone carmor pontiac cote radius landes cubitus doubs simca skoda charente acromion finistere cher humerus bugatti (resume from state.pkl)
