@@ -41,7 +41,7 @@ Nequix-MP-1 a été entraîné 100 époques sur tout MPtrj. Octave mesurait ~26 
 
 8 GPU par run, soit 64 GPU, plus 1 GPU pour la figure en direct.
 
-| # | Run (`bmuon/runs/…`) | Config (`bmuon/configs/fig2/`) | Courbe(s) | Détail |
+| # | Run (`bmuon/runs/…`) | Config (`bmuon/configs/2026-11-03_20pct-mptrj_pruning-methods-comparison/`) | Courbe(s) | Détail |
 |---|---|---|---|---|
 | 1 | `fig2-bmuon` | `bmuon.yml` | **BM-mag** et **BM-μ** | BMuon, budget 100 % → 30 % des canaux sur les 25 premiers % de l'entraînement, α = ½, pas MM tous les 5 pas |
 | 2 | `fig2-muon` | `muon.yml` | **Muon** | l'optimiseur de Nequix (`optax.contrib.muon`) |

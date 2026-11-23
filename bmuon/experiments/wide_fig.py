@@ -25,9 +25,11 @@ WIDE = ["mp1-wide-x1.25-gradual-bmuon-mu", "mp1-wide-x1.5-gradual-bmuon-mu", "mp
         "mp1-wide-x2.5-gradual-bmuon-mu", "mp1-wide-x3-gradual-bmuon-mu"]
 # dense Nequix-MP-1, same data / batch / lr / seed / validation split; BMuon budget only weights the
 # updates, the evaluated network keeps all its channels
-DENSE = [("mp1-bmuon-selwd", "Dense Nequix-MP-1, no pruning (BMuon optimizer, weight decay 0.001 + selective weight decay)", "#111827", "--"),
+DENSE = [("mp1-bmuon-selwd", "Dense Nequix-MP-1, no pruning (BMuon optimizer, weight decay 0.001)", "#111827", "--"),
          ("mp1-bmuon-wd1e3", "Dense Nequix-MP-1, no pruning (BMuon optimizer, weight decay 0.001; run stopped at epoch 65)", "#9ca3af", "-.")]
 N_EPOCHS = 100
+# architecture kept by the 1.5x run (3,232 TP paths), retrained from scratch without pruning
+SCRATCH = [("mp1-arch-x1.5-pruned-scratch", "Architecture found by pruning the 1.5× model, retrained from scratch (random init, no pruning, Nequix-MP-1 size)", "#0f9d8a")]
 
 
 def read(run_dir: Path):
@@ -100,6 +102,17 @@ def main():
                              f"forces {final[last][0]:.1f} meV/Å, energy {final[last][1]:.1f} meV/atom")
             ax.text(1, final[last][qi] / 1.012, f"target: dense final error, {final[last][qi]:.1f} {unit}",
                     va="top", fontsize=8.5, color="#111827")
+        for name, label, c in SCRATCH:
+            if not (runs / name / "log.jsonl").exists():
+                continue
+            val = read(runs / name)[0]
+            eps = sorted(val)
+            if not eps:
+                continue
+            ep = eps[-1]
+            ax.plot(eps, [val[e][qi] for e in eps], color=c, lw=2.2, ls=(0, (5, 1.5)), zorder=4,
+                    label=f"{label}; latest epoch {ep}: forces {val[ep][0]:.1f} meV/Å, energy {val[ep][1]:.1f} meV/atom")
+            ax.plot([ep], [val[ep][qi]], "o", color=c, ms=6, zorder=5, markeredgecolor="white", markeredgewidth=0.8)
         for w, c in zip(wide, colors):
             eps = sorted(w["val"])
             if not eps:

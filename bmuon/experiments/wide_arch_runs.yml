@@ -28,6 +28,11 @@ runs:
   - {name: mp1-wide-x1.5-gradual-bmuon-mu, label: "1.5x wide, BM-mu pruned to 67 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
      hosts: 8, gpus: [2000ada],
      config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x1.5-bmuon-mu.yml}
+  # 2026-11-22: architecture kept by the x1.5 run (final), retrained from scratch with the recipe
+  # of the dense Nequix-MP-1 (mp1-bmuon-selwd): learned vs uniform architecture at the same cost.
+  - {name: mp1-arch-x1.5-pruned-scratch, label: "x1.5-pruned architecture, from scratch (Nequix size)", ref: mp1-bmuon-selwd,
+     hosts: 8, gpus: [4000ada],
+     config: bmuon/configs/2026-11-22_full-mptrj_x1.5-pruned-architecture-from-scratch/x1.5-pruned-arch-scratch.yml}
   - {name: mp1-wide-x1.25-gradual-bmuon-mu, label: "1.25x wide, BM-mu pruned to 20 % (Nequix size)", ref: mp1-gradual-bmuon-mu-wd1e3,
      hosts: 8, gpus: [a5000, 3090, 4000ada],
      config: bmuon/configs/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/x1.25-bmuon-mu.yml}

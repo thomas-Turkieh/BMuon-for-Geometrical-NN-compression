@@ -11,6 +11,14 @@ from nequix.model import load_model
 model, config = load_model("bmuon/models/2026-11-06_full-mptrj_gradual-pruning/gradual-bmuon-mu_wd1e-3_epoch074_80pct-cost-removed.nqx")
 ```
 
+Models with a non-uniform architecture (the folders `2026-11-10_*`) store the per-block
+tensor-product widths in their header and load with the BMuon loader:
+
+```python
+from bmuon.model import load_pruned
+model, config = load_pruned("bmuon/models/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/wide-x1.5-gradual-bmuon-mu_wd1e-3_epoch099_nequix-mp1-size.nqx")
+```
+
 **File names.** `<method>_<weight decay>_epoch<NNN>[_<pruning>].nqx`
 - `bmuon`: trained with BMuon; `budget30` means a 30 % cost budget.
 - `muon`: trained with Muon.
@@ -19,6 +27,11 @@ model, config = load_model("bmuon/models/2026-11-06_full-mptrj_gradual-pruning/g
   allocation μ, `mag` by magnitude.
   - `NNpct-cost-removed`: NN % of the cost removed (cost model "paths").
   - `NNpct-channels-removed`: NN % of the 857 type-I channels removed.
+- `wide-xK-gradual-bmuon-mu`: a model with K× wider tensor products than Nequix-MP-1, pruned
+  gradually by BM-μ during training; `nequix-mp1-size`: pruned to the tensor-product cost of
+  Nequix-MP-1.
+- `learned-architecture-…` / `uniform-architecture-…`: trained from scratch (no pruning) with
+  the architecture kept by BM-μ pruning, or with a uniform architecture of the same cost.
 - `_alloc.npz`: the BMuon allocation μ saved with the model at the same epoch. It is needed to
   prune that model by μ (`bmuon.prune`).
 
@@ -90,6 +103,10 @@ Validation errors are read from the training logs (MPtrj 5 % validation split).
 | `gradual-muon-mag_wd1e-3_epoch056_60pct-cost-removed.nqx` | `mp1-gradual-muon-mag-wd1e3` | 56 | 54.9 | 21.1 |
 | `gradual-muon-mag_wd1e-3_epoch065_70pct-cost-removed.nqx` | `mp1-gradual-muon-mag-wd1e3` | 65 | 53.3 | 20.0 |
 | `gradual-muon-mag_wd1e-3_epoch074_80pct-cost-removed.nqx` | `mp1-gradual-muon-mag-wd1e3` | 74 | 56.6 | 21.3 |
+| `gradual-muon-mag_wd1e-3_epoch099_90pct-cost-removed.nqx` | `mp1-gradual-muon-mag-wd1e3` | 99 (final) | 64.3 | 24.6 |
+
+The three other gradual runs stopped before their last epoch (BM-μ wd 0.001 and wd 0.01 at
+epoch 96, BM-mag at epoch 91); their final models will be added if they are completed.
 
 ### 2026-11-07_full-mptrj_small-models-from-scratch
 
@@ -97,21 +114,43 @@ Validation errors are read from the training logs (MPtrj 5 % validation split).
 |---|---|---|---|---|
 | `uniform-small-cost20_wd1e-3_epoch099.nqx` | `mp1-uniform-c20-wd1e3` | 99 | 75.4 | 31.9 |
 
-### 2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size
+The 80 %, 60 % and 14 % models stopped early (epochs 17, 26 and 34) and are not included.
 
-`wide-xK-…`: a model with K× wider tensor products than Nequix-MP-1, gradually pruned by BM-μ
-during training until its tensor-product cost equals that of Nequix-MP-1 (`nequix-mp1-size`).
-The file keeps the wide shape with the removed channels at exactly zero, so it is about 4 MB.
+### 2026-11-10_full-mptrj_learned-architecture-from-scratch
+
+Two models trained from random weights with Muon (weight decay 0.001, 100 epochs, no pruning), at
+30 % of the tensor-product cost of Nequix-MP-1. `learned-architecture`: the per-block widths kept
+by gradual BM-μ pruning at 70 % of the cost removed. `uniform-architecture`: every irrep shrunk
+by the same factor.
 
 | Model | Training run | Epoch | Val force MAE (meV/Å) | Val energy MAE (meV/atom) |
 |---|---|---|---|---|
-| `wide-x1.5-gradual-bmuon-mu_wd1e-3_epoch090_nequix-mp1-size.nqx` | `mp1-wide-x1.5-gradual-bmuon-mu` | 90 | 33.9 | 10.2 |
+| `learned-architecture-bmuon-mu_30pct-cost_wd1e-3_epoch099.nqx` | `mp1-arch-learned-bmuon-mu-70pct-scratch` | 99 (final) | 39.8 | 12.2 |
+| `uniform-architecture_30pct-cost_wd1e-3_epoch099.nqx` | `mp1-arch-uniform-70pct-scratch` | 99 (final) | 39.8 | 12.6 |
 
-This is a snapshot taken while the run was still training (last epoch: 99). The dense Nequix-MP-1
-trained with the same recipe (`mp1-bmuon-selwd`) ends at 34.4 meV/Å and 10.6 meV/atom at epoch 99.
+### 2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size
 
-**Still to add when training ends:** the final models (epoch 99, 90 % of the cost removed) of the
-four gradual-pruning runs, and the small models at 80 %, 60 % and 14 % of the cost; the final
-models (epoch 99) of the five wide runs.
+Models with K× wider tensor products than Nequix-MP-1, gradually pruned by BM-μ during training
+(six cuts, before epochs 30, 39, 48, 57, 66 and 75) until their tensor-product cost equals that of
+Nequix-MP-1, then trained until epoch 99. Same recipe as the dense Nequix-MP-1 `mp1-bmuon-selwd`
+(BMuon optimizer, weight decay 0.001, global batch 256).
+
+The files are the **compact** models: the pruned channels are removed, not only set to zero, so
+each model really has the size of Nequix-MP-1. They were exported from the final snapshot with
+`python -m bmuon.experiments.export_pruned` and compute the same function as the training
+snapshot.
+
+| Model | Training run | Epoch | TP paths | Parameters | Val force MAE (meV/Å) | Val energy MAE (meV/atom) |
+|---|---|---|---|---|---|---|
+| `wide-x1.5-gradual-bmuon-mu_wd1e-3_epoch099_nequix-mp1-size.nqx` | `mp1-wide-x1.5-gradual-bmuon-mu` | 99 (final) | 3,232 | 743,197 | 33.8 | 10.1 |
+| `wide-x2-gradual-bmuon-mu_wd1e-3_epoch099_nequix-mp1-size.nqx` | `mp1-wide-x2-gradual-bmuon-mu` | 99 (final) | 3,233 | 756,081 | 34.2 | 10.3 |
+| `wide-x2.5-gradual-bmuon-mu_wd1e-3_epoch099_nequix-mp1-size.nqx` | `mp1-wide-x2.5-gradual-bmuon-mu` | 99 (final) | 3,232 | 758,913 | 34.3 | 10.3 |
+| *reference:* dense Nequix-MP-1, same recipe (not in this folder) | `mp1-bmuon-selwd` | 99 (final) | 3,236 | 707,658 | 34.4 | 10.6 |
+
+The x1.25 and x3 runs are still training; their final models will be added when they end. The
+detailed comparison of the x1.5 model with the dense Nequix-MP-1 (errors with confidence
+intervals, inference and training cost) is in
+[`../results/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/`](../results/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/).
+
 The published Nequix-MP-1 (Muon, 100 % of the cost) is in `models/nequix-mp-1.nqx` at the
 repository root.

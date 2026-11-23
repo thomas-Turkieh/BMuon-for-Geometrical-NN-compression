@@ -1,0 +1,16 @@
+# Is the architecture found by pruning the 1.5x wide model better on its own than the uniform one?
+# The per-block tensor-product widths kept by BM-mu in mp1-wide-x1.5-gradual-bmuon-mu (final model,
+# epoch 99: 3,232 tensor-product paths, the cost of Nequix-MP-1) are retrained from scratch with
+# random weights, as a small model, without any pruning.
+# Control: the dense Nequix-MP-1 (mp1-bmuon-selwd), i.e. the uniform architecture of the same cost
+# (3,236 paths). The recipe is exactly that of mp1-bmuon-selwd (same base config): only the
+# architecture differs. Full MPtrj, 100 epochs, global batch 256.
+base_config: ../nequix-mp-1-bmuon-selwd.yml
+out_dir: "bmuon/runs/mp1-arch-x1.5-pruned-scratch"
+save_every_steps: 1000
+snapshot_every_epochs: 5
+tp_input_irreps:
+  - "132x0e"
+  - "171x0e + 44x1o + 19x2e + 17x3o"
+  - "170x0e + 42x1o + 16x2e + 19x3o"
+  - "192x0e + 87x1o + 46x2e + 38x3o"
