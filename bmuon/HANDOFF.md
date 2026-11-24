@@ -1,7 +1,7 @@
 # Handoff: driving the BMuon × Nequix experiments from a new PC
 
 Written on 24 November 2026 for a Claude Code session that takes over this project on a new
-Windows PC. Read it entirely before acting. `bmuon/CLAUDE.md` describes a collaborator's setup
+computer, a **Mac** (the old one was a Windows PC: Git Bash, PowerShell, WMI; ignore those parts). Read it entirely before acting. `bmuon/CLAUDE.md` describes a collaborator's setup
 (another cluster account, other commit rules): it does **not** apply here, this file does.
 
 ## 1. Working rules (from the user, mandatory)
@@ -22,7 +22,7 @@ Windows PC. Read it entirely before acting. `bmuon/CLAUDE.md` describes a collab
 
 | What | Where |
 |---|---|
-| This repository (results, figures, models, configs, PC tools) | `%USERPROFILE%\OneDrive\Documents\EA\code`, GitHub `thomas-Turkieh/BMuon-for-Geometrical-NN-compression` (public) |
+| This repository (results, figures, models, configs, PC tools) | Mac: `~/EA/code` (old PC: `%USERPROFILE%\OneDrive\Documents\EA\code`), GitHub `thomas-Turkieh/BMuon-for-Geometrical-NN-compression` (public) |
 | Code that actually trains | cluster `~/nequix` (home on NFS, same on every machine): a separate clone of the collaborator's repo with local fixes. Not this GitHub repo. |
 | Cluster access | user `thomas.turkieh`, gateway `aerides.polytechnique.fr`; the PC's key in `~/.ssh/id_ed25519` works on every host (shared home) |
 | Training data and environment on each GPU host | `/tmp/$USER` (wiped after 10 days; `night.sh provision` reinstalls it from `~/bmuon-env.tar.zst`) |
@@ -31,18 +31,26 @@ Windows PC. Read it entirely before acting. `bmuon/CLAUDE.md` describes a collab
 
 ## 3. Setting up the new PC
 
-1. Install Git for Windows (Git Bash at `C:\Program Files\Git\bin\bash.exe`), Python 3.11 with
-   `numpy matplotlib scipy pyyaml` (old PC: matplotlib 3.10, scipy 1.15, numpy 2.2), and MiKTeX
-   (for the pre-read PDF). Clone or sync the repo at `%USERPROFILE%\OneDrive\Documents\EA\code`.
-2. SSH: copy `~/.ssh/id_ed25519`, `id_ed25519.pub`, `config` and `known_hosts` from the old PC by
-   hand (USB or similar, **never through git**). Check with
+macOS:
+1. Homebrew, then `brew install git bash coreutils python@3.11` and `brew install --cask mactex-no-gui`
+   (LaTeX for the pre-read). The guard needs bash ≥ 4 and GNU `timeout`: macOS ships bash 3.2 and no
+   `timeout`, `start_guard.sh` puts the Homebrew versions first in `PATH`.
+2. Python environment: `python3.11 -m venv ~/.venvs/ea && source ~/.venvs/ea/bin/activate &&
+   pip install numpy matplotlib scipy pyyaml` (old PC: matplotlib 3.10, scipy 1.15, numpy 2.2).
+   Activate it before any `python -m bmuon...` command.
+3. Repository: `mkdir -p ~/EA && git clone https://github.com/thomas-Turkieh/BMuon-for-Geometrical-NN-compression ~/EA/code`.
+   Open `~/EA` as the working folder.
+4. SSH: copy `id_ed25519`, `id_ed25519.pub`, `config` and `known_hosts` from the old PC's `.ssh`
+   folder into `~/.ssh/` by hand (USB or similar, **never through git**), then
+   `chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519 ~/.ssh/config`. Check with
    `ssh -o BatchMode=yes -l thomas.turkieh aerides.polytechnique.fr hostname`.
-3. Claude Code session and memory: they live in `%USERPROFILE%\.claude\projects\<encoded working folder>\`
-   (the session `.jsonl` files and the `memory/` folder). Copying that folder to the same place on the
-   new PC, with the same working folder path, makes the old conversation resumable and the memory
-   available. The memory notes are not in this repo (they contain personal information).
-4. Move the guard (section 5): stop it on the old PC, then start it on the new one. Keep the new PC
-   **plugged in** and prevent sleep (`keep_awake_until.ps1`): a sleeping or hibernating PC means no
+5. Claude Code session and memory: they live in `~/.claude/projects/<encoded working folder>/` (session
+   `.jsonl` files and the `memory/` folder), copied by hand from the old PC. The memory notes are not
+   in this repo (they contain personal information). Some notes describe Windows-only procedures
+   (WMI, PowerShell, Git Bash): on the Mac use the `.sh` tools of `bmuon/tools/pc/` instead.
+6. Move the guard (section 5): stop it on the old PC, then start it on the Mac with
+   `bash bmuon/tools/pc/start_guard.sh`. Keep the Mac **plugged in with the lid open**: `caffeinate`
+   (started by the script) prevents idle sleep, not lid-close sleep. A sleeping computer means no
    restarts at night.
 
 ## 4. Experiments and their state (24 November 2026, morning)
@@ -92,9 +100,10 @@ no guard restarts them, finish them only if the user asks.
 - **Night guard**: `bmuon/experiments/night_guard.sh <plan>` runs on the PC, checks every 10 min,
   restarts runs that lost a rank (resume from `state.pkl`), restarts a run whose log has not moved
   for 40 min, replaces a host unreachable for 15 min by an idle host of the same GPU type, pauses
-  outside the window and exits when every run is DONE. Start/stop with
-  `bmuon/tools/pc/start_guard.ps1` / `stop_guard.ps1` (detached through WMI, so it survives closing
-  Claude Code). Log: `bmuon/results/wide_arch_guard.out`. Only one guard per plan, on one PC.
+  outside the window and exits when every run is DONE. Start/stop on the Mac with
+  `bash bmuon/tools/pc/start_guard.sh` / `stop_guard.sh` (background `nohup` process, survives closing
+  Claude Code; `.ps1` versions for Windows). Log: `bmuon/results/wide_arch_guard.out`. Only one guard
+  per plan, on one computer.
 - Status: see `bmuon/tools/pc/README.md` (`run_status.py` through one ssh; `last_write` of a few
   minutes means training; outside the window the runs are stopped on purpose).
 - Allow about one hour after 18:30 before concluding that everything runs (host swaps).
@@ -102,10 +111,10 @@ no guard restarts them, finish them only if the user asks.
 Known incidents and what to do:
 - Every night at about 00:33 and 06:33 an external SIGTERM kills our processes on part of the hosts:
   the guard restarts them; without a guard they stay dead.
-- Continuous "gateway unreachable" in the guard log while a manual ssh works: Git Bash can no longer
-  fork after about 30 h. Stop and restart the guard.
-- PC asleep or hibernated (lid closed on battery, Windows Update reboot): the guard is frozen or dead.
-  After any reboot or wake-up, check that the guard process exists and still writes its log.
+- Continuous "gateway unreachable" in the guard log while a manual ssh works (seen on Windows: Git
+  Bash could no longer fork after about 30 h): stop and restart the guard.
+- Computer asleep, lid closed, or rebooted for updates: the guard is frozen or dead. After any reboot
+  or wake-up, check that the guard process exists (`pgrep -fl night_guard`) and still writes its log.
 - Another user takes our GPUs (runs crash out of memory): the guard swaps busy hosts; look for
   `RESOURCE_EXHAUSTED` in `/tmp/$USER/night-<run>-rank*.log` before blaming the network.
 - "start refused" because no idle host of the same GPU type exists: edit `runs/<run>/hosts.txt` on
@@ -138,7 +147,8 @@ Logs for plotting are pulled into a local cache with `bmuon/tools/pc/pull_logs.s
 
 A weekly pre-read is sent to the supervisor and the team before the meeting, as one PDF
 (the email only says "pre-read attached"). Latest: `bmuon/results/2026-11-24_full-mptrj_meeting-pre-read/`
-(`pre-read.tex`, compiled with `pdflatex`, output renamed `pre-read_<date>.pdf`).
+(`pre-read.tex`, compiled with `pdflatex`, output renamed `pre-read_<date>.pdf`). Start the next one
+in a new dated folder. The figures use Times New Roman (present on macOS and Windows).
 To update: pull the logs, run `preread_figs.py`, update the numbers in `pre-read.tex` from
 `summary.json`, compile twice, check the page count.
 The user's feedback on its form:

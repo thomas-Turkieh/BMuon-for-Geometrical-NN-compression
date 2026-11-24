@@ -1,6 +1,7 @@
 # PC-side tools
 
-Scripts run from the Windows PC that drives the cluster (Git Bash or PowerShell). The cluster
+Scripts run from the computer that drives the cluster (macOS Terminal, or Git Bash / PowerShell on
+Windows). On macOS, run the Python commands inside the virtual environment of `bmuon/HANDOFF.md` §3. The cluster
 account is `thomas.turkieh`, the gateway `aerides.polytechnique.fr`; the training code runs from
 `~/nequix` on the cluster. Paths below are relative to the repository root.
 
@@ -14,10 +15,10 @@ account is `thomas.turkieh`, the gateway `aerides.polytechnique.fr`; the trainin
 | `cluster_export_for_repo.sh` | Tar of finished-run files and final models for the repo (edit the lists first). |
 | `model_table.py` | Markdown table of `bmuon/models/` with the validation errors of each model. |
 
-## Common commands (Git Bash)
+## Common commands (Terminal on macOS, Git Bash on Windows)
 
 ```bash
-cd ~/OneDrive/Documents/EA/code
+cd ~/EA/code          # macOS; on the old Windows PC: ~/OneDrive/Documents/EA/code
 RUNS="mp1-wide-x1.25-gradual-bmuon-mu mp1-wide-x3-gradual-bmuon-mu mp1-arch-x1.5-pruned-scratch"
 GW="ssh -o BatchMode=yes -l thomas.turkieh aerides.polytechnique.fr"
 
@@ -39,7 +40,16 @@ python -m bmuon.experiments.preread_figs --runs ~/runs_cache \
   --bench bmuon/results/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/equal_size_bench
 ```
 
-## Night guard (PowerShell)
+## Night guard
+
+macOS (needs `brew install bash coreutils`; keep the Mac plugged in, lid open):
+
+```bash
+bash bmuon/tools/pc/start_guard.sh    # refuses if one is already running; keeps the Mac awake
+bash bmuon/tools/pc/stop_guard.sh
+```
+
+Windows (PowerShell, Git for Windows installed):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File bmuon\tools\pc\start_guard.ps1   # refuses if one is already running
