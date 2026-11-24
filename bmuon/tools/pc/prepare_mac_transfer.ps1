@@ -4,7 +4,7 @@
 # (it contains the private SSH key: no e-mail, no cloud), then delete it.
 #   powershell -ExecutionPolicy Bypass -File bmuon\tools\pc\prepare_mac_transfer.ps1
 param([string]$Project = "$env:USERPROFILE\.claude\projects\c--Users-thoma-OneDrive-Documents-EA",
-      [string]$Dest = "$env:USERPROFILE\Desktop\transfert_mac.zip",
+      [string]$Dest = "$env:USERPROFILE\transfert_mac.zip",   # outside OneDrive (the Desktop is synced)
       [switch]$KeepGuard)   # -KeepGuard: test run, the guard keeps running
 $ErrorActionPreference = "Stop"
 if (-not $KeepGuard) { & "$PSScriptRoot\stop_guard.ps1" }

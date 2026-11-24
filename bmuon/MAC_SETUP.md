@@ -13,20 +13,25 @@ Inputs:
   If it is elsewhere, ask the user where.
 - The project repository on GitHub: `https://github.com/thomas-Turkieh/BMuon-for-Geometrical-NN-compression` (public).
 
-## Step 1. Tools
+## Step 1. Tools (no Homebrew: the user prefers uv)
 
-1. Check Homebrew: `command -v brew || ls /opt/homebrew/bin/brew /usr/local/bin/brew`. If missing,
-   USER: ask the user to paste in the Terminal app the install command from https://brew.sh (it
-   needs their password), then the two "Next steps" lines it prints, and to tell you when done.
-   Use `/opt/homebrew/bin/brew` (Apple silicon) or `/usr/local/bin/brew` (Intel) by full path if
-   `brew` is not on your PATH.
-2. `brew install git bash coreutils python@3.11`
-   (bash ≥ 4 and GNU `timeout` are needed by the night guard).
-3. LaTeX: the user installs MacTeX themselves. Check `ls /Library/TeX/texbin/pdflatex`; if missing,
+1. Apple Command Line Tools (git, a C compiler): `xcode-select -p`. If it fails, run
+   `xcode-select --install`, then USER: ask the user to click "Install" in the window that opens
+   and to tell you when it is finished (a few minutes). Check again with `xcode-select -p && git --version`.
+2. uv: `command -v uv || ls ~/.local/bin/uv`. If missing:
+   `curl -LsSf https://astral.sh/uv/install.sh | sh` (installs into `~/.local/bin`, no password).
+   Use `~/.local/bin/uv` by full path if `uv` is not on your PATH.
+3. Python environment (Python 3.11 managed by uv):
+   `uv venv --python 3.11 ~/.venvs/ea && uv pip install --python ~/.venvs/ea/bin/python numpy matplotlib scipy pyyaml`
+4. LaTeX: the user installs MacTeX themselves. Check `ls /Library/TeX/texbin/pdflatex`; if missing,
    USER: ask the user whether the MacTeX installation is finished. Use `/Library/TeX/texbin/pdflatex`
    by full path if it is not on your PATH.
-4. Python environment:
-   `$(brew --prefix)/bin/python3.11 -m venv ~/.venvs/ea && ~/.venvs/ea/bin/pip install numpy matplotlib scipy pyyaml`
+5. bash ≥ 4 for the night guard (macOS ships bash 3.2), after Step 2 (the script is in the repo):
+   `bash ~/EA/code/bmuon/tools/pc/mac_install_bash.sh` builds GNU bash 5 into `~/.local/bin` (about
+   2 min, uses the Command Line Tools). If the build fails, read the log it names and fix it (for
+   example try another version: `bash .../mac_install_bash.sh 5.3`). The guard's other need, GNU
+   `timeout`, is covered by the stand-in `bmuon/tools/pc/macbin/timeout`; `start_guard.sh` sets all
+   of this up by itself.
 
 ## Step 2. Repository
 
@@ -34,6 +39,7 @@ Inputs:
 (if `~/EA/code` already exists, `git -C ~/EA/code pull` instead). Then read `~/EA/code/bmuon/HANDOFF.md`
 entirely: it holds the project rules (section 1), the state of the experiments, how the trainings
 are run and watched, the figures and the meeting pre-read. Follow it from now on.
+Then do Step 1.5 (bash 5).
 
 ## Step 3. Unpack the transfer archive
 
@@ -90,8 +96,11 @@ Git Bash, the scratchpad folder): on the Mac they are replaced by the tools of `
 The guard restarts the trainings every evening and after crashes. Exactly one guard may run.
 1. Read `~/transfert_mac/GUARD_STOPPED.txt`. If it is missing, USER: ask the user to confirm the
    guard is stopped on the old PC before going on.
-2. `cd ~/EA/code && bash bmuon/tools/pc/start_guard.sh` and check it printed "guard started"
-   (`pgrep -fl night_guard` shows it). It writes to `bmuon/results/wide_arch_guard.out`.
+2. `cd ~/EA/code && bash bmuon/tools/pc/start_guard.sh` and check it printed "guard started" with
+   a bash 5 version and the python of `~/.venvs/ea` (`pgrep -fl night_guard` shows it). It writes to
+   `bmuon/results/wide_arch_guard.out`; its first lines must say "guard started, plan ..." and,
+   inside the window, never "every run of the plan is DONE" while runs are unfinished (that would
+   mean the plan could not be read: stop the guard and fix it).
 3. Tell the user: keep the Mac plugged in, lid open, every night (the script prevents idle sleep,
    not lid-close sleep). After a reboot, the guard must be started again (same command).
 4. If started before 18:30, the guard waits for the window; around 19:30, check the end of
@@ -102,8 +111,9 @@ The guard restarts the trainings every evening and after crashes. Exactly one gu
 1. Delete the archive and its unpacked copy, which contain the private key:
    `rm -rf ~/Downloads/transfert_mac.zip ~/transfert_mac`. Remind the user to delete the copy on
    the USB stick.
-2. Optional, USER: to let Claude push to GitHub later, `brew install gh` then the user runs
-   `gh auth login` in the Terminal app.
+2. Optional, USER: to let Claude push to GitHub later, install GitHub CLI without Homebrew (macOS
+   zip of the latest release from https://github.com/cli/cli/releases, its `bin/gh` copied into
+   `~/.local/bin`), then the user runs `gh auth login` in the Terminal app.
 3. Tell the user, in French: "Ferme VS Code, rouvre-le sur le dossier EA (File > Open Folder > ~/EA),
    ouvre Claude Code, va dans l'historique des conversations et reprends la conversation sur le
    projet BMuon. Premier message : « On est sur le Mac, relis bmuon/HANDOFF.md et bmuon/MAC_SETUP.md »."

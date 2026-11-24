@@ -937,3 +937,4 @@ bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$
 [Tue 12:24:02] mp1-wide-x3-gradual-bmuon-mu: unreachable carmor pontiac cote radius landes (rebooting?), waiting
 [Tue 12:24:15] mp1-arch-x1.5-pruned-scratch: ranks missing on allier astragale lada malleole mazda parietal phalange porsche : restart on allier astragale lada malleole mazda parietal phalange porsche (resume from state.pkl)
 [Tue 12:25:34] mp1-arch-x1.5-pruned-scratch: start refused, will retry
+[Tue 12:35:38] less than 30 min before the end of the window: guard paused until the next window

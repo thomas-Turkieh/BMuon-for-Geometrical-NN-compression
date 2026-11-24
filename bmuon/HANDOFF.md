@@ -33,12 +33,15 @@ computer, a **Mac** (the old one was a Windows PC: Git Bash, PowerShell, WMI; ig
 
 macOS:
 Step-by-step setup for Claude Code on the Mac: `bmuon/MAC_SETUP.md`. In short:
-1. Homebrew, then `brew install git bash coreutils python@3.11`; MacTeX for the LaTeX pre-read
-   (`/Library/TeX/texbin/pdflatex`). The guard needs bash ≥ 4 and GNU `timeout`: macOS ships bash 3.2 and no
-   `timeout`, `start_guard.sh` puts the Homebrew versions first in `PATH`.
-2. Python environment: `python3.11 -m venv ~/.venvs/ea && source ~/.venvs/ea/bin/activate &&
-   pip install numpy matplotlib scipy pyyaml` (old PC: matplotlib 3.10, scipy 1.15, numpy 2.2).
-   Activate it before any `python -m bmuon...` command.
+1. No Homebrew (the user prefers uv). Apple Command Line Tools (`xcode-select --install`) for git
+   and a compiler; uv (`curl -LsSf https://astral.sh/uv/install.sh | sh`); MacTeX for the LaTeX
+   pre-read (`/Library/TeX/texbin/pdflatex`). The guard needs bash ≥ 4, GNU `timeout` and a python
+   with pyyaml: macOS ships bash 3.2 and no `timeout`. `bash bmuon/tools/pc/mac_install_bash.sh`
+   builds bash 5 into `~/.local/bin`, `bmuon/tools/pc/macbin/timeout` stands in for `timeout`, and
+   `start_guard.sh` puts both and the venv first in `PATH`.
+2. Python environment: `uv venv --python 3.11 ~/.venvs/ea && uv pip install --python ~/.venvs/ea/bin/python
+   numpy matplotlib scipy pyyaml` (old PC: matplotlib 3.10, scipy 1.15, numpy 2.2).
+   Activate it (`source ~/.venvs/ea/bin/activate`) before any `python -m bmuon...` command.
 3. Repository: `mkdir -p ~/EA && git clone https://github.com/thomas-Turkieh/BMuon-for-Geometrical-NN-compression ~/EA/code`.
    Open `~/EA` as the working folder.
 4. SSH: copy `id_ed25519`, `id_ed25519.pub`, `config` and `known_hosts` from the old PC's `.ssh`

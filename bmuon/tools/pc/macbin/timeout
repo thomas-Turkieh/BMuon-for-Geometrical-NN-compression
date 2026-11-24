@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Stand-in for GNU timeout on macOS without coreutils: timeout SECONDS CMD [ARGS...].
+
+Runs CMD; after SECONDS it is killed and the exit status is 124, like GNU timeout. Used by the
+night guard (start_guard.sh puts this folder in PATH only when no timeout command exists).
+"""
+import subprocess
+import sys
+
+if len(sys.argv) < 3:
+    sys.exit("usage: timeout SECONDS CMD [ARGS...]")
+try:
+    rc = subprocess.run(sys.argv[2:], timeout=float(sys.argv[1])).returncode
+except subprocess.TimeoutExpired:
+    sys.exit(124)
+except FileNotFoundError:
+    sys.exit(127)
+sys.exit(128 - rc if rc < 0 else rc)

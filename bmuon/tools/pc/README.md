@@ -10,7 +10,11 @@ account is `thomas.turkieh`, the gateway `aerides.polytechnique.fr`; the trainin
 | `run_status.py` | Epoch, latest validation errors and time since the last log write of the given runs (cluster side, through one ssh). |
 | `pull_logs.sh` | Tar of the `config.yml` and validation lines of `log.jsonl` of the given runs, to plot them on the PC. |
 | `hosts_check.sh` | Per-host health of runs (processes, GPU memory, out-of-memory errors). One ssh per host: use sparingly. |
-| `start_guard.ps1` / `stop_guard.ps1` | Start the night guard detached from any terminal / stop it. |
+| `start_guard.sh` / `stop_guard.sh` | macOS / Linux: start the night guard in the background (keeps the Mac awake) / stop it. |
+| `start_guard.ps1` / `stop_guard.ps1` | Windows: start the night guard detached from any terminal / stop it. |
+| `mac_install_bash.sh` | macOS without Homebrew: builds GNU bash 5 into `~/.local/bin` (the guard needs bash ≥ 4). |
+| `macbin/timeout` | Python stand-in for GNU `timeout`, used by `start_guard.sh` when no `timeout` exists. |
+| `prepare_mac_transfer.ps1` | Old Windows PC: stops the guard and zips the SSH files and Claude Code conversations for the Mac. |
 | `keep_awake_until.ps1` | Keeps the PC awake until a date (the guard needs the PC awake and plugged in). |
 | `cluster_export_for_repo.sh` | Tar of finished-run files and final models for the repo (edit the lists first). |
 | `model_table.py` | Markdown table of `bmuon/models/` with the validation errors of each model. |
@@ -42,9 +46,10 @@ python -m bmuon.experiments.preread_figs --runs ~/runs_cache \
 
 ## Night guard
 
-macOS (needs `brew install bash coreutils`; keep the Mac plugged in, lid open):
+macOS (needs bash ≥ 4 and the venv `~/.venvs/ea` of `bmuon/HANDOFF.md` §3; keep the Mac plugged in, lid open):
 
 ```bash
+bash bmuon/tools/pc/mac_install_bash.sh   # once: bash 5 into ~/.local/bin (no Homebrew needed)
 bash bmuon/tools/pc/start_guard.sh    # refuses if one is already running; keeps the Mac awake
 bash bmuon/tools/pc/stop_guard.sh
 ```
