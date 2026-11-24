@@ -1,0 +1,151 @@
+{
+ "gpu": {
+  "nvidia_smi": "NVIDIA RTX 2000 Ada Generation, 12234 MiB, 0 %"
+ },
+ "jax_devices": [
+  "cuda:0"
+ ],
+ "epoch": 99,
+ "dense_run": "mp1-bmuon-selwd",
+ "wide_run": "mp1-wide-x1.5-gradual-bmuon-mu",
+ "params": {
+  "dense": 707658,
+  "wide_pruned": 743197,
+  "wide_full": 993391
+ },
+ "tp_paths": {
+  "dense": 3236,
+  "wide_pruned": 3232,
+  "wide_full": 4856
+ },
+ "tp_irreps": {
+  "dense": [
+   "89x0e",
+   "128x0e+64x1o+32x2e+32x3o",
+   "128x0e+64x1o+32x2e+32x3o",
+   "128x0e+64x1o+32x2e+32x3o"
+  ],
+  "wide_pruned": [
+   "132x0e",
+   "171x0e+44x1o+19x2e+17x3o",
+   "170x0e+42x1o+16x2e+19x3o",
+   "192x0e+87x1o+46x2e+38x3o"
+  ],
+  "wide_full": [
+   "134x0e",
+   "192x0e+96x1o+48x2e+48x3o",
+   "192x0e+96x1o+48x2e+48x3o",
+   "192x0e+96x1o+48x2e+48x3o"
+  ]
+ },
+ "phases": [
+  {
+   "name": "phase0",
+   "epochs": [
+    0,
+    29
+   ],
+   "n_epochs": 30,
+   "cost_kept_paths": 1.0,
+   "tp_irreps": [
+    "134x0e",
+    "192x0e + 96x1o + 48x2e + 48x3o",
+    "192x0e + 96x1o + 48x2e + 48x3o",
+    "192x0e + 96x1o + 48x2e + 48x3o"
+   ]
+  },
+  {
+   "name": "phase1",
+   "epochs": [
+    30,
+    38
+   ],
+   "n_epochs": 9,
+   "cost_kept_paths": 0.9345140032948929,
+   "tp_irreps": [
+    "134x0e",
+    "192x0e + 85x1o + 40x2e + 38x3o",
+    "192x0e + 91x1o + 41x2e + 40x3o",
+    "192x0e + 95x1o + 47x2e + 41x3o"
+   ]
+  },
+  {
+   "name": "phase2",
+   "epochs": [
+    39,
+    47
+   ],
+   "n_epochs": 9,
+   "cost_kept_paths": 0.8729406919275123,
+   "tp_irreps": [
+    "134x0e",
+    "189x0e + 73x1o + 36x2e + 35x3o",
+    "192x0e + 75x1o + 35x2e + 35x3o",
+    "192x0e + 94x1o + 47x2e + 41x3o"
+   ]
+  },
+  {
+   "name": "phase3",
+   "epochs": [
+    48,
+    56
+   ],
+   "n_epochs": 9,
+   "cost_kept_paths": 0.8158978583196045,
+   "tp_irreps": [
+    "134x0e",
+    "186x0e + 68x1o + 28x2e + 29x3o",
+    "192x0e + 67x1o + 26x2e + 30x3o",
+    "192x0e + 93x1o + 47x2e + 40x3o"
+   ]
+  },
+  {
+   "name": "phase4",
+   "epochs": [
+    57,
+    65
+   ],
+   "n_epochs": 9,
+   "cost_kept_paths": 0.7623558484349258,
+   "tp_irreps": [
+    "133x0e",
+    "185x0e + 58x1o + 28x2e + 23x3o",
+    "186x0e + 52x1o + 24x2e + 26x3o",
+    "192x0e + 89x1o + 47x2e + 40x3o"
+   ]
+  },
+  {
+   "name": "phase5",
+   "epochs": [
+    66,
+    74
+   ],
+   "n_epochs": 9,
+   "cost_kept_paths": 0.7123146622734761,
+   "tp_irreps": [
+    "133x0e",
+    "177x0e + 55x1o + 22x2e + 23x3o",
+    "176x0e + 46x1o + 17x2e + 22x3o",
+    "192x0e + 88x1o + 47x2e + 39x3o"
+   ]
+  },
+  {
+   "name": "phase6",
+   "epochs": [
+    75,
+    99
+   ],
+   "n_epochs": 25,
+   "cost_kept_paths": 0.6655683690280065,
+   "tp_irreps": [
+    "132x0e",
+    "171x0e + 44x1o + 19x2e + 17x3o",
+    "170x0e + 42x1o + 16x2e + 19x3o",
+    "192x0e + 87x1o + 46x2e + 38x3o"
+   ]
+  }
+ ],
+ "gpu_end": {
+  "nvidia_smi": "NVIDIA RTX 2000 Ada Generation, 12480 MiB, 100 %"
+ }
+}

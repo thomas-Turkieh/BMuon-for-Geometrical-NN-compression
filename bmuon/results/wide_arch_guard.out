@@ -926,3 +926,14 @@ bmuon/experiments/night_guard.sh: command substitution: line 45: `$NIGHT free "$
 [Mon 06:39:51] mp1-arch-x1.5-pruned-scratch: ranks missing on allier astragale lada malleole mazda parietal phalange porsche : restart on allier astragale lada malleole mazda parietal phalange porsche (resume from state.pkl)
 [Mon 06:40:56] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on faisan gelinotte loriol truite mouette ablette dindon gymnote : restart on faisan gelinotte loriol truite mouette ablette dindon gymnote (resume from state.pkl)
 [Mon 07:02:43] less than 30 min before the end of the window: guard paused until the next window
+[Mon 18:35:06] window open again, ends Tue 24 Nov 07:25:00: guard resumes
+[Mon 18:35:23] mp1-wide-x3-gradual-bmuon-mu: ranks missing on perone carmor pontiac cote radius landes cubitus ain simca skoda charente acromion finistere cher humerus bugatti : restart on perone carmor pontiac cote radius landes cubitus ain simca skoda charente acromion finistere cher humerus bugatti (resume from state.pkl)
+[Mon 18:37:09] mp1-arch-x1.5-pruned-scratch: ranks missing on allier astragale lada malleole mazda parietal phalange porsche : restart on allier astragale lada malleole mazda parietal phalange porsche (resume from state.pkl)
+[Mon 18:38:00] mp1-wide-x1.25-gradual-bmuon-mu: ranks missing on faisan gelinotte loriol truite mouette ablette dindon gymnote : restart on faisan gelinotte loriol truite mouette ablette dindon gymnote (resume from state.pkl)
+[Mon 19:17:31] mp1-wide-x3-gradual-bmuon-mu: unreachable cher (rebooting?), waiting
+[Mon 19:34:07] mp1-wide-x3-gradual-bmuon-mu: unreachable cher (rebooting?), waiting
+[Mon 19:46:11] mp1-wide-x3-gradual-bmuon-mu: cher unreachable for 15 min, replaced by apophyse
+[Mon 19:46:11] mp1-wide-x3-gradual-bmuon-mu: ranks missing on cote cher: restart on perone carmor pontiac cote radius landes cubitus ain simca skoda charente acromion finistere apophyse humerus bugatti (resume from state.pkl)
+[Tue 12:24:02] mp1-wide-x3-gradual-bmuon-mu: unreachable carmor pontiac cote radius landes (rebooting?), waiting
+[Tue 12:24:15] mp1-arch-x1.5-pruned-scratch: ranks missing on allier astragale lada malleole mazda parietal phalange porsche : restart on allier astragale lada malleole mazda parietal phalange porsche (resume from state.pkl)
+[Tue 12:25:34] mp1-arch-x1.5-pruned-scratch: start refused, will retry
