@@ -20,9 +20,12 @@ Inputs:
    needs their password), then the two "Next steps" lines it prints, and to tell you when done.
    Use `/opt/homebrew/bin/brew` (Apple silicon) or `/usr/local/bin/brew` (Intel) by full path if
    `brew` is not on your PATH.
-2. `brew install git bash coreutils python@3.11 tectonic`
-   (bash ≥ 4 and GNU `timeout` are needed by the night guard; tectonic compiles the LaTeX pre-read).
-3. Python environment:
+2. `brew install git bash coreutils python@3.11`
+   (bash ≥ 4 and GNU `timeout` are needed by the night guard).
+3. LaTeX: the user installs MacTeX themselves. Check `ls /Library/TeX/texbin/pdflatex`; if missing,
+   USER: ask the user whether the MacTeX installation is finished. Use `/Library/TeX/texbin/pdflatex`
+   by full path if it is not on your PATH.
+4. Python environment:
    `$(brew --prefix)/bin/python3.11 -m venv ~/.venvs/ea && ~/.venvs/ea/bin/pip install numpy matplotlib scipy pyyaml`
 
 ## Step 2. Repository
@@ -75,8 +78,9 @@ Git Bash, the scratchpad folder): on the Mac they are replaced by the tools of `
      mp1-arch-x1.5-pruned-scratch < ~/EA/code/bmuon/tools/pc/pull_logs.sh | tar -xmf -
    cd ~/EA/code && ~/.venvs/ea/bin/python -m bmuon.experiments.preread_figs --runs ~/runs_cache \
      --bench bmuon/results/2026-11-10_full-mptrj_wide-models-pruned-to-nequix-size/equal_size_bench --out /tmp/preread_test
-   cp bmuon/results/2026-11-24_full-mptrj_meeting-pre-read/pre-read.tex /tmp/preread_test/ && \
-     tectonic /tmp/preread_test/pre-read.tex && ls -la /tmp/preread_test/pre-read.pdf
+   cp bmuon/results/2026-11-24_full-mptrj_meeting-pre-read/pre-read.tex /tmp/preread_test/ && cd /tmp/preread_test && \
+     /Library/TeX/texbin/pdflatex -interaction=nonstopmode pre-read.tex > /dev/null && \
+     /Library/TeX/texbin/pdflatex -interaction=nonstopmode pre-read.tex | grep "Output written"
    ```
 3. Report the run status to the user (epoch, errors, minutes since last log write; outside 18:30–07:25
    on weekdays the runs are stopped on purpose).

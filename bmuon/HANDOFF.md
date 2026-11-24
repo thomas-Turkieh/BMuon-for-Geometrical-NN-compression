@@ -33,8 +33,8 @@ computer, a **Mac** (the old one was a Windows PC: Git Bash, PowerShell, WMI; ig
 
 macOS:
 Step-by-step setup for Claude Code on the Mac: `bmuon/MAC_SETUP.md`. In short:
-1. Homebrew, then `brew install git bash coreutils python@3.11 tectonic` (tectonic compiles the
-   LaTeX pre-read: `tectonic pre-read.tex`). The guard needs bash ≥ 4 and GNU `timeout`: macOS ships bash 3.2 and no
+1. Homebrew, then `brew install git bash coreutils python@3.11`; MacTeX for the LaTeX pre-read
+   (`/Library/TeX/texbin/pdflatex`). The guard needs bash ≥ 4 and GNU `timeout`: macOS ships bash 3.2 and no
    `timeout`, `start_guard.sh` puts the Homebrew versions first in `PATH`.
 2. Python environment: `python3.11 -m venv ~/.venvs/ea && source ~/.venvs/ea/bin/activate &&
    pip install numpy matplotlib scipy pyyaml` (old PC: matplotlib 3.10, scipy 1.15, numpy 2.2).
@@ -148,7 +148,7 @@ Logs for plotting are pulled into a local cache with `bmuon/tools/pc/pull_logs.s
 
 A weekly pre-read is sent to the supervisor and the team before the meeting, as one PDF
 (the email only says "pre-read attached"). Latest: `bmuon/results/2026-11-24_full-mptrj_meeting-pre-read/`
-(`pre-read.tex`, compiled with `tectonic` on the Mac or `pdflatex`, output renamed `pre-read_<date>.pdf`). Start the next one
+(`pre-read.tex`, compiled twice with `pdflatex` (MacTeX on the Mac), output renamed `pre-read_<date>.pdf`). Start the next one
 in a new dated folder. The figures use Times New Roman (present on macOS and Windows).
 To update: pull the logs, run `preread_figs.py`, update the numbers in `pre-read.tex` from
 `summary.json`, compile twice, check the page count.
