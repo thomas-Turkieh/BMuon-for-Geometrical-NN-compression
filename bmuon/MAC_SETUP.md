@@ -93,6 +93,10 @@ Git Bash, the scratchpad folder): on the Mac they are replaced by the tools of `
 
 ## Step 7. Move the night guard to the Mac
 
+**Update, 24 November 2026: skip this step.** The user decided to keep the guard on the Windows PC
+for now (see the top of `bmuon/HANDOFF.md`). Do it only if the user explicitly asks to switch, after
+the guard on the Windows PC has been stopped.
+
 The guard restarts the trainings every evening and after crashes. Exactly one guard may run.
 1. Read `~/transfert_mac/GUARD_STOPPED.txt`. If it is missing, USER: ask the user to confirm the
    guard is stopped on the old PC before going on.

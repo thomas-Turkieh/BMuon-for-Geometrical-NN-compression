@@ -1,7 +1,15 @@
 # Handoff: driving the BMuon × Nequix experiments from a new PC
 
 Written on 24 November 2026 for a Claude Code session that takes over this project on a new
-computer, a **Mac** (the old one was a Windows PC: Git Bash, PowerShell, WMI; ignore those parts). Read it entirely before acting. `bmuon/CLAUDE.md` describes a collaborator's setup
+computer, a **Mac**.
+
+**Update, 24 November 2026 (evening): the Windows PC stays the main computer.** The night guard and
+the runs are driven from the Windows PC (`start_guard.ps1` / `stop_guard.ps1`). The Mac is set up
+and can do everything (status, logs, figures, pre-read, git), but it must **not** start a guard
+(`start_guard.sh`) unless the user explicitly decides to switch, and only after the guard on the
+Windows PC has been stopped. Never two guards at once. On the Mac, before any check, `git pull`.
+
+Read it entirely before acting. `bmuon/CLAUDE.md` describes a collaborator's setup
 (another cluster account, other commit rules): it does **not** apply here, this file does.
 
 ## 1. Working rules (from the user, mandatory)
@@ -52,7 +60,8 @@ Step-by-step setup for Claude Code on the Mac: `bmuon/MAC_SETUP.md`. In short:
    `.jsonl` files and the `memory/` folder), copied by hand from the old PC. The memory notes are not
    in this repo (they contain personal information). Some notes describe Windows-only procedures
    (WMI, PowerShell, Git Bash): on the Mac use the `.sh` tools of `bmuon/tools/pc/` instead.
-6. Move the guard (section 5): stop it on the old PC, then start it on the Mac with
+6. Only if the user decides to switch (for now the guard stays on the Windows PC, see the top):
+   move the guard (section 5): stop it on the Windows PC, then start it on the Mac with
    `bash bmuon/tools/pc/start_guard.sh`. Keep the Mac **plugged in with the lid open**: `caffeinate`
    (started by the script) prevents idle sleep, not lid-close sleep. A sleeping computer means no
    restarts at night.
@@ -104,10 +113,12 @@ no guard restarts them, finish them only if the user asks.
 - **Night guard**: `bmuon/experiments/night_guard.sh <plan>` runs on the PC, checks every 10 min,
   restarts runs that lost a rank (resume from `state.pkl`), restarts a run whose log has not moved
   for 40 min, replaces a host unreachable for 15 min by an idle host of the same GPU type, pauses
-  outside the window and exits when every run is DONE. Start/stop on the Mac with
-  `bash bmuon/tools/pc/start_guard.sh` / `stop_guard.sh` (background `nohup` process, survives closing
-  Claude Code; `.ps1` versions for Windows). Log: `bmuon/results/wide_arch_guard.out`. Only one guard
-  per plan, on one computer.
+  outside the window and exits when every run is DONE. **It runs on the Windows PC**: start/stop with
+  `powershell -ExecutionPolicy Bypass -File bmuon\tools\pc\start_guard.ps1` / `stop_guard.ps1`
+  (detached process, survives closing Claude Code; the PC must stay awake and plugged in). The Mac
+  equivalents `start_guard.sh` / `stop_guard.sh` are for a later switch only. Log:
+  `bmuon/results/wide_arch_guard.out`, written only on the computer that runs the guard (do not
+  commit it from the Mac). Only one guard per plan, on one computer.
 - Status: see `bmuon/tools/pc/README.md` (`run_status.py` through one ssh; `last_write` of a few
   minutes means training; outside the window the runs are stopped on purpose).
 - Allow about one hour after 18:30 before concluding that everything runs (host swaps).
